@@ -109,6 +109,7 @@ const SignUpForm = () => {
             >
               Sign up
             </Button>
+            {/**following error is just when password doesn't match */}
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}
