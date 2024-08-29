@@ -1,6 +1,6 @@
+import React, { useContext, useState } from "react";
+import axios from "axios";
 
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
@@ -9,13 +9,17 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
+import { Link, useHistory } from "react-router-dom";
+
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { SetCurrentUserContext } from "../../App";
 
-import axios from "axios";
 
 function SignInForm() {
+    const setCurrentUser = useContext(SetCurrentUserContext)
+
     //   Add your component logic here
     const [signInData, setSignInData] = useState({
         username: "",
@@ -31,7 +35,9 @@ function SignInForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/login/", signInData);
+      const {data} = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user)
+
       history.push("/");
     } catch (err) {
         setErrors(err.response?.data);

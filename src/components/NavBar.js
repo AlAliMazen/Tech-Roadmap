@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 // import the component
 
 import { Navbar, Container, Nav } from "react-bootstrap";
@@ -9,8 +9,37 @@ import styles from "../styles/NavBar.module.css";
 
 //import the NavLink from root directory
 import { NavLink } from "react-router-dom";
+import { CurrentUserContext } from "../App";
 
 const NavBar = () => {
+  // accessing context varibale from the child element
+  const currentUser = useContext(CurrentUserContext);
+
+  const loggedInIcons = <>{currentUser?.username}</>
+
+
+  //use the empty fragement <></> to wrap the NavLink 
+  const loggedOutIcons = (
+    <>
+      {" "}
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/signin"
+      >
+        {" "}
+        <i className="fas fa-sign-in mr-2"></i>Sign in
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/signup"
+      >
+        <i className="fa-solid fa-user-plus mr-2"></i>Sign up
+      </NavLink>
+    </>
+  );
+
   return (
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
@@ -52,21 +81,8 @@ const NavBar = () => {
               {" "}
               <i className="fa-solid fa-table-list mr-2"></i>Categories
             </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/signin"
-            >
-              {" "}
-              <i className="fas fa-sign-in mr-2"></i>Sign in
-            </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/signup"
-            >
-              <i className="fa-solid fa-user-plus mr-2"></i>Sign up
-            </NavLink>
+            {currentUser ? loggedInIcons : loggedOutIcons}
+
           </Nav>
         </Navbar.Collapse>
       </Container>
