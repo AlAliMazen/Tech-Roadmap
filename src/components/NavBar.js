@@ -15,6 +15,7 @@ import {
 } from "../context/CurrentUserContext";
 import Avatar from "./Avatar";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import axios from "axios";
 
 const NavBar = () => {
   // accessing context varibale from the child element
