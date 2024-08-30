@@ -1,30 +1,21 @@
 import React from "react";
-// import the component
-
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/logo/Tech_roadmap_BB.png";
-
-//importing the styles of the Navbar
 import styles from "../styles/NavBar.module.css";
-
-//import the NavLink from root directory
 import { NavLink } from "react-router-dom";
 import {
   useCurrentUser,
   useSetCurrentUser,
-} from "../context/CurrentUserContext";
+} from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
-import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import axios from "axios";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
-  // accessing context varibale from the child element
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  const {expanded, setExpanded, ref} = useClickOutsideToggle();
-  
-
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
     try {
@@ -39,12 +30,11 @@ const NavBar = () => {
     <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/articles/create"
+      to="/posts/create"
     >
-      <i className="fa-solid fa-plus-square mr-2"></i> Articles
+      <i className="far fa-plus-square"></i>Add post
     </NavLink>
   );
-
   const loggedInIcons = (
     <>
       <NavLink
@@ -52,35 +42,26 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/feed"
       >
-        <i className="fas fa-stream mr-2"></i>Sign in
+        <i className="fas fa-stream"></i>Feed
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/liked"
       >
-        <i className="fas fa-heart mr-2"></i>Sign in
+        <i className="fas fa-heart"></i>Liked
+      </NavLink>
+      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+        <i className="fas fa-sign-out-alt"></i>Sign out
       </NavLink>
       <NavLink
         className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/"
-        onClick={handleSignOut}
-      >
-        <i className="fas fa-sign-out-alt mr-2"></i>Sign out
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
         to={`/profiles/${currentUser?.profile_id}`}
-        onClick={() => {}}
       >
-        <Avatar src={currentUser?.profile_image} text="profile" height={40} />
+        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
       </NavLink>
     </>
   );
-
-  //use the empty fragement <></> to wrap the NavLink
   const loggedOutIcons = (
     <>
       <NavLink
@@ -88,14 +69,14 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/signin"
       >
-        <i className="fas fa-sign-in mr-2"></i>Sign in
+        <i className="fas fa-sign-in-alt"></i>Sign in
       </NavLink>
       <NavLink
+        to="/signup"
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/signup"
       >
-        <i className="fa-solid fa-user-plus mr-2"></i>Sign up
+        <i className="fas fa-user-plus"></i>Sign up
       </NavLink>
     </>
   );
