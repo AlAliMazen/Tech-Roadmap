@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 // import the component
 
 import { Navbar, Container, Nav } from "react-bootstrap";
@@ -9,11 +9,11 @@ import styles from "../styles/NavBar.module.css";
 
 //import the NavLink from root directory
 import { NavLink } from "react-router-dom";
-import { CurrentUserContext } from "../App";
+import { useCurrentUser } from "../context/CurrentUserContext";
 
 const NavBar = () => {
   // accessing context varibale from the child element
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useCurrentUser();
 
   const loggedInIcons = <>{currentUser?.username}</>
 
