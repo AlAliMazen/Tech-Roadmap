@@ -6,13 +6,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
-
+import Alert from "react-bootstrap/Alert";
+import Asset from "../../components/Asset";
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { FormGroup, FormLabel } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefault";
 
