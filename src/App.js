@@ -24,7 +24,7 @@ function App() {
               <Route exact path="/categories" render={() => <h1>Categories</h1>}/>
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
-              <Route exact path="articles/create" render = {() => <PostCreateForm/>}/>
+              <Route exact path="/articles/create" render = {() => <PostCreateForm/>}/>
               <Route render={() => <p>PAGE NOT FOUND</p>} />
             </Switch>
           </Container>
