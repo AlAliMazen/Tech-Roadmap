@@ -7,6 +7,7 @@ import Avatar from "../../components/Avatar";
 import Accordion from 'react-bootstrap/Accordion'
 import { axiosRes } from "../../api/axiosDefault";
 
+
 const Post = (props) => {
   const {
     id,
@@ -74,7 +75,7 @@ const Post = (props) => {
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             {/**this is where we will show the dropdown menu */}
-            {is_owner && postPage && " ..."}
+            {is_owner && postPage && " Any"}
           </div>
         </Media>
       </Card.Body>
