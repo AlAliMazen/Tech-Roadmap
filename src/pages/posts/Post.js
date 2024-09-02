@@ -22,6 +22,7 @@ const Post = (props) => {
     image,
     updated_at,
     postPage,
+    category_title,
     setPosts,
   } = props;
 
@@ -73,6 +74,9 @@ const Post = (props) => {
             {owner}
           </Link>
           <div className="d-flex align-items-center">
+            <span>{category_title}</span>
+          </div>
+          <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             {/**this is where we will show the dropdown menu */}
             {is_owner && postPage && " Any"}
@@ -87,7 +91,7 @@ const Post = (props) => {
       <Accordion defaultActiveKey="1">
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="0">
-            {title && <Card.Title className="text-center">{title}</Card.Title>}
+            {title &&  <Card.Title className="text-center">{title}</Card.Title>}
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>{content && <Card.Text>{content}</Card.Text>}</Card.Body>
