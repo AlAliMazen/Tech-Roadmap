@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefault";
+import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 
 
