@@ -1,6 +1,8 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import logo from "../assets/logo/Tech_roadmap_BB.png";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import logo from "../assets/Tech_roadmap_BB.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import {
@@ -10,6 +12,7 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+//import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -21,8 +24,9 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      //removeTokenTimestamp();
     } catch (err) {
-      console.log(err);
+       console.log(err);
     }
   };
 
@@ -30,7 +34,7 @@ const NavBar = () => {
     <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/articles/create"
+      to="/posts/create"
     >
       <i className="far fa-plus-square"></i>Add post
     </NavLink>
@@ -90,13 +94,13 @@ const NavBar = () => {
     >
       <Container>
         <NavLink to="/">
-          <Navbar.Brand href="#home">
-            <img src={logo} alt="tech-road-map-logo" height="45" />
+          <Navbar.Brand>
+            <img src={logo} alt="logo" height="45" />
           </Navbar.Brand>
         </NavLink>
         {currentUser && addPostIcon}
         <Navbar.Toggle
-        ref={ref}
+          ref={ref}
           onClick={() => setExpanded(!expanded)}
           aria-controls="basic-navbar-nav"
         />
@@ -108,30 +112,9 @@ const NavBar = () => {
               activeClassName={styles.Active}
               to="/"
             >
-              <i className="fa-solid fa-house-chimney mr-2"></i>Home
+              <i className="fas fa-home"></i>Home
             </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/courses"
-            >
-              <i className="fa-solid fa-book mr-2"></i> Courses
-            </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/articles"
-            >
-              <i className="fa-solid fa-newspaper mr-2"></i> Articles
-            </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/categories"
-            >
-              {" "}
-              <i className="fa-solid fa-table-list mr-2"></i>Categories
-            </NavLink>
+
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
