@@ -1,14 +1,16 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+
+import Card from "react-bootstrap/Card";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import Accordion from 'react-bootstrap/Accordion'
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
 
 const Post = (props) => {
   const {
@@ -24,35 +26,30 @@ const Post = (props) => {
     image,
     updated_at,
     postPage,
-    category_title,
     setPosts,
+    category_title,
   } = props;
 
-  //to get the current logged in user
   const currentUser = useCurrentUser();
-  //check if the current user is the same as the owner 
   const is_owner = currentUser?.username === owner;
-
   const history = useHistory();
 
   const handleEdit = () => {
-    history.push(`/articles/${id}/edit`)
-  }
+    history.push(`/articles/${id}/edit`);
+  };
 
   const handleDelete = async () => {
-    try{
+    try {
       await axiosRes.delete(`/articles/${id}/`);
       history.goBack();
-    }catch(err){
-      console.log(err)
+    } catch (err) {
+      // console.log(err);
     }
-  }
+  };
 
-  //handling likes
   const handleLike = async () => {
     try {
-      console.log("post Id is : ", {id})
-      const { data } = await axiosRes.post("/likes/",{article:id});
+      const { data } = await axiosRes.post("/likes/", { post: id });
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
@@ -62,24 +59,24 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
-      console.log("Error:", err.response.data);
-      console.log("Error:", err.response ? err.response.data : err.message);
+      // console.log(err);
     }
   };
 
-  //handle unlike
-  const handleUnlike = async ()=>{
-    try{
-      await axiosRes.delete(`/likes/${like_id}`);
-      setPosts((prevPosts)=>({
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}/`);
+      setPosts((prevPosts) => ({
         ...prevPosts,
-        results: prevPosts.results.map((post)=>{
-          return post.id === id ? {...post, likes_count:post.likes_count-1, like_id:null}: post;
-        })
-      }))
-    }catch(err){
-      console.log(err)}
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      // console.log(err);
+    }
   };
 
   return (
@@ -91,46 +88,22 @@ const Post = (props) => {
             {owner}
           </Link>
           <div className="d-flex align-items-center">
-            <span>{category_title}</span>
-          </div>
-          <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            
-          </div>
-          <div className="d-flex align-items-center">
-            
-          <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete}/>
-          </div>
-          <div className="d-flex align-items-center">
-            <span> {is_owner && postPage?
-              <>
-              
-              </>:<>
-                <spa>Can't be shown</spa>
-              </>
-            }
-            </span>
+            {is_owner && postPage && (
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </Media>
       </Card.Body>
-
-      <Link to={`/posts/${id}`}>
+      <Link to={`/articles/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
-
-      <Accordion defaultActiveKey="1">
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="0">
-            {title &&  <Card.Title className="text-center">{title}</Card.Title>}
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>{content && <Card.Text>{content}</Card.Text>}</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        
-      </Accordion>
-
       <Card.Body>
+        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (
             <OverlayTrigger
@@ -144,7 +117,7 @@ const Post = (props) => {
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
-            <span onClick= { handleLike }>
+            <span onClick={handleLike}>
               <i className={`far fa-heart ${styles.HeartOutline}`} />
             </span>
           ) : (

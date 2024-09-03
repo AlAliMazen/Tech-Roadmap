@@ -37,7 +37,7 @@ function PostEditForm() {
 
         is_owner ? setPostData({ title, content, image }) : history.push("/");
       } catch (err) {
-        console.log(err);
+         console.log(err);
       }
     };
 
@@ -73,10 +73,10 @@ function PostEditForm() {
     }
 
     try {
-      await axiosReq.put(`/posts/${id}/`, formData);
-      history.push(`/posts/${id}`);
+      await axiosReq.put(`/articles/${id}/`, formData);
+      history.push(`/articles/${id}`);
     } catch (err) {
-      console.log(err);
+       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -137,7 +137,7 @@ function PostEditForm() {
           >
             <Form.Group className="text-center">
               <figure>
-                <Image className={`${styles.ArticleImage}`}  src={image} rounded />
+                <Image className={appStyles.Image} src={image} rounded />
               </figure>
               <div>
                 <Form.Label
