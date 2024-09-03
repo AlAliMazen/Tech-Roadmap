@@ -30,13 +30,13 @@ function PostPage() {
     const handleMount = async () => {
       try {
         const [{ data: post }, { data: comments }] = await Promise.all([
-          axiosReq.get(`/posts/${id}`),
-          axiosReq.get(`/comments/?post=${id}`),
+          axiosReq.get(`/articles/${id}`),
+          axiosReq.get(`/comments/?article=${id}`),
         ]);
         setPost({ results: [post] });
         setComments(comments);
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     };
 
@@ -53,7 +53,7 @@ function PostPage() {
             <CommentCreateForm
               profile_id={currentUser.profile_id}
               profileImage={profile_image}
-              post={id}
+              article={id}
               setPost={setPost}
               setComments={setComments}
             />

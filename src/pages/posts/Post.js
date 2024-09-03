@@ -27,7 +27,6 @@ const Post = (props) => {
     updated_at,
     postPage,
     setPosts,
-    category_title,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -43,13 +42,13 @@ const Post = (props) => {
       await axiosRes.delete(`/articles/${id}/`);
       history.goBack();
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   };
 
   const handleLike = async () => {
     try {
-      const { data } = await axiosRes.post("/likes/", { post: id });
+      const { data } = await axiosRes.post("/likes/", { article: id });
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
@@ -75,7 +74,7 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   };
 
@@ -87,9 +86,6 @@ const Post = (props) => {
             <Avatar src={profile_image} height={55} />
             {owner}
           </Link>
-          <div className="d-flex align-items-center">
-              <span>{category_title}</span>
-          </div>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             {is_owner && postPage && (
@@ -126,13 +122,13 @@ const Post = (props) => {
           ) : (
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>Log in to like posts!</Tooltip>}
+              overlay={<Tooltip>Log in to like articles!</Tooltip>}
             >
               <i className="far fa-heart" />
             </OverlayTrigger>
           )}
           {likes_count}
-          <Link to={`/posts/${id}`}>
+          <Link  to={`/articles/${id}`}>
             <i className="far fa-comments" />
           </Link>
           {comments_count}
