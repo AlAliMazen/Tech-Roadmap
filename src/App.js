@@ -4,12 +4,13 @@ import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
-import PostCreateForm from "./pages/posts/PostcreateForm";
+import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
 import CategoryPage from "./pages/categories/CategoryPage";
 import CoursesPage from "./pages/courses/CoursesPage";
 import PostsPage from "./pages/posts/PostsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import PostEditForm from "./pages/posts/PostEditForm";
 
 
 
@@ -56,6 +57,7 @@ function App() {
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/articles/create" render={() => <PostCreateForm />} />
+          <Route exact path="/articles/:id/edit" render={() => <PostEditForm />} />
           <Route render={() => <p>PAGE NOT FOUND</p>} />
         </Switch>
       </Container>

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import Accordion from 'react-bootstrap/Accordion'
 import { axiosRes } from "../../api/axiosDefault";
+import { MoreDropdown } from "../../components/MoreDropdown";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 const Post = (props) => {
@@ -30,6 +32,21 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   //check if the current user is the same as the owner 
   const is_owner = currentUser?.username === owner;
+
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/articles/${id}/edit`)
+  }
+
+  const handleDelete = async () => {
+    try{
+      await axiosRes.delete(`/articles/${id}/`);
+      history.goBack();
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   //handling likes
   const handleLike = async () => {
@@ -78,8 +95,21 @@ const Post = (props) => {
           </div>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {/**this is where we will show the dropdown menu */}
-            {is_owner && postPage && " Any"}
+            
+          </div>
+          <div className="d-flex align-items-center">
+            
+          <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete}/>
+          </div>
+          <div className="d-flex align-items-center">
+            <span> {is_owner && postPage?
+              <>
+              
+              </>:<>
+                <spa>Can't be shown</spa>
+              </>
+            }
+            </span>
           </div>
         </Media>
       </Card.Body>
