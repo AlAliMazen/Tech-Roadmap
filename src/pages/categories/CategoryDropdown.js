@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
-import styles from "../../styles/PostCreateEditForm.module.css"
+import styles from "../../styles/CategoryDropdown.module.css"
 
 const CategoryDropdown = ({ selectedCategory, setSelectedCategory }) => {
   const [categories, setCategories] = useState([]);
@@ -26,7 +26,7 @@ const CategoryDropdown = ({ selectedCategory, setSelectedCategory }) => {
 
   return (
     <>
-      <Form.Group>
+      <Form.Group className={`${styles.categoryDropdown}`}>
         <Form.Label>Category</Form.Label>
         {loading ? (
           <Alert variant="info">Loading categories...</Alert>
@@ -34,14 +34,14 @@ const CategoryDropdown = ({ selectedCategory, setSelectedCategory }) => {
           <Alert variant="danger">{error}</Alert>
         ) : categories.length > 0 ? (
           <Form.Control
-            className={`${styles.CategoryDropdown}`}
+            className={`${styles.selectDropdown}`}
             as="select"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
-            <option value="">Select a category</option>
+            <option className={`${styles.selectDropdown}`} value="">Select a category</option>
             {categories.map((category) => (
-              <option key={category.id} value={category.id}>
+              <option className={`${styles.selectDropdown}`} key={category.id} value={category.id}>
                 {category.name}
               </option>
             ))}

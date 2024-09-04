@@ -1,0 +1,29 @@
+.CategoryDropdown select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #5bfc04;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    position: relative;
+    z-index: 1; /* Adjust z-index if necessary */
+  }
+  
+
+  .categoryDropdown option {
+    color: #0509ed;
+    background-color: #fff;
+    padding: 0.375rem 0.75rem;
+    border: none;
+  }
+  
+  .categoryDropdown {
+    position: relative;
+    z-index: 1000; /* Adjust z-index if necessary */
+  }
+  
