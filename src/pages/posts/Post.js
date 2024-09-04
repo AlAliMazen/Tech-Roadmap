@@ -11,6 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import Accordion from 'react-bootstrap/Accordion'
 
 const Post = (props) => {
   const {
@@ -102,8 +103,21 @@ const Post = (props) => {
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className="text-center">{title} | {category_title}</Card.Title>}
-        {content && <Card.Text>{content}</Card.Text>}
+        
+        <Accordion>
+          <Card>
+            <Card.Header>
+            <Accordion.Toggle as={Card.Header} eventKey="0">
+              {title && <Card.Title className="text-center">{title} | {category_title}</Card.Title>}
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body>{content && <Card.Text>{content}</Card.Text>}</Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          
+        </Accordion>
+        
         <div className={styles.PostBar}>
           {is_owner ? (
             <OverlayTrigger
@@ -129,7 +143,7 @@ const Post = (props) => {
             </OverlayTrigger>
           )}
           {likes_count}
-          <Link  to={`/articles/${id}`}>
+          <Link to={`/articles/${id}`}>
             <i className="far fa-comments" />
           </Link>
           {comments_count}

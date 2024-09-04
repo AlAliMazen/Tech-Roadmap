@@ -39,7 +39,7 @@ const CategoryDropdown = ({ selectedCategory, setSelectedCategory }) => {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
-            <option className={`${styles.selectDropdown}`} value="">Select a category</option>
+            <option value="">Select a category</option>
             {categories.map((category) => (
               <option className={`${styles.selectDropdown}`} key={category.id} value={category.id}>
                 {category.name}
