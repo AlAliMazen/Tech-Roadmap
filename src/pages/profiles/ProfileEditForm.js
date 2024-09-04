@@ -26,11 +26,12 @@ const ProfileEditForm = () => {
   const imageFile = useRef();
 
   const [profileData, setProfileData] = useState({
-    name: "",
+    owner: "",
+    nickname: "",
     content: "",
     image: "",
   });
-  const { name, content, image } = profileData;
+  const { owner, nickname, content, image } = profileData;
 
   const [errors, setErrors] = useState({});
 
@@ -39,19 +40,19 @@ const ProfileEditForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image } = data;
-          setProfileData({ name, content, image });
+          const { owner, nickname, content, image } = data;
+          setProfileData({ owner, nickname, content, image });
         } catch (err) {
-          // console.log(err);
+          console.log(err);
           history.push("/");
         }
       } else {
         history.push("/");
       }
     };
-
+  
     handleMount();
-  }, [currentUser, history, id]);
+  }, [currentUser, history, id]);;
 
   const handleChange = (event) => {
     setProfileData({
@@ -63,7 +64,8 @@ const ProfileEditForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("name", name);
+    formData.append("owner", owner);
+    formData.append("nickname", nickname);
     formData.append("content", content);
 
     if (imageFile?.current?.files[0]) {
@@ -78,13 +80,27 @@ const ProfileEditForm = () => {
       }));
       history.goBack();
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       setErrors(err.response?.data);
     }
   };
 
   const textFields = (
     <>
+      <Form.Group>
+        <Form.Label>Nickname</Form.Label>
+        <Form.Control
+          type="text"
+          value={nickname}
+          onChange={handleChange}
+          name="nickname"
+        />
+      </Form.Group>
+      {errors?.nickname?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
         <Form.Label>Bio</Form.Label>
         <Form.Control
