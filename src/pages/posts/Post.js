@@ -27,6 +27,7 @@ const Post = (props) => {
     updated_at,
     postPage,
     setPosts,
+    category_title,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -101,7 +102,7 @@ const Post = (props) => {
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {title && <Card.Title className="text-center">{title} | {category_title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (

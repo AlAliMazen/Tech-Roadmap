@@ -19,6 +19,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
+import CategoryDropdown from "../categories/CategoryDropdown";
 
 function PostCreateForm() {
   useRedirect("loggedOut");
@@ -26,10 +27,11 @@ function PostCreateForm() {
 
   const [postData, setPostData] = useState({
     title: "",
+    category:"",
     content: "",
     image: "",
   });
-  const { title, content, image } = postData;
+  const { title,category, content, image } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -38,6 +40,15 @@ function PostCreateForm() {
     setPostData({
       ...postData,
       [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleCategoryChange = (category) => {
+    console.log("Category is : ",category)
+    setPostData({
+      ...postData,
+      category: category,
+      
     });
   };
 
@@ -56,14 +67,16 @@ function PostCreateForm() {
     const formData = new FormData();
 
     formData.append("title", title);
+    formData.append("slug", title.toLowerCase().replace(/\s+/g, '-'));
+    formData.append("category",category)
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
 
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
-      history.push(`/posts/${data.id}`);
+      const { data } = await axiosReq.post("/articles/", formData);
+      history.push(`/articles/${data.id}`);
     } catch (err) {
-      // console.log(err);
+       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -86,6 +99,11 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
+       <CategoryDropdown
+        selectedCategory={postData.category}
+        setSelectedCategory={handleCategoryChange}
+      />
+      {errors.category && <Alert variant="warning">{errors.category}</Alert>}
 
       <Form.Group>
         <Form.Label>Content</Form.Label>

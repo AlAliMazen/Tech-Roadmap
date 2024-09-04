@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+import styles from "../../styles/PostCreateEditForm.module.css"
 
 const CategoryDropdown = ({ selectedCategory, setSelectedCategory }) => {
   const [categories, setCategories] = useState([]);
@@ -11,7 +12,7 @@ const CategoryDropdown = ({ selectedCategory, setSelectedCategory }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axiosReq.get("/categories/");
+        const { data } = await axiosReq.get("/category/");
         setCategories(data);
       } catch (err) {
         setError("Failed to load categories");
@@ -33,6 +34,7 @@ const CategoryDropdown = ({ selectedCategory, setSelectedCategory }) => {
           <Alert variant="danger">{error}</Alert>
         ) : categories.length > 0 ? (
           <Form.Control
+            className={`${styles.CategoryDropdown}`}
             as="select"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
