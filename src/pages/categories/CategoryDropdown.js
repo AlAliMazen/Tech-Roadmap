@@ -41,8 +41,11 @@ const CategoryDropdown = ({ selectedCategory, setSelectedCategory }) => {
           >
             <option value="">Select a category</option>
             {categories.map((category) => (
-              <option className={`${styles.selectDropdown}`} key={category.id} value={category.id}>
-                {category.name}
+              <option className={`${styles.selectDropdown}`}
+                 key={category.id}
+                 value={category.id}
+                 >
+                {category.title}
               </option>
             ))}
           </Form.Control>

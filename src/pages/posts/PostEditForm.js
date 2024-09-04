@@ -9,11 +9,13 @@ import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
+
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import CategoryDropdown from "../categories/CategoryDropdown";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
@@ -21,9 +23,10 @@ function PostEditForm() {
   const [postData, setPostData] = useState({
     title: "",
     content: "",
+    category:"",
     image: "",
   });
-  const { title, content, image } = postData;
+  const { title, category,content, image } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -33,11 +36,11 @@ function PostEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/articles/${id}/`);
-        const { title, content, image, is_owner } = data;
+        const { title, category, content, image, is_owner } = data;
 
-        is_owner ? setPostData({ title, content, image }) : history.push("/");
+        is_owner ? setPostData({ title, category, content, image }) : history.push("/");
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     };
 
@@ -48,6 +51,14 @@ function PostEditForm() {
     setPostData({
       ...postData,
       [event.target.name]: event.target.value,
+    });
+  };
+  const handleCategoryChange = (category) => {
+    console.log("Category is : ",category)
+    setPostData({
+      ...postData,
+      category: category,
+      
     });
   };
 
@@ -66,6 +77,8 @@ function PostEditForm() {
     const formData = new FormData();
 
     formData.append("title", title);
+    formData.append("slug", title.toLowerCase().replace(/\s+/g, '-'));
+    formData.append("category",category)
     formData.append("content", content);
 
     if (imageInput?.current?.files[0]) {
@@ -76,7 +89,7 @@ function PostEditForm() {
       await axiosReq.put(`/articles/${id}/`, formData);
       history.push(`/articles/${id}`);
     } catch (err) {
-      // console.log(err);
+       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -99,6 +112,11 @@ function PostEditForm() {
           {message}
         </Alert>
       ))}
+      <CategoryDropdown
+        selectedCategory={postData.category}
+        setSelectedCategory={handleCategoryChange}
+      />
+      {errors.category && <Alert variant="warning">{errors.category}</Alert>}
 
       <Form.Group>
         <Form.Label>Content</Form.Label>
