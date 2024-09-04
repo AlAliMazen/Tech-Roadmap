@@ -86,6 +86,10 @@ function ProfilePage() {
               <div>{profile?.following_count}</div>
               <div>following</div>
             </Col>
+            <Col xs={3} className="my-2">
+              <div>{profile?.courses_count}</div>
+              <div>Courses</div>
+            </Col>
           </Row>
         </Col>
         <Col lg={3} className="text-lg-right">
