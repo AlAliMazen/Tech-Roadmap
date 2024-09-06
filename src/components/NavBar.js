@@ -104,6 +104,7 @@ const NavBar = () => {
       fixed="top"
     >
       <Container>
+      
         <NavLink to="/">
           <Navbar.Brand>
             <img src={logo} alt="logo" height="45" />
@@ -127,8 +128,18 @@ const NavBar = () => {
               <i className="fas fa-home"></i>Home
             </NavLink>
 
+            <NavLink
+              exact
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/Courses"
+            >
+              <i className="fas fa-graduation-cap"></i>Courses
+            </NavLink>
+
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
+          
         </Navbar.Collapse>
       </Container>
     </Navbar>
