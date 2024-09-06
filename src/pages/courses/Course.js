@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router";
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import CardDeck from 'react-bootstrap/CardDeck'
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
 import styles from "../../styles/Course.module.css"
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from '../../api/axiosDefaults';
@@ -21,7 +27,8 @@ const Courses = ({ message, filter = "" }) => {
         setCourses(data);
         setHasLoaded(true);
       } catch (err) {
-         console.log(err);
+        console.log(err);
+        setError(err)
       }
     };
 
@@ -36,16 +43,32 @@ const Courses = ({ message, filter = "" }) => {
   }, [filter, query, pathname, currentUser]);
 
   return (
-    <div className={`${styles.CourseContainer}`}>
-      {courses.results.map((course) => (
-        <div key={course.id} className={`${styles.CourseCard}`}>
-          <img src={course.thumbnailImage} alt={course.course_title} className={`${styles.CourseImage}`}/>
-          <h2>{course.course_title}</h2>
-          <p><strong>Duration:</strong> {course.duration}</p>
-          <p>{course.about}</p>
-        </div>
-      ))}
-    </div>
+    <Container>
+      <Row className='m-2'>
+        <CardDeck className='justify-content-center'>
+          {courses.results.map((course) => (
+            <Col className="py-2 p-0 p-lg-2" lg={5}>
+              <Card>
+                <Card.Img variant="top" src={course.thumbnailImage} className={`${styles.CourseImage}`} alt={course.course_title} />
+                <Card.Body>
+                  <Card.Title className='text-center'> <strong>{course.course_title}</strong></Card.Title>
+                  <Card.Text>
+                    <p><strong>Duration:</strong> {course.duration}</p>
+                    <p><strong>Ratings:</strong> {course.ratings_count}</p>
+                    <p><strong>Reviews:</strong> {course.reviews_count}</p>
+                    <p><strong>Enrollments:</strong> {course.enrollments_count}</p>
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <Button variant="primary">Enroll</Button>
+                </Card.Footer>
+              </Card>
+            </Col>
+
+          ))}
+        </CardDeck>
+      </Row>
+    </Container>
   );
 };
 
