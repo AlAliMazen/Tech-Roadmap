@@ -1,99 +1,52 @@
-import React from "react";
-import styles from "../../styles/Post.module.css";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from "react-router";
+import styles from "../../styles/Course.module.css"
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { axiosReq } from '../../api/axiosDefaults';
 
-import Card from "react-bootstrap/Card";
-import Media from "react-bootstrap/Media";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
 
-import { Link, useHistory } from "react-router-dom";
-import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/axiosDefaults";
-import { MoreDropdown } from "../../components/MoreDropdown";
-import Accordion from 'react-bootstrap/Accordion'
-
-const Course = (props) => {
-  const {
-    id,
-    owner,
-    profile_id,
-    profile_image,
-    title,
-    about,
-    thumbnailImage,
-    updated_at,
-    created_at,
-    course_title,
-    reviews_count,
-    ratings_count,
-    enrollments_count,
-    duration,
-    category_title,
-  } = props;
+const Courses = ({ message, filter = "" }) => {
+  const [courses, setCourses] = useState({ results: [] });
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [error, setError] = useState(null);
+  const { pathname } = useLocation();
+  const [query, setQuery] = useState("");
 
   const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === owner;
-  const history = useHistory();
 
-  const handleEdit = () => {
-    history.push(`/courses/${id}/edit`);
-  };
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const { data } = await axiosReq.get(`/courses/?${filter}search=${query}`);
+        setCourses(data);
+        setHasLoaded(true);
+      } catch (err) {
+         console.log(err);
+      }
+    };
 
-  const handleDelete = async () => {
-    try {
-      await axiosRes.delete(`/courses/${id}/`);
-      history.goBack();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    setHasLoaded(false);
+    const timer = setTimeout(() => {
+      fetchCourses();
+    }, 1000);
 
-
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, query, pathname, currentUser]);
 
   return (
-    <Card className={styles.Post}>
-      <Card.Body>
-        <Media className="align-items-center justify-content-between">
-          <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={55} />
-            {owner}
-          </Link>
-          
-        </Media>
-      </Card.Body>
-      <Link to={`/courses/${id}`}>
-        <Card.Img src={thumbnailImage} alt={title} />
-      </Link>
-      <Card.Body>
-        
-        <Accordion>
-          <Card>
-            <Card.Header>
-            <Accordion.Toggle as={Card.Header} eventKey="0">
-              {course_title && <Card.Title className="text-center">{title} | {category_title}</Card.Title>}
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body>{about && <Card.Text>{about}</Card.Text>}</Card.Body>
-            </Accordion.Collapse>
-          </Card>
-          
-        </Accordion>
-        
-        <div className={styles.PostBar}>
-        <Link to={`/courses/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {reviews_count}
-          <Link to={`/courses/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {enrollments_count}
+    <div className={`${styles.CourseContainer}`}>
+      {courses.results.map((course) => (
+        <div key={course.id} className={`${styles.CourseCard}`}>
+          <img src={course.thumbnailImage} alt={course.course_title} className={`${styles.CourseImage}`}/>
+          <h2>{course.course_title}</h2>
+          <p><strong>Duration:</strong> {course.duration}</p>
+          <p>{course.about}</p>
         </div>
-      </Card.Body>
-    </Card>
+      ))}
+    </div>
   );
 };
 
-export default Course;
+export default Courses;

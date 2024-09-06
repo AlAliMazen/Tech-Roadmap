@@ -136,7 +136,6 @@ const NavBar = () => {
             >
               <i className="fas fa-graduation-cap"></i>Courses
             </NavLink>
-
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
           

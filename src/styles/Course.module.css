@@ -1,0 +1,34 @@
+.CourseContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .CourseCard {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .CourseImage {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  .CourseCard h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+  
+  .CourseCard p {
+    font-size: 1rem;
+    margin: 8px 0;
+  }
+  
