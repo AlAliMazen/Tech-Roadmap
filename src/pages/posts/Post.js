@@ -103,45 +103,46 @@ const Post = (props) => {
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        
+
         <Accordion>
           <Card>
             <Card.Header>
-            <Accordion.Toggle as={Card.Header} eventKey="0">
-              {title && <Card.Title className="text-center">{title} | {category_title}</Card.Title>}
+              <Accordion.Toggle as={Card.Header} eventKey="0">
+                {title && <Card.Title className="text-center">{title} | {category_title}</Card.Title>}
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>{content && <Card.Text>{content}</Card.Text>}</Card.Body>
             </Accordion.Collapse>
           </Card>
-          
+
         </Accordion>
-        
+
         <div className={styles.PostBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't like your own post!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          ) : like_id ? (
-            <span onClick={handleUnlike}>
-              <i className={`fas fa-heart ${styles.Heart}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to like articles!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          )}
+          {is_owner ?
+            (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't like your own post!</Tooltip>}
+              >
+                <i className="far fa-heart" />
+              </OverlayTrigger>
+            ) : like_id ? (
+              <span onClick={handleUnlike}>
+                <i className={`fas fa-heart ${styles.Heart}`} />
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleLike}>
+                <i className={`far fa-heart ${styles.HeartOutline}`} />
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to like articles!</Tooltip>}
+              >
+                <i className="far fa-heart" />
+              </OverlayTrigger>)
+          }
           {likes_count}
           <Link to={`/articles/${id}`}>
             <i className="far fa-comments" />
