@@ -17,6 +17,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import CategoryCreateEditForm from "./pages/categories/CategoryCreateEditForm";
+import CoursePage from "./pages/courses/CoursePage";
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
               />
             )}
           />
+          <Route exact path="/courses/:id" render={() => <CoursePage />} />
           <Route exact path="/courses" render={() => <Course />} />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />

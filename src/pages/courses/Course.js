@@ -11,6 +11,7 @@ import Alert from 'react-bootstrap/Alert';
 import styles from "../../styles/Course.module.css"
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from '../../api/axiosDefaults';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const Courses = ({ message, filter = "" }) => {
@@ -138,7 +139,10 @@ const Courses = ({ message, filter = "" }) => {
           {courses.results.map((course) => (
             <Col className="py-2 p-0 p-lg-2" lg={5}>
               <Card>
+                <Link to={`/courses/${course.id}`}>
                 <Card.Img variant="top" src={course.thumbnailImage} className={`${styles.CourseImage}`} alt={course.course_title} />
+                </Link>
+                
                 <Card.Body>
                   <Card.Title className='text-center'> <strong>{course.course_title}</strong></Card.Title>
                   <Card.Text>
