@@ -130,11 +130,11 @@ const CoursePage = () => {
 
                                     <Card.Text>
                                         <p><strong>Duration:</strong> {course.duration}</p>
-                                        <p><strong>Ratings:</strong> {getRating(id)}</p>
+                                        <p><strong>Ratings:</strong> {course.ratings_count}</p>
+                                        <p><strong>Rate:</strong> {averageRating}</p>
                                         <p><strong>Reviews:</strong> {course.reviews_count}</p>
                                         <p><strong>Enrollments:</strong> {course.enrollments_count}</p>
                                     </Card.Text>
-
                                 </>
                             ) : (
                                 <div>No course data available.</div>
