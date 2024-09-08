@@ -59,11 +59,11 @@ const Courses = ({ message, filter = "" }) => {
   }, [filter, query, pathname, currentUser]);
 
   // Function to check if the current user is enrolled and return `is_owner`
-  const getEnrollmentOwnershipStatus = (profileId, courseId) => {
+  const isUserEnrolled = (profileId, courseId) => {
     const enrollment = enrollments.find(
       (enrollment) => enrollment.profile_id === profileId && enrollment.course === courseId
     );
-    return enrollment ? enrollment.is_owner : false;  // Return `is_owner` if enrolled, otherwise false
+    return enrollment ? enrollment.is_owner : false; 
   };
 
   const getEnrollmentId = (profileId, courseId) => {
@@ -93,7 +93,6 @@ const Courses = ({ message, filter = "" }) => {
       reloadPage();
       setErrorMessage('');
     } catch (err) {
-      //console.log("Enrolling in Course error", err.response?.data.detail);
       setErrorMessage(err.response?.data.detail);
       setTimeout(() => {
         setErrorMessage('');
@@ -140,37 +139,35 @@ const Courses = ({ message, filter = "" }) => {
             <Col className="py-2 p-0 p-lg-2" lg={5}>
               <Card>
                 <Link to={`/courses/${course.id}`}>
-                <Card.Img variant="top" src={course.thumbnailImage} className={`${styles.CourseImage}`} alt={course.course_title} />
+                  <Card.Img variant="top" src={course.thumbnailImage} className={`${styles.CourseImage}`} alt={course.course_title} />
                 </Link>
-                
+
                 <Card.Body>
                   <Card.Title className='text-center'> <strong>{course.course_title}</strong></Card.Title>
                   <Card.Text>
                     <p><strong>Duration:</strong> {course.duration}</p>
-                    <p><strong>Ratings:</strong> {course.ratings_count}</p>
-                    <p><strong>Reviews:</strong> {course.reviews_count}</p>
                     <p><strong>Enrollments:</strong> {course.enrollments_count}</p>
                   </Card.Text>
                 </Card.Body>
-                <Card.Footer>
-
-                  {getEnrollmentOwnershipStatus(currentUser.profile_id, course.id) ? (
-                    <Button variant="danger" onClick={() => handleUnenrollment(course.id, getEnrollmentId(currentUser.profile_id, course.id))}>
-                      Unenroll
-                    </Button>
+                <Card.Footer className='m-2 text-center'>
+                  {isUserEnrolled(currentUser.profile_id, course.id) ? (
+                    <>
+                      <Button className='mx-2' variant="danger" onClick={() => handleUnenrollment(course.id, getEnrollmentId(currentUser.profile_id, course.id))}>
+                        Unenroll
+                      </Button>
+                    </>
                   ) : (
-                    <Button className='m-2 text-center' variant="primary" onClick={() => handleEnrollment(course.id)}>Enroll</Button>
+                    <Button variant="primary"
+                      onClick={() => handleEnrollment(course.id)}>Enroll</Button>
                   )}
                   {errorMessage && (
                     <Alert variant="warning" onClose={() => setErrorMessage('')} dismissible>
                       {errorMessage}
                     </Alert>
                   )}
-
                 </Card.Footer>
               </Card>
             </Col>
-
           ))}
         </CardDeck>
       </Row>
