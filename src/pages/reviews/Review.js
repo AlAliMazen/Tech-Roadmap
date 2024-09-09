@@ -16,7 +16,7 @@ const Review = (props) => {
     owner,
     updated_at,
     content,
-    rating, // Assuming reviews have a rating field
+    rating,
     id,
     setCourse,
     setReviews,

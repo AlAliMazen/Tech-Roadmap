@@ -30,7 +30,7 @@ const Course = (props) => {
     coursePage,
     setCourses,
     category_title,
-    enrollment_id,  // Add this if you have a way to track user's enrollment in a course
+    enrollment_id,  
   } = props;
 
   const currentUser = useCurrentUser();
