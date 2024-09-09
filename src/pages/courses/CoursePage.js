@@ -95,7 +95,7 @@ function CoursePage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles /> {/* Optional: Can show popular instructors */}
+        <PopularProfiles />
       </Col>
     </Row>
   );

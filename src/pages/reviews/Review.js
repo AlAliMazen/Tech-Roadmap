@@ -2,78 +2,89 @@ import React, { useState } from "react";
 import Media from "react-bootstrap/Media";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import ReviewEditForm from "../reviews/ReviewEditForm"
+import { MoreDropdown } from "../../components/MoreDropdown";
+import ReviewEditForm from "./ReviewEditForm";
+
+import styles from "../../styles/Review.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
-import styles from "../../styles/Comment.module.css";
-import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Review = (props) => {
-    const {
-        id,
-        owner,
-        profile_id,
-        content,
-        updated_at,
-        setReview,
-        setReviews
-    } = props;
-    const [showEditForm, setShowEditForm] = useState(false);
-    const currentUser = useCurrentUser();
-    const is_owner = currentUser?.username === owner;
+  const {
+    profile_id,
+    profile_image,
+    owner,
+    updated_at,
+    content,
+    rating, // Assuming reviews have a rating field
+    id,
+    setCourse,
+    setReviews,
+  } = props;
 
-    const handleDelete = async () => {
-        try {
-            await axiosRes.delete(`/reviews/${id}/`);
-            setReview((prevCourse) => ({
-                results: [
-                    {
-                        ...prevCourse.results[0],
-                        reviews_count: prevCourse.results[0].reviews_count - 1,
-                    },
-                ],
-            }));
+  const [showEditForm, setShowEditForm] = useState(false);
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === owner;
 
-            setReviews((prevReviews) => ({
-                ...prevReviews,
-                results: prevReviews.results.filter((review) => review.id !== id),
-            }));
-        } catch (err) {
-            console.error("Failed to delete the review:", err);
-        }
-    };
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/reviews/${id}/`);
+      setCourse((prevCourse) => ({
+        results: [
+          {
+            ...prevCourse.results[0],
+            reviews_count: prevCourse.results[0].reviews_count - 1,
+          },
+        ],
+      }));
 
-    return (
-        <>
-            <hr />
-            <Media>
-                <Link to={`/profiles/${profile_id}`}>
-                    <Avatar src={currentUser.profile_image} />
-                </Link>
-                <Media.Body className="align-self-center ml-2">
-                    <span className={styles.Owner}>{owner}</span>
-                    <span className={styles.Date}>{updated_at}</span>
-                    {showEditForm ? (
-                        <ReviewEditForm
-                            id={id}
-                            profile_id={profile_id}
-                            content={content}
-                            profileImage={currentUser.profile_image}
-                            setReviews={setReviews}
-                            setShowEditForm={setShowEditForm}
-                        />
-                    ) : (
-                        <p>{content}</p>
-                    )}
-                </Media.Body>
-                {is_owner && !showEditForm && (
-                    <MoreDropdown
-                        handleEdit={() => setShowEditForm(true)}
-                        handleDelete={handleDelete}
-                    />
-                )}
-            </Media>
-        </>
-    );
-}
+      setReviews((prevReviews) => ({
+        ...prevReviews,
+        results: prevReviews.results.filter((review) => review.id !== id),
+      }));
+    } catch (err) {
+      console.error("Failed to delete the review:", err);
+    }
+  };
+
+  return (
+    <>
+      <hr />
+      <Media>
+        <Link to={`/profiles/${profile_id}`}>
+          <Avatar src={profile_image} />
+        </Link>
+        <Media.Body className="align-self-center ml-2">
+          <span className={styles.Owner}>{owner}</span>
+          <span className={styles.Date}>{updated_at}</span>
+          <div className={styles.Rating}>
+            <strong>Rating: </strong>{rating}/10
+          </div>
+          {showEditForm ? (
+            <ReviewEditForm
+              id={id}
+              profile_id={profile_id}
+              content={content}
+              rating={rating}
+              profileImage={profile_image}
+              setReviews={setReviews}
+              setShowEditForm={setShowEditForm}
+            />
+          ) : (
+            <>
+              <p>{content}</p>
+            </>
+          )}
+        </Media.Body>
+        {is_owner && !showEditForm && (
+          <MoreDropdown
+            handleEdit={() => setShowEditForm(true)}
+            handleDelete={handleDelete}
+          />
+        )}
+      </Media>
+    </>
+  );
+};
+
 export default Review;
