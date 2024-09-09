@@ -1,3 +1,6 @@
+.Course{
+  margin: 10px;
+}
 .CourseContainer {
     display: flex;
     flex-wrap: wrap;
@@ -30,5 +33,11 @@
   .CourseCard p {
     font-size: 1rem;
     margin: 8px 0;
+  }
+
+  .CourseBar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   

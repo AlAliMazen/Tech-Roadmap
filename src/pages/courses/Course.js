@@ -1,178 +1,193 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from "react-router";
-import { useHistory } from 'react-router-dom';
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import CardDeck from 'react-bootstrap/CardDeck'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
-import Alert from 'react-bootstrap/Alert';
-import styles from "../../styles/Course.module.css"
+import React from "react";
+import styles from "../../styles/Course.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosReq } from '../../api/axiosDefaults';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import ReactQuill from 'react-quill';
+import Card from "react-bootstrap/Card";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import { Link, useHistory } from "react-router-dom";
+import Avatar from "../../components/Avatar";
+import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
+import Accordion from 'react-bootstrap/Accordion';
 
-
-const Courses = ({ message, filter = "" }) => {
-
-  const [courses, setCourses] = useState({ results: [] });
-  const [enrollments, setEnrollments] = useState([]);
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const { pathname } = useLocation();
-  const [query, setQuery] = useState("");
+const Course = (props) => {
+  const {
+    id,
+    owner,
+    profile_id,
+    profile_image,
+    enrollments_count,
+    ratings_count,
+    reviews_count,
+    rating,
+    title,
+    course_title,
+    about,
+    thumbnailImage,
+    updated_at,
+    coursePage,
+    setCourses,
+    category_title,
+    enrollment_id,  // Add this if you have a way to track user's enrollment in a course
+  } = props;
 
   const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === owner;
   const history = useHistory();
 
-  // Function to reload the page
-  const reloadPage = () => {
-    history.push('/courses'); // Navigate to the root (or any route)
-    history.go(0); // Reload the page
+  const modules = {
+    toolbar: false
+  }
+
+  const handleEdit = () => {
+    history.push(`/courses/${id}/edit`);
   };
 
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const { data } = await axiosReq.get(`/courses/?${filter}search=${query}`);
-        setCourses(data);
-        // Fetch Enrollments
-        const { data: enrollmentData } = await axiosReq.get('/enrollments/');
-        setEnrollments(enrollmentData.results);
-
-        setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
-        setErrorMessage(err.response?.data.detail);
-      }
-    };
-
-    setHasLoaded(false);
-    const timer = setTimeout(() => {
-      fetchCourses();
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [filter, query, pathname, currentUser]);
-
-  // Function to check if the current user is enrolled and return `is_owner`
-  const isUserEnrolled = (profileId, courseId) => {
-    const enrollment = enrollments.find(
-      (enrollment) => enrollment.profile_id === profileId && enrollment.course === courseId
-    );
-    return enrollment ? enrollment.is_owner : false; 
-  };
-
-  const getEnrollmentId = (profileId, courseId) => {
-    const enrollment = enrollments.find(
-      (enrollment) => enrollment.profile_id === profileId && enrollment.course === courseId
-    );
-    console.log("Course ", courseId, " Profile ID ", profileId, " ID : ",)
-    return enrollment ? enrollment.id : null;
-  };
-
-  // enroll
-  const handleEnrollment = async (courseId) => {
+  const handleDelete = async () => {
     try {
-      const { data } = await axiosReq.post('/enrollments/', { course: courseId });
-      setCourses((prevCourses) => ({
-        ...prevCourses,
-        results: prevCourses.results.map((course) =>
-          course.id === courseId
-            ? {
-              ...course,
-              enrollments_count: course.enrollments_count + 1,
-              enrollment_id: data.id,
-            }
-            : course
-        ),
-      }));
-      reloadPage();
-      setErrorMessage('');
+      await axiosRes.delete(`/courses/${id}/`);
+      history.goBack();
     } catch (err) {
-      setErrorMessage(err.response?.data.detail);
-      setTimeout(() => {
-        setErrorMessage('');
-      }, 3000);
-
+      console.log(err);
     }
   };
 
-  // Unenrollment
-  const handleUnenrollment = async (courseId, enrollmentId) => {
+  const handleEnroll = async () => {
     try {
-      // Send a DELETE request to remove the enrollment
-      await axiosReq.delete(`/enrollments/${enrollmentId}/`);
-
-      // Update the courses state
+      const { data } = await axiosRes.post("/enrollments/", { course: id });
       setCourses((prevCourses) => ({
         ...prevCourses,
-        results: prevCourses.results.map((course) =>
-          course.id === courseId
-            ? {
-              ...course,
-              enrollments_count: course.enrollments_count - 1, // Decrease enrollments count
-              enrollment_id: null, // Reset enrollment_id to null after unenrollment
-            }
-            : course
-        ),
+        results: prevCourses.results.map((course) => {
+          return course.id === id
+            ? { ...course, enrollments_count: course.enrollments_count + 1, enrollment_id: data.id }
+            : course;
+        }),
       }));
-      reloadPage();
-      setErrorMessage('');
     } catch (err) {
-      setErrorMessage(err.response?.data.detail);
-      setTimeout(() => {
-        setErrorMessage('');
-      }, 3000);
+      console.log(err);
     }
   };
 
+  const handleUnenroll = async () => {
+    try {
+      await axiosRes.delete(`/enrollments/${enrollment_id}/`);
+      setCourses((prevCourses) => ({
+        ...prevCourses,
+        results: prevCourses.results.map((course) => {
+          return course.id === id
+            ? { ...course, enrollments_count: course.enrollments_count - 1, enrollment_id: null }
+            : course;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleRate = async (newRating) => {
+    try {
+      await axiosRes.post("/ratings/", { course: id, rating: newRating });
+      setCourses((prevCourses) => ({
+        ...prevCourses,
+        results: prevCourses.results.map((course) => {
+          return course.id === id
+            ? { ...course, ratings_count: course.ratings_count + 1, rating: newRating }
+            : course;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <Container>
-      <Row className='m-2'>
-        <CardDeck className='justify-content-center'>
-          {courses.results.map((course) => (
-            <Col className="py-2 p-0 p-lg-2" lg={5}>
-              <Card>
-                <Link to={`/courses/${course.id}`}>
-                  <Card.Img variant="top" src={course.thumbnailImage} className={`${styles.CourseImage}`} alt={course.course_title} />
-                </Link>
+    <Card className={styles.Course}>
+      <Card.Body>
+        <Media className="align-items-center justify-content-between">
+          <Link to={`/profiles/${profile_id}`}>
+            <Avatar src={profile_image} height={55} />
+            {owner}
+          </Link>
+          <div className="d-flex align-items-center">
+            <span>{updated_at}</span>
+            {is_owner && coursePage && (
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
+          </div>
+        </Media>
+      </Card.Body>
+      <Link to={`/courses/${id}`}>
+        <Card.Img src={thumbnailImage} alt={course_title} />
+      </Link>
+      <Card.Body>
 
-                <Card.Body>
-                  <Card.Title className='text-center'> <strong>{course.course_title}</strong></Card.Title>
-                  <Card.Text>
-                    <p><strong>Duration:</strong> {course.duration}</p>
-                    <p><strong>Enrollments:</strong> {course.enrollments_count}</p>
-                  </Card.Text>
-                </Card.Body>
-                <Card.Footer className='m-2 text-center'>
-                  {isUserEnrolled(currentUser.profile_id, course.id) ? (
-                    <>
-                      <Button className='mx-2' variant="danger" onClick={() => handleUnenrollment(course.id, getEnrollmentId(currentUser.profile_id, course.id))}>
-                        Unenroll
-                      </Button>
-                    </>
-                  ) : (
-                    <Button variant="primary"
-                      onClick={() => handleEnrollment(course.id)}>Enroll</Button>
-                  )}
-                  {errorMessage && (
-                    <Alert variant="warning" onClose={() => setErrorMessage('')} dismissible>
-                      {errorMessage}
-                    </Alert>
-                  )}
-                </Card.Footer>
-              </Card>
-            </Col>
-          ))}
-        </CardDeck>
-      </Row>
-    </Container>
+        <Accordion>
+          <Card>
+            <Card.Header>
+              <Accordion.Toggle as={Card.Header} eventKey="0">
+                {title && <Card.Title className="text-center">{course_title} | {category_title}</Card.Title>}
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body>{about && <Card.Text>
+                <ReactQuill
+                  value={about}
+                  readOnly
+                  theme="snow"
+                  modules={modules}
+                />
+              </Card.Text>}</Card.Body>
+            </Accordion.Collapse>
+          </Card>
+
+        </Accordion>
+
+        <div className={styles.CourseBar}>
+          <div>
+            {enrollment_id ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Click to unenroll</Tooltip>}
+              >
+                <i className="fas fa-user-minus" onClick={handleUnenroll} />
+              </OverlayTrigger>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>{is_owner ? "You can't enroll in your own course!" : "Click to enroll"}</Tooltip>}
+              >
+                <i className="fas fa-user-plus" onClick={handleEnroll} />
+              </OverlayTrigger>
+            )}
+            {enrollments_count} enrollments
+          </div>
+          <div>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Rate this course!</Tooltip>}
+            >
+              <i className="fas fa-star" onClick={() => handleRate(5)} />
+            </OverlayTrigger>
+            {rating}/10 ({ratings_count} ratings)
+          </div>
+          <div>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Write a review if you are enrolled</Tooltip>}
+            >
+              <i className="fas fa-message" onClick={() => handleRate(5)} />
+            </OverlayTrigger>
+            {reviews_count} reviews
+          </div>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 
-export default Courses;
+export default Course;
