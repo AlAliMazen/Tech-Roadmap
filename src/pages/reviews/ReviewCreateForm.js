@@ -8,11 +8,13 @@ import styles from "../../styles/ReviewCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Alert from "react-bootstrap/Alert";
 
 function ReviewCreateForm({ course, setCourse, setReviews, profileImage, profile_id }) {
   const [content, setContent] = useState("");
   const [isEnrolled, setIsEnrolled] = useState(false); // Enrollment state
   const currentUser = useCurrentUser();
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Fetch enrollment status when the component mounts
   useEffect(() => {
@@ -25,6 +27,7 @@ function ReviewCreateForm({ course, setCourse, setReviews, profileImage, profile
         setIsEnrolled(isEnrolled);
       } catch (err) {
         console.log("Error fetching enrollment status:", err);
+        setErrorMessage(err.response?.data?.detail || 'Something went wrong');
       }
     };
 
@@ -67,6 +70,7 @@ function ReviewCreateForm({ course, setCourse, setReviews, profileImage, profile
       {isEnrolled ? (
         currentUser ? (
           <Form className="mt-2" onSubmit={handleSubmit}>
+            
             <Form.Group>
               <InputGroup>
                 <Link to={`/profiles/${profile_id}`}>
@@ -88,6 +92,7 @@ function ReviewCreateForm({ course, setCourse, setReviews, profileImage, profile
               type="submit"
             >
               Post Review
+              {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
             </button>
           </Form>
         ) : (

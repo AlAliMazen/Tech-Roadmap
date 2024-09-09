@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import Course from "./Course"; 
+import Course from "./Course";
 import Review from "../reviews/Review";
 
 import ReviewCreateForm from "../reviews/ReviewCreateForm";
@@ -17,6 +17,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import Alert from "react-bootstrap/Alert";
 
 function CoursePage() {
   const { id } = useParams();
@@ -26,29 +27,31 @@ function CoursePage() {
   const profile_image = currentUser?.profile_image;
   const [reviews, setReviews] = useState({ results: [] });
   const [enrollmentStatus, setEnrollmentStatus] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const handleMount = async () => {
       try {
         const [{ data: course }, { data: reviews }] = await Promise.all([
-          axiosReq.get(`/courses/${id}`), 
-          axiosReq.get(`/reviews/?course=${id}`), // Fetch reviews for the course
+          axiosReq.get(`/courses/${id}`),
+          axiosReq.get(`/reviews/?course=${id}`), 
         ]);
         setCourse({ results: [course] });
         setReviews(reviews);
-
-        // Check if the user is enrolled in the course
         const { data: enrollments } = await axiosReq.get(`/enrollments/?course=${id}&profile=${currentUser?.profile_id}`);
         if (enrollments.results.length) {
           setEnrollmentStatus(true); // User is enrolled
         }
       } catch (err) {
         console.log(err);
+        setErrorMessage(err.response?.data?.detail || 'Something went wrong');
       }
     };
 
     handleMount();
   }, [id, currentUser]);
+
+
 
   return (
     <Row className="h-100">
@@ -70,8 +73,6 @@ function CoursePage() {
           ) : reviews.results.length ? (
             "Reviews"
           ) : null}
-
-          {/* Show reviews */}
           {reviews.results.length ? (
             <InfiniteScroll
               children={reviews.results.map((review) => (
@@ -93,6 +94,7 @@ function CoursePage() {
             <span>No reviews... yet</span>
           )}
         </Container>
+        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />

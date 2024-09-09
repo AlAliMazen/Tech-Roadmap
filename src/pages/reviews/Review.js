@@ -8,6 +8,7 @@ import ReviewEditForm from "./ReviewEditForm";
 import styles from "../../styles/Review.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
+import Alert from "react-bootstrap/Alert";
 
 const Review = (props) => {
   const {
@@ -25,6 +26,7 @@ const Review = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleDelete = async () => {
     try {
@@ -44,6 +46,7 @@ const Review = (props) => {
       }));
     } catch (err) {
       console.error("Failed to delete the review:", err);
+      setErrorMessage(err.response?.data?.detail || 'Something went wrong');
     }
   };
 
@@ -51,6 +54,7 @@ const Review = (props) => {
     <>
       <hr />
       <Media>
+      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} />
         </Link>

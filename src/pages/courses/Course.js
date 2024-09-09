@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/Course.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import ReactQuill from 'react-quill';
@@ -11,6 +11,7 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import Accordion from 'react-bootstrap/Accordion';
+import Alert from "react-bootstrap/Alert";
 
 const Course = (props) => {
   const {
@@ -19,9 +20,8 @@ const Course = (props) => {
     profile_id,
     profile_image,
     enrollments_count,
-    ratings_count,
     reviews_count,
-    rating,
+    ratings_count,
     title,
     course_title,
     about,
@@ -36,10 +36,47 @@ const Course = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [averageRating, setAverageRating] = useState(null);
+  const [ratings, setRatings] = useState([]);
 
   const modules = {
     toolbar: false
-  }
+  };
+
+  // Fetch ratings for the course
+  useEffect(() => {
+    const fetchRatings = async () => {
+      try {
+        const { data } = await axiosRes.get(`/ratings/?course=${id}`);
+        setRatings(data.results);
+      } catch (err) {
+        console.log(err);
+        setErrorMessage("Failed to load ratings");
+      }
+    };
+
+    fetchRatings();
+  }, [id]);
+
+  // Calculate the average rating
+  const getRating = (courseId) => {
+    const courseRatings = ratings.filter(rating => String(rating.course) === String(courseId));
+    if (courseRatings.length > 0) {
+      const totalRating = courseRatings.reduce((acc, curr) => acc + curr.rating, 0);
+      const average = totalRating / courseRatings.length;
+      return average.toFixed(1);
+    }
+    return 0;
+  };
+
+  // Set the average rating when ratings are fetched
+  useEffect(() => {
+    if (ratings.length > 0) {
+      const avg = getRating(id);
+      setAverageRating(avg);
+    }
+  }, [ratings, id]);
 
   const handleEdit = () => {
     history.push(`/courses/${id}/edit`);
@@ -51,6 +88,7 @@ const Course = (props) => {
       history.goBack();
     } catch (err) {
       console.log(err);
+      setErrorMessage(err.response?.data?.detail || 'Something went wrong');
     }
   };
 
@@ -67,6 +105,7 @@ const Course = (props) => {
       }));
     } catch (err) {
       console.log(err);
+      setErrorMessage(err.response?.data?.detail || 'Something went wrong');
     }
   };
 
@@ -78,22 +117,6 @@ const Course = (props) => {
         results: prevCourses.results.map((course) => {
           return course.id === id
             ? { ...course, enrollments_count: course.enrollments_count - 1, enrollment_id: null }
-            : course;
-        }),
-      }));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleRate = async (newRating) => {
-    try {
-      await axiosRes.post("/ratings/", { course: id, rating: newRating });
-      setCourses((prevCourses) => ({
-        ...prevCourses,
-        results: prevCourses.results.map((course) => {
-          return course.id === id
-            ? { ...course, ratings_count: course.ratings_count + 1, rating: newRating }
             : course;
         }),
       }));
@@ -125,7 +148,6 @@ const Course = (props) => {
         <Card.Img src={thumbnailImage} alt={course_title} />
       </Link>
       <Card.Body>
-
         <Accordion>
           <Card>
             <Card.Header>
@@ -169,22 +191,24 @@ const Course = (props) => {
           <div>
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>Rate this course!</Tooltip>}
+              overlay={<Tooltip>Rating of the course</Tooltip>}
             >
-              <i className="fas fa-star" onClick={() => handleRate(5)} />
+              <i className="fas fa-star" />
             </OverlayTrigger>
-            {rating}/10 ({ratings_count} ratings)
+            <span>{averageRating}/10 ({ratings_count} ratings)</span>
           </div>
+          
           <div>
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>Write a review if you are enrolled</Tooltip>}
             >
-              <i className="fas fa-message" onClick={() => handleRate(5)} />
+              <i className="fas fa-message" onClick={() => history.push(`/courses/${id}`)} />
             </OverlayTrigger>
             {reviews_count} reviews
           </div>
         </div>
+        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
       </Card.Body>
     </Card>
   );

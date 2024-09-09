@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/CommentCreateEditForm.module.css";
+import Alert from "react-bootstrap/Alert";
 
 function ReviewEditForm(props) {
     const { id, content, setShowEditForm, setReviews } = props;
 
     const [formContent, setFormContent] = useState(content);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleChange = (event) => {
         setFormContent(event.target.value);
@@ -34,6 +36,7 @@ function ReviewEditForm(props) {
         } catch (err) {
             console.log("Review Edit Form")
             console.log(err);
+            setErrorMessage(err.response?.data?.detail || 'Something went wrong');
         }
     };
     return (

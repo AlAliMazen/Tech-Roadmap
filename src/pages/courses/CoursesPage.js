@@ -18,6 +18,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Alert from "react-bootstrap/Alert";
+
 
 function CoursesPage({ message, filter = "" }) {
   const [courses, setCourses] = useState({ results: [] });
@@ -27,6 +29,7 @@ function CoursesPage({ message, filter = "" }) {
   const [query, setQuery] = useState("");
 
   const currentUser = useCurrentUser();
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -36,6 +39,7 @@ function CoursesPage({ message, filter = "" }) {
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
+        setErrorMessage(err.response?.data?.detail || 'Something went wrong');
       }
     };
 
@@ -90,6 +94,7 @@ function CoursesPage({ message, filter = "" }) {
             <Asset spinner />
           </Container>
         )}
+        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles /> 
