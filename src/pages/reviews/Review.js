@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import Media from "react-bootstrap/Media";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import ReviewEditForm from "../eviews/ReviewEditForm"
+import ReviewEditForm from "../reviews/ReviewEditForm"
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
+import styles from "../../styles/Comment.module.css";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Review = (props) => {
     const {
         id,
         owner,
         profile_id,
-        course_title,
         content,
-        course,
-        created_at,
         updated_at,
         setReview,
+        setReviews
     } = props;
     const [showEditForm, setShowEditForm] = useState(false);
     const currentUser = useCurrentUser();
@@ -25,7 +25,7 @@ const Review = (props) => {
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/reviews/${id}/`);
-            setPost((prevCourse) => ({
+            setReview((prevCourse) => ({
                 results: [
                     {
                         ...prevCourse.results[0],
@@ -34,7 +34,7 @@ const Review = (props) => {
                 ],
             }));
 
-            setComments((prevReviews) => ({
+            setReviews((prevReviews) => ({
                 ...prevReviews,
                 results: prevReviews.results.filter((review) => review.id !== id),
             }));
@@ -48,18 +48,18 @@ const Review = (props) => {
             <hr />
             <Media>
                 <Link to={`/profiles/${profile_id}`}>
-                    <Avatar src={profile_image} />
+                    <Avatar src={currentUser.profile_image} />
                 </Link>
                 <Media.Body className="align-self-center ml-2">
                     <span className={styles.Owner}>{owner}</span>
                     <span className={styles.Date}>{updated_at}</span>
                     {showEditForm ? (
-                        <CommentEditForm
+                        <ReviewEditForm
                             id={id}
                             profile_id={profile_id}
                             content={content}
-                            profileImage={profile_image}
-                            setComments={setComments}
+                            profileImage={currentUser.profile_image}
+                            setReviews={setReviews}
                             setShowEditForm={setShowEditForm}
                         />
                     ) : (

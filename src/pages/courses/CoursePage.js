@@ -3,51 +3,60 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import styles
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 import { axiosReq } from '../../api/axiosDefaults';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Course.module.css";
+import appStyles from "../../App.module.css";
 import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck'
 import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Accordion, Button } from "react-bootstrap";
+import Review from "../reviews/Review";
+import ReviewCreateForm from "../reviews/ReviewCreateForm";
+import Asset from "../../components/Asset";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 const CoursePage = () => {
-    const { id } = useParams(); // Gets the id from the route
-    const [course, setCourse] = useState(null); // Initialize as null
-    const [enrollments, setEnrollments] = useState([]); // Initialized as an empty array
-    const [ratings, setRatings] = useState([]); // Store ratings
+    const { id } = useParams();
+    const [course, setCourse] = useState(null);
+    const [enrollments, setEnrollments] = useState([]);
+    const [ratings, setRatings] = useState([]);
     const [averageRating, setAverageRating] = useState(null);
 
-    const [errorMessage, setErrorMessage] = useState(''); // State to store error messages
-    const [hasLoaded, setHasLoaded] = useState(false); // Tracks loading status
-    const currentUser = useCurrentUser(); // Current user information
+    const [errorMessage, setErrorMessage] = useState('');
+    const [hasLoaded, setHasLoaded] = useState(false);
+    const currentUser = useCurrentUser();
+    const [reviews, setReviews] = useState({ results: [] });
+    const [post, setPost] = useState({ results: [] });
+
+
     const modules = {
         toolbar: false
     }
     useEffect(() => {
         const handleMount = async () => {
             try {
-                // Fetch course data using the id
-                const { data: courseData } = await axiosReq.get(`/courses/${id}`);
+                const [{ data: courseData }, { data: enrollmentData }, { data: ratingsData }, { data: reviewsData }] = await Promise.all([
+                    axiosReq.get(`/courses/${id}`),
+                    axiosReq.get('/enrollments/'),
+                    axiosReq.get(`/ratings/`),
+                    axiosReq.get(`/reviews/?course=${id}`),
+                ]);
                 setCourse(courseData);
-
-                // Fetch enrollments
-                const { data: enrollmentData } = await axiosReq.get('/enrollments/');
                 setEnrollments(enrollmentData.results); // Set the enrollments
-
-                // Fetch ratings
-                const { data: ratingsData } = await axiosReq.get(`/ratings/`);
                 setRatings(ratingsData.results); // Set ratings
+                setReviews(reviewsData.results);
 
-                setHasLoaded(true); // Mark as loaded
+                setHasLoaded(true)
             } catch (err) {
                 setErrorMessage(err.response?.data?.detail || 'Something went wrong'); // Fallback error message
             }
         };
 
-        handleMount(); 
+        handleMount();
     }, [id]);
 
     const getRating = (courseId) => {
@@ -56,9 +65,9 @@ const CoursePage = () => {
         if (courseRatings.length > 0) {
             const totalRating = courseRatings.reduce((acc, curr) => acc + curr.rating, 0);
             const average = totalRating / courseRatings.length;
-            return average.toFixed(1); 
+            return average.toFixed(1);
         }
-        return 0; 
+        return 0;
     };
 
     // Set the average rating once the ratings are fetched
@@ -70,7 +79,7 @@ const CoursePage = () => {
     }, [ratings, id]);
 
     if (!hasLoaded) {
-        return <div>Loading...</div>; 
+        return <div>Loading...</div>;
     }
 
     if (errorMessage) {
@@ -160,6 +169,40 @@ const CoursePage = () => {
                             )}
                         </Card.Footer>
                     </Card>
+                    <Container className={appStyles.Content}>
+                        {currentUser ? (
+                            <ReviewCreateForm
+                                profile_id={currentUser.profile_id}
+                                profileImage={currentUser.profile_image}
+                                course={course.id}
+                                setPost={setPost}
+                                setReviews={setReviews}
+
+                            />
+                        ) : reviews.results.length ? (
+                            "Comments"
+                        ) : null}
+                        {reviews.results.length ? (
+                            <InfiniteScroll
+                                children={reviews.results.map((review) => (
+                                    <Review
+                                        key={review.id}
+                                        {...review}
+                                        setPost={setPost}
+                                        setReviews={setReviews}
+                                    />
+                                ))}
+                                dataLength={reviews.results.length}
+                                loader={<Asset spinner />}
+                                hasMore={!!reviews.next}
+                                next={() => fetchMoreData(reviews, setReviews)}
+                            />
+                        ) : currentUser ? (
+                            <span>No reviews yet, be the first to write a review!</span>
+                        ) : (
+                            <span>No reviews... yet</span>
+                        )}
+                    </Container>
                 </Col>
             </Row>
         </div>

@@ -9,6 +9,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 function ReviewCreateForm(props) {
     const { course, setPost, setReviews, profileImage, profile_id } = props;
     const [content, setContent] = useState("");
+    const [error, setError] = useState(null);
 
     const handleChange = (event) => {
         setContent(event.target.value);
@@ -18,12 +19,12 @@ function ReviewCreateForm(props) {
         event.preventDefault();
         try {
             const { data } = await axiosRes.post("/reviews/", {
-                content,
-                article,
+                content: content.trim(),
+                course,
             });
-            setComments((prevReviews) => ({
+            setReviews((prevReviews) => ({
                 ...prevReviews,
-                results: [data, ...prevReviews.results],
+                results: prevReviews?.results ? [data, ...prevReviews.results] : [data],
             }));
             setPost((prevPost) => ({
                 results: [
@@ -33,8 +34,10 @@ function ReviewCreateForm(props) {
                     },
                 ],
             }));
-            setContent("");
+            setContent(""); // Reset the form content
+            setError(null); // Clear previous errors
         } catch (err) {
+            setError('Failed to post review');
             console.log(err);
         }
     };
@@ -56,12 +59,13 @@ function ReviewCreateForm(props) {
                     />
                 </InputGroup>
             </Form.Group>
+            {error && <div className="text-danger">{error}</div>}
             <button
                 className={`${styles.Button} btn d-block ml-auto`}
-                disabled={!content.trim()}
+                disabled={content.trim().length < 1}
                 type="submit"
             >
-                 post your review
+                Post your review
             </button>
         </Form>
     );
