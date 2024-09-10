@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
 
-import Course from "./pages/courses/Course";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
@@ -19,6 +18,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import CategoryCreateEditForm from "./pages/categories/CategoryCreateEditForm";
 import CoursePage from "./pages/courses/CoursePage";
 import CoursesPage from "./pages/courses/CoursesPage";
+import NotFound from "./components/NotFound";
 
 
 function App() {
@@ -82,7 +82,7 @@ function App() {
           />
           <Route exact path="/categories/create" render={() => <CategoryCreateEditForm />} />
 
-
+          <Route render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>
