@@ -28,7 +28,7 @@ const Course = (props) => {
     thumbnailImage,
     updated_at,
     coursePage,
-    setCourses,
+    setCourse,
     category_title,
     enrollment_id,  
   } = props;
@@ -46,17 +46,17 @@ const Course = (props) => {
 
   // Fetch ratings for the course
   useEffect(() => {
-    const fetchRatings = async () => {
+    const handleMount = async () => {
       try {
         const { data } = await axiosRes.get(`/ratings/?course=${id}`);
-        setRatings(data.results);
+        setRatings(data);
       } catch (err) {
         console.log(err);
-        setErrorMessage("Failed to load ratings");
+        setErrorMessage(err.response?.data?.detail );
       }
     };
 
-    fetchRatings();
+    handleMount();
   }, [id]);
 
   // Calculate the average rating
@@ -76,7 +76,7 @@ const Course = (props) => {
       const avg = getRating(id);
       setAverageRating(avg);
     }
-  }, [ratings, id]);
+  }, [id]);
 
   const handleEdit = () => {
     history.push(`/courses/${id}/edit`);
@@ -87,15 +87,14 @@ const Course = (props) => {
       await axiosRes.delete(`/courses/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
-      setErrorMessage(err.response?.data?.detail || 'Something went wrong');
+      setErrorMessage(err.response?.data?.detail);
     }
   };
 
   const handleEnroll = async () => {
     try {
       const { data } = await axiosRes.post("/enrollments/", { course: id });
-      setCourses((prevCourses) => ({
+      setCourse((prevCourses) => ({
         ...prevCourses,
         results: prevCourses.results.map((course) => {
           return course.id === id
@@ -104,15 +103,14 @@ const Course = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
-      setErrorMessage(err.response?.data?.detail || 'Something went wrong');
+      setErrorMessage(err.response?.data?.detail);
     }
   };
 
   const handleUnenroll = async () => {
     try {
       await axiosRes.delete(`/enrollments/${enrollment_id}/`);
-      setCourses((prevCourses) => ({
+      setCourse((prevCourses) => ({
         ...prevCourses,
         results: prevCourses.results.map((course) => {
           return course.id === id

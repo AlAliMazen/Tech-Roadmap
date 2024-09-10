@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Course from "./Course";
 import Review from "../reviews/Review";
-
 import ReviewCreateForm from "../reviews/ReviewCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
@@ -22,7 +18,6 @@ import Alert from "react-bootstrap/Alert";
 function CoursePage() {
   const { id } = useParams();
   const [course, setCourse] = useState({ results: [] });
-
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [reviews, setReviews] = useState({ results: [] });
@@ -34,7 +29,7 @@ function CoursePage() {
       try {
         const [{ data: course }, { data: reviews }] = await Promise.all([
           axiosReq.get(`/courses/${id}`),
-          axiosReq.get(`/reviews/?course=${id}`), 
+          axiosReq.get(`/reviews/?course=${id}`),
         ]);
         setCourse({ results: [course] });
         setReviews(reviews);
@@ -43,15 +38,12 @@ function CoursePage() {
           setEnrollmentStatus(true); // User is enrolled
         }
       } catch (err) {
-        console.log(err);
-        setErrorMessage(err.response?.data?.detail || 'Something went wrong');
+        setErrorMessage(err.response?.data?.detail);
       }
     };
 
     handleMount();
   }, [id, currentUser]);
-
-
 
   return (
     <Row className="h-100">

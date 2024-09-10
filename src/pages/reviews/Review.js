@@ -21,6 +21,7 @@ const Review = (props) => {
     id,
     setCourse,
     setReviews,
+    setRatings
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
@@ -31,30 +32,37 @@ const Review = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/reviews/${id}/`);
+      await axiosRes.delete(`/ratings/${id}/`);
       setCourse((prevCourse) => ({
         results: [
           {
             ...prevCourse.results[0],
             reviews_count: prevCourse.results[0].reviews_count - 1,
+            ratings_count: prevCourse.results[0].ratings_count - 1, // Decrement the ratings count
           },
         ],
       }));
-
       setReviews((prevReviews) => ({
         ...prevReviews,
         results: prevReviews.results.filter((review) => review.id !== id),
       }));
+      setRatings((prevRatings) => ({
+        ...prevRatings,
+        results: prevRatings.results.filter((rating) => rating.id !== id),
+      }));
+
     } catch (err) {
-      console.error("Failed to delete the review:", err);
+      console.error("Failed to delete the review and rating:", err);
       setErrorMessage(err.response?.data?.detail || 'Something went wrong');
     }
   };
+
 
   return (
     <>
       <hr />
       <Media>
-      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} />
         </Link>
@@ -69,7 +77,7 @@ const Review = (props) => {
               id={id}
               profile_id={profile_id}
               content={content}
-              rating={rating}
+              setRatings={setRatings}
               profileImage={profile_image}
               setReviews={setReviews}
               setShowEditForm={setShowEditForm}
