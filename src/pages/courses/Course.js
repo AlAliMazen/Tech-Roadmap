@@ -43,7 +43,7 @@ const Course = (props) => {
   const modules = {
     toolbar: false
   };
-
+  console.log("Enrollment ID from Course.js: ", enrollment_id)
   // Fetch ratings for the course
   useEffect(() => {
     const handleMount = async () => {
