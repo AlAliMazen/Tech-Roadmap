@@ -39,17 +39,19 @@ const Course = (props) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [averageRating, setAverageRating] = useState(null);
   const [ratings, setRatings] = useState([]);
+  const [enrollments, setEnrollments] = useState([]);
 
   const modules = {
     toolbar: false
   };
-  console.log("Enrollment ID from Course.js: ", enrollment_id)
-  // Fetch ratings for the course
+  // Fetch ratings for the course and the enrollment of the current user
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosRes.get(`/ratings/?course=${id}`);
-        setRatings(data);
+        const { data: ratingData } = await axiosRes.get(`/ratings/?course=${id}`);
+        setRatings(ratingData.results);
+        const { data: enrollmentData } = await axiosRes.get(`/enrollments/?course=${id}`);
+        setEnrollments(enrollmentData.results);
       } catch (err) {
         console.log(err);
         setErrorMessage(err.response?.data?.detail );
@@ -57,10 +59,13 @@ const Course = (props) => {
     };
 
     handleMount();
+    console.log(ratings)
+    console.log(enrollments)
   }, [id]);
 
   // Calculate the average rating
   const getRating = (courseId) => {
+    //console.log("In the getRating method ", ratings)
     const courseRatings = ratings.filter(rating => String(rating.course) === String(courseId));
     if (courseRatings.length > 0) {
       const totalRating = courseRatings.reduce((acc, curr) => acc + curr.rating, 0);
@@ -75,8 +80,16 @@ const Course = (props) => {
     if (ratings.length > 0) {
       const avg = getRating(id);
       setAverageRating(avg);
+    }else{
+      console.log("Ratings from course: ",ratings.length)
     }
-  }, [id, ratings]);
+
+    if (enrollments.length>0){
+      //console.log("Enrolmments: ", enrollments)
+    }else{
+      //console.log("Enromments are still unset")
+    }
+  }, [id, ratings, enrollments]);
 
   const handleEdit = () => {
     history.push(`/courses/${id}/edit`);
