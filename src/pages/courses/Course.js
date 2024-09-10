@@ -156,14 +156,17 @@ const Course = (props) => {
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
-              <Card.Body>{about && <Card.Text>
+              <Card.Body>
+                
                 <ReactQuill
                   value={about}
                   readOnly
                   theme="snow"
                   modules={modules}
                 />
-              </Card.Text>}</Card.Body>
+                
+                
+              </Card.Body>
             </Accordion.Collapse>
           </Card>
         </Accordion>
