@@ -34,7 +34,10 @@ function CoursePage() {
         ]);
         setCourse({ results: [course] });
         setReviews(reviews);
-        const { data: enrollments } = await axiosReq.get(`/enrollments/?course=${id}&profile=${currentUser?.profile_id}`);
+
+        const { data: enrollments } = await axiosReq.get(
+          `/enrollments/?course=${id}&profile=${currentUser?.profile_id}`
+        );
         
         // Set enrollment status and enrollment ID for the user
         if (enrollments.results.length) {
@@ -42,21 +45,16 @@ function CoursePage() {
           setEnrollmentId(enrollments.results[0].id);
         }
 
-        // Logging course ID, profile ID, and enrollment status
-        console.log("Course ID:", id);
-        console.log("Profile ID:", currentUser?.profile_id);
-        console.log("Enrollment Status:", enrollments.results.length > 0);
-
       } catch (err) {
-        setErrorMessage(err.response?.data?.detail);
+        setErrorMessage(err.response?.data?.detail || "Error loading course data.");
       }
     };
 
     handleMount();
   }, [id, currentUser]);
   
-   // Auto-hide error message after 3 seconds
-   useEffect(() => {
+  // Auto-hide error message after 3 seconds
+  useEffect(() => {
     if (errorMessage) {
       const timer = setTimeout(() => setErrorMessage(''), 3000);
       return () => clearTimeout(timer);
@@ -65,6 +63,10 @@ function CoursePage() {
 
   // Handle enrollment
   const handleEnroll = async () => {
+    if (enrollmentStatus) {
+      setErrorMessage("You are already enrolled in this course.");
+      return;
+    }
     try {
       const { data } = await axiosRes.post("/enrollments/", { course: id });
       setEnrollmentStatus(true);
@@ -76,7 +78,7 @@ function CoursePage() {
         ),
       }));
     } catch (err) {
-      setErrorMessage(err.response?.data?.detail);
+      setErrorMessage(err.response?.data?.detail || "Error occurred while enrolling.");
     }
   };
 
@@ -93,7 +95,7 @@ function CoursePage() {
         ),
       }));
     } catch (err) {
-      setErrorMessage(err.response?.data?.detail);
+      setErrorMessage(err.response?.data?.detail || "Error occurred while unenrolling.");
     }
   };
 
@@ -146,7 +148,11 @@ function CoursePage() {
             <span>No reviews... yet</span>
           )}
         </Container>
-        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+        {errorMessage && (
+          <Alert variant="danger" onClose={() => setErrorMessage('')} dismissible>
+            {errorMessage}
+          </Alert>
+        )}
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />

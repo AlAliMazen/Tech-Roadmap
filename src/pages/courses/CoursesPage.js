@@ -76,7 +76,7 @@ function CoursesPage({ message, filter = "" }) {
             {courses.results.length ? (
               <InfiniteScroll
                 children={courses.results.map((course) => (
-                  <Course key={course.id} {...course} setCourses={setCourses} />
+                  <Course key={course.id} {...course} setCourse={setCourses} />
                 ))}
                 dataLength={courses.results.length}
                 loader={<Asset spinner />}

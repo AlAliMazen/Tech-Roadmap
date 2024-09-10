@@ -30,7 +30,7 @@ const Course = (props) => {
     coursePage,
     setCourse,
     category_title,
-    enrollment_id,  
+    enrollment_id,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -76,7 +76,7 @@ const Course = (props) => {
       const avg = getRating(id);
       setAverageRating(avg);
     }
-  }, [id]);
+  }, [id, ratings]);
 
   const handleEdit = () => {
     history.push(`/courses/${id}/edit`);
@@ -102,6 +102,7 @@ const Course = (props) => {
             : course;
         }),
       }));
+      setErrorMessage(''); // Clear error message
     } catch (err) {
       setErrorMessage(err.response?.data?.detail);
     }
@@ -118,8 +119,9 @@ const Course = (props) => {
             : course;
         }),
       }));
+      setErrorMessage(''); // Clear error message
     } catch (err) {
-      console.log(err);
+      setErrorMessage(err.response?.data?.detail);
     }
   };
 
@@ -164,7 +166,6 @@ const Course = (props) => {
               </Card.Text>}</Card.Body>
             </Accordion.Collapse>
           </Card>
-
         </Accordion>
 
         <div className={styles.CourseBar}>
