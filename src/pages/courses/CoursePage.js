@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import Course from "./Course";
 import Review from "../reviews/Review";
 import ReviewCreateForm from "../reviews/ReviewCreateForm";
@@ -22,6 +22,7 @@ function CoursePage() {
   const profile_image = currentUser?.profile_image;
   const [reviews, setReviews] = useState({ results: [] });
   const [enrollmentStatus, setEnrollmentStatus] = useState(false);
+  const [enrollmentId, setEnrollmentId] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -34,9 +35,18 @@ function CoursePage() {
         setCourse({ results: [course] });
         setReviews(reviews);
         const { data: enrollments } = await axiosReq.get(`/enrollments/?course=${id}&profile=${currentUser?.profile_id}`);
+        
+        // Set enrollment status and enrollment ID for the user
         if (enrollments.results.length) {
           setEnrollmentStatus(true); // User is enrolled
+          setEnrollmentId(enrollments.results[0].id);
         }
+
+        // Logging course ID, profile ID, and enrollment status
+        console.log("Course ID:", id);
+        console.log("Profile ID:", currentUser?.profile_id);
+        console.log("Enrollment Status:", enrollments.results.length > 0);
+
       } catch (err) {
         setErrorMessage(err.response?.data?.detail);
       }
@@ -44,13 +54,63 @@ function CoursePage() {
 
     handleMount();
   }, [id, currentUser]);
+  
+   // Auto-hide error message after 3 seconds
+   useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => setErrorMessage(''), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
+
+  // Handle enrollment
+  const handleEnroll = async () => {
+    try {
+      const { data } = await axiosRes.post("/enrollments/", { course: id });
+      setEnrollmentStatus(true);
+      setEnrollmentId(data.id);
+      setCourse((prevCourse) => ({
+        ...prevCourse,
+        results: prevCourse.results.map((course) =>
+          course.id === id ? { ...course, enrollments_count: course.enrollments_count + 1 } : course
+        ),
+      }));
+    } catch (err) {
+      setErrorMessage(err.response?.data?.detail);
+    }
+  };
+
+  // Handle unenrollment
+  const handleUnenroll = async () => {
+    try {
+      await axiosRes.delete(`/enrollments/${enrollmentId}/`);
+      setEnrollmentStatus(false);
+      setEnrollmentId(null);
+      setCourse((prevCourse) => ({
+        ...prevCourse,
+        results: prevCourse.results.map((course) =>
+          course.id === id ? { ...course, enrollments_count: course.enrollments_count - 1 } : course
+        ),
+      }));
+    } catch (err) {
+      setErrorMessage(err.response?.data?.detail);
+    }
+  };
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfiles mobile />
         {/* Show course details */}
-        <Course {...course.results[0]} setCourse={setCourse} coursePage />
+        <Course
+          {...course.results[0]}
+          setCourse={setCourse}
+          coursePage
+          enrollment_id={enrollmentId}
+          handleEnroll={handleEnroll}
+          handleUnenroll={handleUnenroll}
+          isEnrolled={enrollmentStatus}
+        />
 
         <Container className={appStyles.Content}>
           {/* If the user is enrolled, show the review form */}
