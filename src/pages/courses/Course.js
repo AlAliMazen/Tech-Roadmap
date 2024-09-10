@@ -30,16 +30,20 @@ const Course = (props) => {
     coursePage,
     setCourse,
     category_title,
-    enrollment_id,
+
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [averageRating, setAverageRating] = useState(null);
   const [ratings, setRatings] = useState([]);
   const [enrollments, setEnrollments] = useState([]);
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [enrollment_id, setEnrollementId] = useState(0);
+
 
   const modules = {
     toolbar: false
@@ -54,7 +58,7 @@ const Course = (props) => {
         setEnrollments(enrollmentData.results);
       } catch (err) {
         console.log(err);
-        setErrorMessage(err.response?.data?.detail );
+        setErrorMessage(err.response?.data?.detail);
       }
     };
 
@@ -65,7 +69,6 @@ const Course = (props) => {
 
   // Calculate the average rating
   const getRating = (courseId) => {
-    //console.log("In the getRating method ", ratings)
     const courseRatings = ratings.filter(rating => String(rating.course) === String(courseId));
     if (courseRatings.length > 0) {
       const totalRating = courseRatings.reduce((acc, curr) => acc + curr.rating, 0);
@@ -75,20 +78,32 @@ const Course = (props) => {
     return 0;
   };
 
+  const isUserEnrolled = (courseId) => {
+    const courseEnrollments = enrollments.filter(enrollment => enrollment.course === courseId);
+    if (courseEnrollments.length > 0) {
+      const enrollment = courseEnrollments.find(enrollment => enrollment.profile_id === currentUser.profile_id);      
+      if (enrollment) {
+        const { is_owner } = enrollment;
+        const { id } = enrollment;
+        setEnrollementId(id)
+        return is_owner;
+      }
+    }
+    return false;
+  };
+
+
   // Set the average rating when ratings are fetched
   useEffect(() => {
     if (ratings.length > 0) {
       const avg = getRating(id);
       setAverageRating(avg);
-    }else{
-      console.log("Ratings from course: ",ratings.length)
-    }
-
-    if (enrollments.length>0){
-      //console.log("Enrolmments: ", enrollments)
-    }else{
-      //console.log("Enromments are still unset")
-    }
+    } 
+    if (enrollments.length > 0) {
+      const enrolled = isUserEnrolled(id)
+      setIsEnrolled(enrolled)
+      console.log("is current user enrolled : ", enrolled);
+    } 
   }, [id, ratings, enrollments]);
 
   const handleEdit = () => {
@@ -115,13 +130,20 @@ const Course = (props) => {
             : course;
         }),
       }));
-      setErrorMessage(''); // Clear error message
+      setEnrollementId(enrollment_id)
+      setIsEnrolled(true)
+      setErrorMessage('');
+      setSuccessMessage("Enrolled successfully!");
+      setTimeout(() => setSuccessMessage(''), 3000);
+      window.location.reload(); 
     } catch (err) {
       setErrorMessage(err.response?.data?.detail);
+      setTimeout(() => setErrorMessage(''), 3000);
     }
   };
 
   const handleUnenroll = async () => {
+    console.log("From the handle Unenrolment : ", enrollment_id)
     try {
       await axiosRes.delete(`/enrollments/${enrollment_id}/`);
       setCourse((prevCourses) => ({
@@ -132,9 +154,14 @@ const Course = (props) => {
             : course;
         }),
       }));
-      setErrorMessage(''); // Clear error message
+      setErrorMessage('');
+      setIsEnrolled(false)
+      setSuccessMessage("Unenrolled successfully!");
+      setTimeout(() => setSuccessMessage(''), 3000);
+      window.location.reload(); 
     } catch (err) {
       setErrorMessage(err.response?.data?.detail);
+      setTimeout(() => setErrorMessage(''), 3000);
     }
   };
 
@@ -170,15 +197,12 @@ const Course = (props) => {
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                
                 <ReactQuill
                   value={about}
                   readOnly
                   theme="snow"
                   modules={modules}
                 />
-                
-                
               </Card.Body>
             </Accordion.Collapse>
           </Card>
@@ -186,7 +210,7 @@ const Course = (props) => {
 
         <div className={styles.CourseBar}>
           <div>
-            {enrollment_id ? (
+            {isEnrolled ? (
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip>Click to unenroll</Tooltip>}
@@ -212,7 +236,7 @@ const Course = (props) => {
             </OverlayTrigger>
             <span>{averageRating}/10 ({ratings_count} ratings)</span>
           </div>
-          
+
           <div>
             <OverlayTrigger
               placement="top"
@@ -224,6 +248,7 @@ const Course = (props) => {
           </div>
         </div>
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+        {successMessage && <Alert variant="sucess">{successMessage}</Alert>}
       </Card.Body>
     </Card>
   );
