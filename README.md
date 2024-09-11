@@ -89,7 +89,7 @@ Copy your readme to http://ecotrust-canada.github.io/markdown-toc/ to make a tab
 
 
 ## Author
-DEVELOPER_NAME
+Mazen Al Ali
 
 
 ## Project Overview
