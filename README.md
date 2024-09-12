@@ -1,181 +1,152 @@
-# OVERVIEW
+# Tech-Roadmap
 
-This template was made as a guide to ensure you cover assessment criteria in your fourth portfolio write up. It is specific to the **PORTFOLIO 5: Full-Stack Toolkit** project.
+Tech-Roadmap is a cutting-edge web platform built to bridge the gap between social interaction and educational growth in the technology sector. Developed with React on the front end and backed by Tech-Roadmap-DRF, the Django REST Framework-based API, this project delivers a seamless user experience that caters to both tech enthusiasts and learners alike.
 
-## Helpful tools
+The primary goal of Tech-Roadmap is to create an interactive space where users can engage in two distinct ways. First, users can post short updates, thoughts, or tips on any tech-related topic—much like you would on Facebook—creating an ongoing exchange of ideas and insights within the community. This social aspect fosters collaboration and knowledge sharing among developers, learners, and tech professionals.
 
-### Screenshots and Videos
-**Here’s a great video on how to add videos to your readme! no need to convert to gifs!!**
+Second, Tech-Roadmap offers a course enrollment feature that mirrors platforms like Udemy. Users can browse through a wide variety of technology-focused courses, enroll in those that interest them, and further their skills in programming, development, and more. Whether you're a beginner looking to learn new tech skills or a seasoned professional sharing your expertise, Tech-Roadmap is designed to support both learning and collaboration.
 
-https://www.youtube.com/watch?v=G3Cytlicv8Y
+By combining social interaction with education, the platform aims to empower users to explore new technologies, share their knowledge, and grow within the tech community. Whether you’re here to share, learn, or both, Tech-Roadmap provides a unique space to achieve your goals.
 
-> 1. record a video via slack
-> 2. download it
-> 3. in github, edit your readme via the pencil icon
-> 4. type a place holder word and highlight it
-> 5. drag and drop mp4 file over that text
-> 6. scroll down to the commit area
-> 7. update the default commit message
-> 8. click the green button
-> 9. ```git pull``` changes to your gitpod workspace
+This Front End website makes use of the backend Django-Rest-Framework project which has the following repository [Tech-Roadmap-DRF](https://github.com/AlAliMazen/Tech-Roadmap-DRF) as a source code and the [Tech-Roadmap-DRF](https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/) as deployed version. 
 
-**You can do the steps 3-9 for the image/screenshot uploads too!**
+Take a look at my live website from [Tech-Roadmap]() .
 
-### Cheatsheets and Auto Generation Tools
 
-Markdown's not all that easy so sometimes you may want to use some tools to make tables.
-
-- [Markdown Cheatsheet](https://guides.github.com/features/mastering-markdown/)
-- [markdown table generator](https://www.tablesgenerator.com/markdown_tables) - used to help with documentation table formatting
-- [markdown table of contents generator](https://ecotrust-canada.github.io/markdown-toc/) - used to create table of contents (be weary it does have some bugs if you have dashes or trailing spaces in your headers)
-- [readme.so](https://readme.so/) - if you don't want to learn markdown, this tool might help you
 
 # Table of Contents
-Copy your readme to http://ecotrust-canada.github.io/markdown-toc/ to make a table of contents.  This will help assessors to see the structure of your readme. Just test it out ast this tool isn't perfect. It tends to mess up with special characters like dashes.
-
-- [PROJECT_NAME](#project_name)
-  - [Author](#author)
-  - [Project Overview](#project-overview)
+- [Tech-Roadmap](#tech-roadmap)
+- [Table of Contents](#table-of-contents)
+  * [Author](#author)
+  * [Project Overview](#project-overview)
 - [UX](#ux)
-  - [Target Audience](#target-audience)
-  - [Goals](#goals)
-  - [User Stories](#user-stories)
-  - [Initial Stories](#initial-stories)
-  - [Feasibility vs Importance](#feasibility-vs-importance)
-  - [Scope](#scope)
-  - [Design Choices](#design-choices)
-  - [Wireframes](#wireframes)
+  * [Target Audience](#target-audience)
+    + [Junior Programmers:](#junior-programmers-)
+    + [Visitors Interested in IT and Technology](#visitors-interested-in-it-and-technology)
+    + [Management and Entrepreneurs](#management-and-entrepreneurs)
+  * [Goals](#goals)
+    + [Targeted Audience](#targeted-audience)
+  * [User Stories](#user-stories)
+  * [Initial Stories](#initial-stories)
+  * [Feasibility vs Importance](#feasibility-vs-importance)
+  * [Scope](#scope)
+  * [Design Choices](#design-choices)
+    + [Colors](#colors)
+    + [Typography](#typography)
+    + [Images](#images)
+    + [Design Elements](#design-elements)
+    + [Animations and Transitions](#animations-and-transitions)
+    + [Frameworks](#frameworks)
+    + [Custom Styles](#custom-styles)
+    + [Custom Javascript](#custom-javascript)
+  * [Wireframes](#wireframes)
 - [Information Architecture](#information-architecture)
-  - [Entity Relationship Diagram](#entity-relationship-diagram)
-  - [Database Choice](#database-choice)
-  - [Data Models](#data-models)
+  * [Entity Relationship Diagram](#entity-relationship-diagram)
+  * [Database Choice](#database-choice)
+  * [Data Models](#data-models)
+    + [Activities Model](#activities-model)
+    + [CRUD Diagrams](#crud-diagrams)
 - [Agile Process](#agile-process)
-  - [GitHub User Stories](#github-user-stories)
-  - [Iterations](#iterations)
-  - [Progress Boards](#progress-boards)
+  * [GitHub User Stories](#github-user-stories)
+    + [User Story Templates](#user-story-templates)
+    + [Product Backlog](#product-backlog)
+  * [Iterations](#iterations)
+  * [Progress Boards](#progress-boards)
 - [Features](#features)
-  - [Implemented Features](#implemented-features)
-  - [Future Features](#future-features)
+  * [Implemented Features](#implemented-features)
+  * [Future Features](#future-features)
 - [Testing](#testing)
-  - [Cross Browser and Cross Device Testing](#cross-browser-and-cross-device-testing)
-  - [Accessibility Testing](#accessibility-testing)
-  - [Validation Testing](#validation-testing)
-  - [Automated Testing](#automated-testing)
-  - [Defects](#defects)
-  - [Defects of Note](#defects-of-note)
+  * [Cross Browser and Cross Device Testing](#cross-browser-and-cross-device-testing)
+  * [Accessibility Testing](#accessibility-testing)
+  * [Validation Testing](#validation-testing)
+  * [Automated Testing](#automated-testing)
+  * [Defects](#defects)
+  * [Defects of Note](#defects-of-note)
+    + [Outstanding Defects](#outstanding-defects)
 - [E-commerce Business Model](#e-commerce-business-model)
-  - [Facebook Business Page](#facebook-business-page)
-  - [Newsletter Signup](#newsletter-signup)
-  - [Links](#links)
-  - [SEO Strategy](#seo-strategy)
+  * [Facebook Business Page](#facebook-business-page)
+  * [Newsletter Signup](#newsletter-signup)
+  * [Links](#links)
+  * [SEO Strategy](#seo-strategy)
+    + [Keywords](#keywords)
+    + [Description](#description)
+    + [Title](#title)
+    + [Relevant Content](#relevant-content)
+    + [Sitemap](#sitemap)
+    + [Robots.txt](#robotstxt)
 - [Deployment](#deployment)
-  - [Prerequisits](#prerequisits)
-  - [Fork and Clone the Repository](#fork-and-clone-the-repository)
-  - [Development Deployment](#development-deployment)
-  - [Production Deployment](#production-deployment)
+  * [Prerequisits](#prerequisits)
+  * [Fork and Clone the Repository](#fork-and-clone-the-repository)
+  * [Development Deployment](#development-deployment)
+  * [Production Deployment](#production-deployment)
 - [Credits](#credits)
-  - [Content](#content)
-  - [Media](#media)
-  - [Acknowledgments](#acknowledgments)
+  * [Content](#content)
+  * [Media](#media)
+  * [Acknowledgments](#acknowledgments)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ====================================== The Sections you Fill in are below ==============================
 
-
-# PROJECT_NAME
-
-*replace the **PROJECT NAME** header with your project's name*
-- Screenshot of logo/navigation of mobile deployed site
-- Include a link to deployed project with one line explanation of project
-
-
 ## Author
-Mazen Al Ali
+
+MAZEN AL ALI
 
 
 ## Project Overview
 🚨**Required**
 
-- Include a picture of site that shows it in responsive states and links to deployed
-  code: https://ui.dev/amiresponsive
-- One or two paragraphs providing an overview of your project.
-- Write this as a sales pitch or commercial making users want to purchase your website.
-- Include a link to your deployed website
+The following screen shot is done by [am-I-responsive](https://ui.dev/amiresponsive)
+
+![tech-roadmap-am-i-responsive](./README_ASSETS/tech-roadmap-website.png)
 
 # UX
 
-Your site is most likely geared to a certain audience and goals for the business owner and users of the site, and your
-design choices should tie into them. Let the assessors know your thought process.
-
-If you don't feel like the overview gave enough detail about the site, you can write up what you are expecting users to
-actually do on your site, book things, find thing then lead into the goals and target audience.
+Your site is most likely geared to a certain audience and goals for the business owner and users of the site, and your design choices should tie into them. Let the assessors know your thought process.
 
 ## Target Audience
 🚀 **merit & beyhond**
 
-Can be a paragraph or a list
+Targeted Audience
+Tech-Roadmap is designed to cater to three main groups, each with unique goals and interests. By providing both technical and social features, the platform serves as a versatile space for learning, sharing, and growing in the tech world.
 
-> **Paragraph Example**
-> The target audience for What2do2day comes in two flavors. The revenue driving forces is children ages 12-18 who have a bit of freedom to move around unsupervised but very little means to addend costly mass entertainment complexes more than 5 miles from home. Their parents are expected to be a customer group too as they will want to ensure the site is safe and not a predatory place where their kids could be scammed into unsafe adventures. Other groups of users are the businesses that want to promote themselves as community friendly who will be hosting events for the primary customer group. The business owners will want a friendly interface to upload details of their place and events.
+### Junior Programmers:
+The first group is junior developers who are eager to learn and explore the connection between front-end and back-end development. For these users, Tech-Roadmap serves as a practical example of how to integrate modern front-end frameworks like React with a back-end powered by Django REST Framework (DRF). This audience can dig into the codebase, analyze how different components are styled and implemented, and gain valuable hands-on experience in full-stack development. It’s an excellent opportunity for aspiring programmers to see how real-world applications are structured and maintained.
 
-> **List example**
-> 1. Patients who have been referred for radiology examinations by registered physicians
-> 2. External healthcare companies who have equipment to sell
-> 3. Radiology staff who want to have a more manageable and predictable workload
+### Visitors Interested in IT and Technology
+The second group consists of general visitors who are passionate about IT and technology but may not have a deep programming background. For them, Tech-Roadmap functions as a social platform where they can read engaging posts, stay updated on the latest tech trends, and gain insights into various IT topics. More importantly, these users can also enroll in technology-related courses that align with their interests, similar to popular platforms like Udemy. Whether they want to upskill or just stay informed, this group finds value in both the content shared by the community and the educational resources available on the platform.
+
+### Management and Entrepreneurs
+The final group includes management teams or entrepreneurs who are focused on building and scaling social platforms. Tech-Roadmap offers a blueprint for creating a social network that combines educational features with user interaction. This group can observe how a platform can start small, focusing on a niche audience—like the tech and IT community—and grow step by step. For those interested in launching their own social platform, Tech-Roadmap provides an excellent model for combining user engagement, social sharing, and educational content in a scalable way.
+
 
 ## Goals
 🚀 **merit & beyhond**
 
-Bullet point out things from web users to website owners and other groups of people
+Tech-Roadmap is designed to meet the needs of three key groups, each with distinct goals and interests. The platform offers a blend of technical education, social engagement, and scalability, as well as reusability making it a valuable resource for junior programmers, tech enthusiasts, and management teams.
 
-**Booking Site Example**
-> - To allow the opportunity for patients to book and manage their own radiology appointments
-> - To give patients the opportunity to educate themselves on radiation safety prior to their visit
-> - To provide a simple-to-use contact form for site visitors to use in order to contact the radiology department
-> - To provide useful information to patients about radiology and the department to reduce 'white-coat-syndrome' and anxiety during their visit
-> - To give external companies the opportunity to partner with the radiology department and share their equipment prior to potential purchases
-> - To give radiology staff the opportunity to manage their workload and see in advance the patients they will encounter during the day
+1. **Junior Programmers**  
+   - Gain hands-on experience by studying the integration of front-end and back-end technologies.
+   - Learn how to implement and style code in a real-world full-stack project.
+   - Understand how different components of a web application communicate with each other.
+   - Explore best practices for using React with Django REST Framework to manage data flow and API integration.
+   - Develop skills that can be applied to future projects, helping them transition from beginner to intermediate developers.
 
-**Granular Goals Example**
-> **Customers**
-> Customers of What2do2day are children ages 12-18 who have a bit of freedom to move around unsupervised but a short range of mobility, approximately 5 miles from home.
->
-**Customer Goals:**
-> - Bring up the site and look for an inexpensive event to attend close to home
-> - Look at places to see how they rank without having to read much
-> - Quickly find activities that interest them without having to type much
-> - Read reviews about places that interest them
-> - See events related to places that interest them
-> - Easily know where an event they are interested in is located
-> - Join an event of interest
-> - See how many others are interested in an event
-> - Receive notification about an event they've joined
-> - Receive updates about events they've joined
->
-> **Place Owners**
-> Owners of Places would ideally have a different set of user permissions and the Update and Contribute sections of navigation would be under a strict workflow, but in the initial phase, I wanted to show off the ability to add, update and delete items from the website's view,so it's not hidden behind permissions or workflow at this point. Place owners are those that have a business or an organization that hosts free events within a community. Examples are a group that wants to play pickup soccer or a bicycle shop that leads group rides once a month.
->
-> **Place Owner Goals:**
->
-> - I want my place to be easily found on the site, so I can get more customers
-> - I want users to share community reviews, so I build trust with future customers
-> - I want to add events to my place, to build a repertoire with my clients
-> - I want users to join my events, so I can track how successful community events are to my bottom line
-> - I want the ability to update my place's details
-> - I want to update events associated with my organization
-> - I want to protect against bloated ratings
-> - I want to protect against accidental deletion of my information
->
-> **WebSite Goals**
-> The primary goal of what2do2day is to create a user-friendly app that allows customers to quickly find an event they want to attend. It's a meeting point between business/organizations and kids/parents to improve the likelihood of kids getting off their devices and interacting with others face to face at a low cost with minimal adult supervision.
-> In order to support the maintenance and development of cool features on the site, what2do2day hopes to produce monetary gains through the following means:
-> - Workflow Management Plans for Businesses around:
-    >
-- oversee approval/disapproval of reviews to ensure spamming and bad-mouthing in reviews does not occur
->   - batch event creation to help save time
->   - user account management to help with password recovery and assigning or removing roles as employees change
->   - sharing of user emails that attend events
-> - Affiliate linking - link to at-cost services provided by businesses and receive a kickback
-> - Ads - target online sales related to equipment based on activities a place or event is associated with
+2. **Visitors Interested in IT and Technology**  
+   - Access a social platform where they can read informative posts and learn about trending topics in the IT and tech world.
+   - Enroll in technology-related courses to upskill and deepen their understanding of areas like programming, cybersecurity, and data science.
+   - Engage with content that is both educational and practical, helping them stay informed in their field of interest.
+   - Use the platform as a starting point to discover new technologies and career paths within the IT industry.
+
+3. **Management and Entrepreneurs**  
+
+   - Learn how to launch and scale a social platform from the ground up, targeting a niche community of tech enthusiasts and learners.
+   - Observe the integration of social features (posts, likes, comments) with educational content (courses, enrollments), and explore ways to replicate or enhance these features in other platforms.
+   - Gain insight into user engagement strategies that blend social interaction with structured learning.
+   - Understand how to build a flexible platform that can grow over time, adding new features and expanding the user base step by step.
+
+
 
 ## User Stories
 🚨**Required**
