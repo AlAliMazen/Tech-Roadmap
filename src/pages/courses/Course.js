@@ -30,7 +30,6 @@ const Course = (props) => {
     coursePage,
     setCourse,
     category_title,
-
   } = props;
 
   const currentUser = useCurrentUser();
@@ -63,8 +62,6 @@ const Course = (props) => {
     };
 
     handleMount();
-    console.log(ratings)
-    console.log(enrollments)
   }, [id]);
 
   // Calculate the average rating
@@ -80,15 +77,15 @@ const Course = (props) => {
 
   const isUserEnrolled = (courseId) => {
     const courseEnrollments = enrollments.filter(enrollment => enrollment.course === courseId);
-    if (courseEnrollments.length > 0) {
-      const enrollment = courseEnrollments.find(enrollment => enrollment.profile_id === currentUser.profile_id);      
-      if (enrollment) {
+    if (courseEnrollments.length > 0 && currentUser) {
+      if (currentUser) {
+        const enrollment = courseEnrollments.find(enrollment => enrollment.profile_id === currentUser.profile_id);
         const { is_owner } = enrollment;
         const { id } = enrollment;
         setEnrollementId(id)
         return is_owner;
       }
-    }
+    } 
     return false;
   };
 
@@ -98,12 +95,12 @@ const Course = (props) => {
     if (ratings.length > 0) {
       const avg = getRating(id);
       setAverageRating(avg);
-    } 
+    }
     if (enrollments.length > 0) {
       const enrolled = isUserEnrolled(id)
       setIsEnrolled(enrolled)
       console.log("is current user enrolled : ", enrolled);
-    } 
+    }
   }, [id, ratings, enrollments]);
 
   const handleEdit = () => {
@@ -135,7 +132,7 @@ const Course = (props) => {
       setErrorMessage('');
       setSuccessMessage("Enrolled successfully!");
       setTimeout(() => setSuccessMessage(''), 3000);
-      window.location.reload(); 
+      window.location.reload();
     } catch (err) {
       setErrorMessage(err.response?.data?.detail);
       setTimeout(() => setErrorMessage(''), 3000);
@@ -158,7 +155,7 @@ const Course = (props) => {
       setIsEnrolled(false)
       setSuccessMessage("Unenrolled successfully!");
       setTimeout(() => setSuccessMessage(''), 3000);
-      window.location.reload(); 
+      window.location.reload();
     } catch (err) {
       setErrorMessage(err.response?.data?.detail);
       setTimeout(() => setErrorMessage(''), 3000);
