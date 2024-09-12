@@ -15,6 +15,7 @@ import Alert from "react-bootstrap/Alert";
 
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
+import signUp from "../../assets/sign_up.jpg"
 
 const SignUpForm = () => {
   useRedirect("loggedIn");
@@ -130,7 +131,7 @@ const SignUpForm = () => {
       >
         <Image
           className={`${appStyles.FillerImage}`}
-          src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero2.jpg"}
+          src={signUp}
         />
       </Col>
     </Row>
