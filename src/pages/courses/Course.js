@@ -78,14 +78,15 @@ const Course = (props) => {
   const isUserEnrolled = (courseId) => {
     const courseEnrollments = enrollments.filter(enrollment => enrollment.course === courseId);
     if (courseEnrollments.length > 0 && currentUser) {
-      if (currentUser) {
-        const enrollment = courseEnrollments.find(enrollment => enrollment.profile_id === currentUser.profile_id);
+      const enrollment = courseEnrollments.find(enrollment => enrollment.profile_id === currentUser.profile_id);
+      if (enrollment) {
         const { is_owner } = enrollment;
         const { id } = enrollment;
         setEnrollementId(id)
         return is_owner;
       }
-    } 
+
+    }
     return false;
   };
 
