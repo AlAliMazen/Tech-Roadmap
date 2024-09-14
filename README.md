@@ -300,6 +300,7 @@ The wireframes were designed with simplicity in mind, prioritizing user interact
 
 
 # Information Architecture
+
 As part of the requirements for this project you need to have at **least 3 custom data models**.  It's still under discussion what that means, but I'd make 1 original and then update the products to be custom to what you are selling and create another new one. It's this section that discusses your data and how each piece relates to another and draws out the CRUD functionality you built. You must have CREATE, READ, UPDATE & DELETE for at least one model.
 
 ## Entity Relationship Diagram
@@ -310,45 +311,38 @@ Wade Williams wrote a great blog about how to add a django extension to auto cre
 ## Database Choice
 🚀 **merit & beyhond**
 
-Just state you used postgres as the database because the data is relational and heroku serves this up realitvely easily with no cost.
+I have used PostgreSQL indicated and recommended by Code Institute. First I have set up a database connection using the CI recommendations and link it int he Project env.py as DATABASE_URL. 
+
+### Why PostgreSQL (Advantages)
+
+Here are some key advantages of PostgreSQL, especially in **contrast to NoSQL Database systems**:
+
+| Advantage                     | Explanation                                                                 |
+|-------------------------------|-----------------------------------------------------------------------------|
+| **ACID Compliance**            | PostgreSQL is fully ACID-compliant (Atomicity, Consistency, Isolation, Durability), which ensures reliable transactions and data integrity. NoSQL systems often prioritize flexibility over strict data consistency. |
+| **Relational Database**        | PostgreSQL is a relational database, which means it uses structured schemas, tables, and relationships (e.g., primary and foreign keys). This makes it ideal for applications that require complex querying and relationships between data. |
+| **Complex Queries**            | Supports complex queries with SQL, including joins, subqueries, and window functions, providing more advanced data manipulation and analysis capabilities compared to many NoSQL databases. |
+| **Data Integrity & Validation**| Provides strong data validation and constraints (e.g., unique keys, foreign keys), ensuring data is accurate and consistent, whereas NoSQL databases tend to offer less built-in validation. |
+| **Standardization**            | SQL is a standardized query language, making PostgreSQL widely compatible with various tools and applications. NoSQL systems often have proprietary query languages, limiting portability. |
+| **Transactions Support**       | PostgreSQL has robust support for multi-step transactions, allowing multiple operations to be treated as a single unit of work. Many NoSQL databases lack robust transactional support. |
+| **Extensibility**              | PostgreSQL is highly extensible, allowing users to define custom data types, operators, and functions, and even add new indexing methods. |
+| **Security**                   | PostgreSQL has advanced security features like role-based access control (RBAC), ensuring fine-grained control over database permissions. While NoSQL databases often have simpler or less granular security features. |
+| **Data Integrity Constraints** | Supports advanced constraints like foreign keys, unique keys, and check constraints to enforce data integrity, which is often missing or harder to implement in NoSQL. |
+| **Mature Ecosystem**           | PostgreSQL has been around for decades, and has a large, mature ecosystem of tools, libraries, and extensions, providing robust community support. |
+| **Handling Structured Data**   | Ideal for structured data that follows a predefined schema, ensuring high performance for relational queries|
+
+
+PostgreSQL excels in handling structured data, complex relationships, and ensuring consistency, making it a better choice when data integrity and relational operations are key requirements.
 
 ## Data Models
 🚨**Required**
 
-Show the accessors you know your data. If you end up using some data models from an example project, call that out and don't be as detailed about writing those up unless you added to them.
+Based on the technologies and requiremetns used for this project the Database with all its implemented features are stored under [Tech-Roadmap](https://github.com/AlAliMazen/Tech-Roadmap-DRF?tab=readme-ov-file#data-models). In additon to the Datamodels shown in the walkthrough of the Moments project by Code Institute, I have added the following models to enhance my API and the Front-End website. The new models includes: Courses, enrollments, rating and rviews. In total there are 9 models implemented in the backend and represents the API which is published puplically under [Tech-Roadmap-DRF](https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/).
 
-Each data model that you created yourself should have its Fields, Field Type and any validation documented.  You should also cross-reference any code in your repository that relate to CREATE, READ, UPDATE, DELETE operations for these models.
+Following is a screen shot about the ERD done by using [dbdiagram.io software](https://dbdiagram.io/d):
 
-*Below is an example of a write up for an Activities Data Model*
+![Tech-roadmap-DRF](./README_ASSETS/ERD_Original.png)
 
-> ### Activities Model
-> Activities is a table to hold a unique icon image and name values that users have associated with events and places. It helps with sorting events and prevents the need from carrying around two data objects in the larger Events and Places data structures. The purpose of an Activities object is to provide an imagery association to a category.
-> 
-> | DB Key 	| Data Type 	|          Purpose          	| Form Validation                        	| DB processing    	|
-> |--------	|:---------:	|:-------------------------:	|----------------------------------------	|------------------	|
-> | _id    	| ObjectId  	| unique identifier         	| None                                   	| n/a              	|
-> | name   	| String    	| Name of Activity          	| Required<br>Min 1 char<br>Max 50 chars 	| trim<br>to lower 	|
-> | icon   	| String    	| system path to image file 	| Required                               	|                  	|
-> 
-> Activity entries are used by events, places and filtering.
-> 
-> - [x] Create - An activity is potentially created when a user successfully creates a place, creates an event, updates an event, or updates a place.
-> - [x] Read - The Activities table is read when a user is adding an event, updating an event, adding a place or updating a place, to determine if a new value should be created or not. The activities table is queried for using the name and icon pair, if it is found, the ObjectId is passed to the event and places. If no match is found, a new Activity is created and that ObjectID is passed to the the place or event.
-> - [ ] Update
-> - [ ] Delete
-> 
->  This table has no deletion or updates associated with it. It's strictly create and read. Eventually, maintenance scripts should be written to delete unused/deprecated entries.
-
-> The reading/writing of the activities table is housed in the [what2do2day/activities/views.py](what2do2day/activities/views.py) file.
-
-### CRUD Diagrams
-🚀 **merit & beyhond**
-
-This is if you want to go for distinction.  You can also have CRUD diagrams to show them visually how the model is used in your site.
-
-I used [draw.io](https://app.diagrams.net/) and hooked it up to my google drive to create the screenshot below
-
-![image](https://user-images.githubusercontent.com/23039742/154406188-c9beb57a-2fd1-4f26-a8ed-bee320e46e3d.png)
 
 
 # Agile Process
@@ -413,36 +407,6 @@ For a detailed breakdown and tracking, I have created a comprehensive list of us
 
 For the templates which has been followed for creating both Epic and Normal User Storeis your can check [Tech-Roadmap-Project](https://github.com/AlAliMazen/tech-roadmap/issues/new/choose)
 
-**What to keep in this section**
-
-- include links and/or screenshots of your story template(s)
-
-### Product Backlog
-🚨**Required**
-
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+AG101+2021_T1/courseware/a4e548ca70a3473aa890ba2ab9bf612c/085f3a8e344a4cf28b5b5355399abcc1/?child=last
-This is the MILESTONE where you grab stories from the issues or USER stories you created and prioritize them and order
-them, leave the epics out.
-
-**What to keep in this section**
-Include a link to your Product Catalog Milestone,
-
-an initial screenshot, mid-point and final will help document the agile process.
-
-## Iterations
-🚀 **merit & beyhond**
-
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+AG101+2021_T1/courseware/a4e548ca70a3473aa890ba2ab9bf612c/71fe6c52cccf477688e924c9889f5fec/?child=first
-
-Add links to iteration milestones (most people have ONE iteration since they are the solo worker, just state that here),
-it could be that you won't have all your product backlog worked in the end, and that is ok, hte MVP might morph, you
-might find other stories you want instead, it's OK.
-
-## Progress Boards
-🚀 **merit & beyhond**
-
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+AG101+2021_T1/courseware/a4e548ca70a3473aa890ba2ab9bf612c/7ad7f487cc6148ecb182d77feaeda269/?child=first
-Add links to Progress boards
 
 # Features
 🚨**Required**
@@ -494,7 +458,6 @@ Here’s a more detailed explanation of the website's features based on the user
 - **Explanation**: This allows users to give detailed feedback on the course material, the instructor’s teaching style, or any other elements they found useful or lacking. Reviews enrich the course catalog by offering insight from past learners.
 
 
-
 ## Future Features
 🚀 **merit & beyhond**
 
@@ -508,7 +471,9 @@ Here’s a more detailed explanation of the website's features based on the user
 
 These future features will expand the platform’s functionality, improve user experience, and provide greater control and customization for both users and administrators.
 
-# Testing
+
+
+# Testing (Still to do)
 🚨**Required**
 
 In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that
@@ -522,72 +487,110 @@ a [document](https://docs.google.com/document/d/1nDS5tZeMO77Dfq85IZGMSV6C41XaPm9
 I put together for this process.
 
 You should make sure your test cases cover the following: 
+
+
+-------------------------
+
+
+
 ## Cross Browser and Cross Device Testing
 🚨**Required**
 
-To save time, you can create this type of table
-in [markdown table generator](https://www.tablesgenerator.com/markdown_tables)
 
-As of Feb 14, 2022 CI students can take advantage of the Student Developer Pack where you have access to great things
-like [browserstack](https://education.github.com/pack/offers/#browserstack) You should have received an email about how
-to activate your student Developer Pack, here's
-a [slack](https://code-institute-room.slack.com/archives/C0L316Z96/p1644946870567999) with details if you can't find it
-in the associated thread.
+I prioritize using frameworks that handle much of the complexity of creating responsive websites. For this project, I utilized **React-Bootstrap 4.6** (as recommended by Code Institute), which provides a robust system for ensuring optimal responsiveness across various devices. This framework allowed me to efficiently manage layouts and elements, adapting the site seamlessly to different screen sizes. I have tested the website across multiple devices and platforms to ensure consistency and smooth performance for all users.
 
-Start with a brief explanation of why you chose the mixture you did. The point is to prove that you looked at the site
-across various browsers, operating systems, and viewport breakpoints. You can add a column about the spot checking path
-you took or write it out here:
+| TOOL / Device                 | BROWSER     | SCREEN RESOLUTION  | SCREEN SIZE |
+|-------------------------------|-------------|--------------------|-------------|
+| iPhone 13 Pro Max (real)      | Safari 17.5 | 2778 x 1284        | 6.7 inches  |
+| iPhone 15 Pro Max (real)      | safari 17.5 | 2796 x 1290        | 6,7 inches  |
+| Samsung A51 (real)            | Google 8.0.1| 2400 x 1080        | 6,5 inches  |
+| Samsung S23 Ultra (real)      | Chrome 8    | 3088 x 1440        | 6,8 inches  |
+| iPad 4 (real)  | Chrome 78    | Safari 17.5 | 2048 x 1536        | 9,7 inches  |
+| MacBook Pro 16 M2 Pro (real ) | safari 17.5 | 3456 x 2234        | 16 inches   |
+| Samsung Galaxy Z Fold (real)  | Chrome 8    | 2176 x 1812        | 7,6 inches  |
 
-1. Visit https://gs.statcounter.com/browser-market-share to figure out the most popular browsers & operating system combos seen across the we for the geographic region, and platoform(s) and screen sizes you expect your users to belong to. 
+Following are emulators provided by Chrome (V. 126.0.6478.127) Browser on MacOS
 
-1. Include a sentence about why you chose the combinations you did.
+| DEVICE                  | SCREEN DIMENSION   |
+|-------------------------|--------------------|
+| iPhone SE               | 375 x 667          |
+| iPhone XR               | 414 x 896          |
+| iPhone 12 Pro           | 390 844            |
+| Pixel 7                 | 412 x 915          |
+| Galaxy S8+              | 360 x 740          |
+| Samsung Galaxy S20 Ultra| 412 x 915          |
+| iPad mini               | 768 x 1024         |
+| iPad Air                | 820 x 1180         |
+| iPad Pro                | 1024 x 1366        |
+| Surface Pro 7           | 912 x 1368         |
+| Surface Duo             | 540 x 720          |
+| Galaxy Z Fold 5         | 344 x 882          |
+| ASUS Zenbook Fold       | 853 x 1280         |
+| Samsung Galaxy A51/71   | 412 x 914          |
+| Nest Hub                | 1024 x 600         |
+| Nest Hub Max            | 1280 x 800         |
 
-1. Create a table that lists out what devices, browsers, and operating system you tested your application on and a brief description of why you chose the mixture you did. The point is to prove that you looked at the site across various browsers, operating systems, and viewport breakpoints.
+## Why Choosing the pre-defined Browsers
 
-1. if you can't find the brower/device/OS combinations you want on Browserstack with your github student webpack (or you didn't activate that in time), note what you'd ideally test on then what you ended up testing on as a compromise. 
+1. Bases on the information available on [most-popular-websites](https://gs.statcounter.com/browser-market-share) I can confirm that the best browser is chrome world-wide and this makes it more efficient to start coding the website based on the tools provided including Networking Tools to check the responsiveness of the website and offering tools like Lighthouse to check for the accessibility.
 
-> **Example:**
-> To ensure the code was functional and looked good on varoius devices I tested a couple of generic flows though my site on using the following Tool/Device combinations. The device/browser/and OS combinations were used based on reports found at [browser market share](https://gs.statcounter.com/browser-market-share) taken on MM/DD/YYYY:
->
-> | TOOL / Device                 | BROWSER     | OS         | SCREEN WIDTH  |
-> |-------------------------------|-------------|------------|---------------|
-> | real phone: motog6            | chrome      | android    | XS 360 x 640  |
-> | browser stack: iPhone5s       | safari      | iOs        | XS 320 x 568  |
-> | dev tools emulator: pixel 2   | firefox     | android    | SM 411 x 731  |
-> | browserstack: iPhone 10x      | Chrome      | iOs        | SM 375 x 812  |
-> | browserstack: nexus 7 - vert  | Chrome      | android    | M 600 x 960   |
-> | real tablet: ipad mini - vert | safari      | iOs        | M 768 x 1024  |
-> | browserstack: nexus 7 - horiz | firefox     | android    | LG 960 x 600  |
-> | chrome emulator: ipad - horiz | safari      | iOs        | LG 1024 x 768 |
-> | browserstack                  | Chrome      | windows    | XL 1920 x 946 |
-> | real computer: mac book pro   | safari 12.1 | Mohave     | XL 1400 x 766 |
-> | browserstack                  | IE Edge 88  | windows 10 | XL 1920 x 964 |
->
-> Here is a link to the [test case](https://github.com/maliahavlicek/ci_mentor_insights/issues/9).
+2. Another browser includes Safari and I like it because it is built in macOS, though it has also no compatible issues when resizing. In the statics on the pre-defined site it comes in the second place and that can be because it comes pre-installed on the system.
 
-Note, you might find it easier to create a test case for each tool/device and link to the test case in the table here.
+![Browsers-statistics](./README_ASSETS/browser-static.png)
+
 
 ## Accessibility Testing
 🚨**Required**
 
-You should have test cases for accessibility and links to them here. Start with a brief paragraph and then link to the
-test cases. If you are ambitious you can record the screen of you using the keyboard, convert it to a gif and upload it
-to the test case too.
 
-**example**
-> To ensure that the site was accessible to people with visual impairments, I used chrome's dev tools, lighthouse audits to ensure I had a score in the green for accessibility and that I could keyboard navigate through the page.
->
-> Here are links to the test cases for each which contains the screenshot for the lighthouse audit.
-> - [home page accessibility test](https://github.com/maliahavlicek/ci_mentor_insights/issues/12)
-> - [experience page accessibility test](https://github.com/maliahavlicek/ci_mentor_insights/issues/13)
-> - [skills page accessibility test](https://github.com/maliahavlicek/ci_mentor_insights/issues/14)
-> - [recommendations page accessibility test](https://github.com/maliahavlicek/ci_mentor_insights/issues/15)
->
-> To ensure the site was accessibility to people with physical impairments, I tried to navigate the site using tabbed navigation:
-> - [site tabbed navigation test](https://github.com/maliahavlicek/ci_mentor_insights/issues/10)
+**Lighthouse**
+It is very important to keep in mind that the Accessibility test doesn't always look as good as the code is. It depends on many factors including the good and clean code. I used Google Chrome Tools to perform the accessibility tests. 
 
-You can totally combine the tabbed navigation in the accessibility test and have 2 expected criteria, it's all up to
-you!
+One more point that can effect the Lighthouse results is the source where it runs and the internet connection.
+
+1. Home Page
+
+![acc-home](./README_ASSETS/tech_ACC_1_home.png)
+
+2. Courses Page
+
+![Courses-pages](./README_ASSETS/tech_ACC_4_courses.png)
+
+3. Sign In Page
+
+![Sign-in-page](./README_ASSETS/tech_ACC_2_Signin.png)
+
+4. Sign up Page
+
+![Sign-up-page](./README_ASSETS/tech_ACC_3_Signup.png)
+
+5. Add new article
+
+![new-article](./README_ASSETS/add_article.png)
+
+6. Add Category 
+
+![add-category-page](./README_ASSETS/add_category.png)
+
+7. Not Found Page
+
+![not-found-page](./README_ASSETS/tech_ACC_7_Not_found_page.png)
+
+8. Profile
+
+![Profile-page](./README_ASSETS/tech_ACC_9_Course_review.png)
+
+9. Add course review
+
+![add-course-review](./README_ASSETS/tech_ACC_9_Course_review.png)
+
+10. Add comment to an article
+
+![add-course-review](./README_ASSETS/tech_ACC_8_course_article_review.png)
+
+
+
+
 
 ## Validation Testing
 🚨**Required**
