@@ -167,8 +167,15 @@ will also be implemented such as nav-bar, footer, obvious website purpose etc.
 ## Scope
 🚀 **merit & beyhond**
 
-Now you have to talk about the scope to reduce things more, you don't necessarily need all the bells and whistles, they
-could be beyond your skill set. Think basic stuff.
+The design implemented in Tech-Roadmap, as reflected in the user stories, serve a dual purpose: they cater to both junior programmers looking to understand front-end development and general visitors engaging with the platform.
+
+1. **For Junior Programmers**:  
+   The scope of the design elements extends to demonstrating the integration between front-end React components and back-end API functionalities. Key features such as responsive navigation, card layouts, and icons provide junior developers with practical insights into creating user-friendly interfaces. Additionally, the use of React Bootstrap’s Accordion component and the responsive design principles exemplify how to balance aesthetics with functionality in real-world web applications. These elements help junior programmers understand how to structure and style dynamic content while maintaining seamless user experiences.
+
+2. **For Visitors**:  
+   Visitors benefit from the intuitive and interactive design elements, such as collapsible sections for articles and courses, as well as icons that visually indicate key actions like course enrollment, liking articles, and writing reviews. These features enhance the user experience by making the website easy to navigate and visually appealing. The scope here is to engage visitors, whether they are looking for informative content, enrolling in courses, or interacting with the community.
+
+By targeting both junior programmers and regular visitors, the scope of the design elements aligns closely with the user stories, ensuring the platform is not only functional but also educational and engaging.
 
 ## Design Choices
 🚀 **merit & beyhond**
@@ -196,44 +203,53 @@ Explain why you used certain icons and images on your site
 ### Design Elements
 🚀 **merit & beyhond**
 
-- list out the type of elements you want to use on your site, this will help you when choosing a framework and goes hand
-  in hand when doing the wireframes. If you did something out of the ordinary, or think something was particularly
-  clever, add a sentence and a screenshot or reference the file the code or css is in.
+The design of Tech-Roadmap combines responsiveness, intuitive navigation, and visual elements that enhance user experience across both mobile and desktop platforms. Below are the key design elements used:
 
-> - desktop navigation
-> - mobile navigation
-> - footer
-> - containers/cards
-> - buttons
-> - text input
-> - textarea inputs
-> - dropdowns
-> - modals/layers
-> - check boxes
-> - switches
-> - accordions/drawers
-> - pagination
-> - date pickers
-> - maps
-> - images
-> - tooltips
-> - icons
-> - tabbed content
-> - file pickers
-> - video players
-> - audio players
+1. **Responsive Navigation**: The navigation bar is responsive across devices, adapting to both desktop and mobile views. It provides different options for logged-in users and visitors, ensuring personalized access based on the user’s status.
+
+2. **Container Structure**: A structured container layout is used to hold both articles and courses, providing a clean and organized view. This design keeps content accessible and neatly categorized, improving usability.
+
+3. **Card Elements**: Cards are used to display both article and course content. For articles, the card shows the title and body, while for courses, it reflects the course title and an "About" section, offering a clear and consistent format.
+
+4. **Iconography**: Intuitive icons are used to represent key interactions:
+   - **Person Plus/Minus Icons**: Indicate course enrollment and unenrollment actions.
+   - **Stars**: Represent user ratings for courses and reviews.
+   - **Comment Icon**: Used to show interaction with articles, enabling users to leave comments.
+   - **Home Icon**: Directs users back to the homepage for easy navigation.
+   - **Hearts**: Represent the like feature, adding a social aspect to article engagement.
+   - **Sign-in/Log-out Icons**: Visually distinct icons for logging in and out provide a user-friendly interface for authentication actions.
+
+5. **Accordion Elements**: An accordion component, provided by React Bootstrap, allows users to click on article or course titles to expand and display the full content. This collapsible design conserves space while offering dynamic content viewing options.
+
+These elements together ensure a seamless and engaging user experience, making navigation, interaction, and content consumption intuitive and visually appealing.
 
 ### Animations and Transitions
 🚀 **merit & beyhond**
 
-- discuss any special animations or transitions you've programmed
-- special hover state effects
+Trnasiont and animation was extended from and applied when interacting with:
+  - Clicking on action buttons like sign up / sign in / logout 
+  - Hover effect applied all over the website including navbar item links and the active item in the menu bar
+
+  - Overlay layout indicating that user can't for example comment on article when he is not logged in.
+
+  - Overlay tipp when trying to enrol twice for the same course, reviewing the course twice or rating twice
+
+  - Auto hide from the notifications 
+
 
 ### Frameworks
 🚨**Required**
 
-- If you use bootstrap, tailwind, bulma, materialize or some other JS/CSS framework, call it out here and why you made
-  that choice. (Typically I look at the design elements I want and make sure the framework supports them)
+- Here is a table that explains the frameworks and functions used in developing tech-Roadmap front-end website:
+
+| **Framework/Function** | **Explanation** |
+|---|---|
+| **React-Bootstrap** | React-Bootstrap is a front-end framework that integrates Bootstrap's responsive design elements into React components. It is used for styling and structuring the website with components like: <br> - **Accordion** for collapsible sections <br> - **Navbar** for responsive navigation <br> - **Cards** for displaying articles and courses <br> - **Container** for organizing layout <br> - **Buttons**, **Images**, **Forms**, and **InputGroup** for UI interactions <br> - **Alert** for displaying error or success messages <br> - **Rows** and **Columns** for responsive grid layouts |
+| **Axios** | Axios is a promise-based HTTP client used for making API requests and handling responses. It is useful for: <br> - Fetching data from the backend <br> - Sending POST requests to create or update resources <br> - Handling errors and responses consistently across the application. |
+| **React Hooks (useState, useHistory, pathname, useLocation, useMemo, useRef, useEffect)** | React Hooks are functions that let you use state and lifecycle features in functional components. Key functions include: <br> - **useState**: Manages the state of a component <br> - **useHistory**: Provides navigation functionality, allowing you to programmatically change the browser's URL <br> - **pathname** and **useLocation**: Track the current URL path, helping components react to navigation changes <br> - **useMemo**: Optimizes performance by memoizing expensive calculations <br> - **useRef**: Accesses and manipulates DOM elements or store persistent values between renders <br> - **useEffect**: Handles side effects like fetching data, subscriptions, or manually updating the DOM. |
+|**React Quill** |Applied to display rich text formatting on the front end. Admins use this to input rich text content through the admin panel, which is then shown to users in a human-readable format. For implementation and how to use it you can visit the [official Quil Documentation](https://quilljs.com/docs/quickstart)|
+
+These frameworks and functions work together to create a responsive, interactive, and performant front-end for the Tech-Roadmap website.
 
 ### Custom Styles
 🚨**Required**
@@ -250,16 +266,37 @@ Explain why you used certain icons and images on your site
 ## Wireframes
 🚨**Required**
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of
-the design process. These files should themselves either be included as a pdf file in the project itself (in a separate
-directory), or hosted elsewhere online and can be in any format that is viewable inside the browser.
+### Wireframes Overview
 
-- You should minimally have wireframes for desktop and mobile for the pages you are making for you register, login,
-  read(list/detail), add, update, delete functionality. Adding a Tablet view will help you get into merit and
-  distinction.
+For developing the wireframes of Tech-Roadmap, I utilized [**Balsamiq**](https://balsamiq.com), a wireframing tool provided through a license from Code Institute. Balsamiq allowed me to create simple, clean, and intuitive layouts that closely resemble the structure used in the walkthrough project from Code Institute. The wireframes serve as a blueprint for how each page in the Tech-Roadmap is laid out.
 
-You can hand draw these, but CI posts a yearly license in the general channel for Balsamiq which is pretty easy to use.
-Here is the [2022 announcement](https://code-institute-room.slack.com/archives/C0L316Z96/p1640099614368000)
+Below are the wireframes for the following pages:
+
+1. **Home (Article Pages)**: This page showcases the main articles, displaying their titles, summaries, and author details. The layout is clean and focused on readability.
+
+![Home-page](./README_ASSETS/add_article.png)
+
+2. **Courses Page**: This page lists the available courses, showing course titles, descriptions, and enrollment count. It highlights features like ratings and reviews count as well to engage visitors.
+
+![courses-page](./README_ASSETS/Courses_A.png)
+
+3. **Adding Category Page**: This page provides a form for adding new categories to the platform. The layout is simple, with input fields and submission buttons.
+
+![add-category-page](./README_ASSETS/add_category.png)
+
+4. **Adding Article Page**: This page allows logged-in users to write and submit new articles. The wireframe includes fields for title, content, and category selection and image.
+
+![adding-article](./README_ASSETS/add_article.png)
+
+5. **Commenting on Article Page**: This page enables users to leave comments on articles. The layout is straightforward, with a comment box and submit button for user interactions.
+
+![add-comment](./README_ASSETS/article_comment.png)
+
+6. **Add Review to a Course**: This page allows users to submit reviews and ratings for courses they have enrolled in. It includes input areas for rating scores and review text.
+
+![Review-of-the-course](./README_ASSETS/Courses.png)
+
+The wireframes were designed with simplicity in mind, prioritizing user interaction and ease of navigation. A soft copy of these wireframes can be found in the[ project’s GitHub repository](./README_ASSETS/Tech-roadmap.bmpr) for reference. They helped guide the development process and ensure the final implementation aligned with the planned user experience.
 
 
 # Information Architecture
