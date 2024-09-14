@@ -10,8 +10,17 @@ By combining social interaction with education, the platform aims to empower use
 
 This Front End website makes use of the backend Django-Rest-Framework project which has the following repository [Tech-Roadmap-DRF](https://github.com/AlAliMazen/Tech-Roadmap-DRF) as a source code and the [Tech-Roadmap-DRF](https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/) as deployed version. 
 
-Take a look at my live website from [Tech-Roadmap]() .
+## Author
 
+MAZEN AL ALI
+
+
+## Project Overview
+🚨**Required**
+
+The following screen shot is done by [am-I-responsive](https://ui.dev/amiresponsive)
+
+![tech-roadmap-am-i-responsive](./README_ASSETS/tech-roadmap-website.png)
 
 
 # Table of Contents
@@ -89,17 +98,6 @@ Take a look at my live website from [Tech-Roadmap]() .
 
 ====================================== The Sections you Fill in are below ==============================
 
-## Author
-
-MAZEN AL ALI
-
-
-## Project Overview
-🚨**Required**
-
-The following screen shot is done by [am-I-responsive](https://ui.dev/amiresponsive)
-
-![tech-roadmap-am-i-responsive](./README_ASSETS/tech-roadmap-website.png)
 
 # UX
 
@@ -148,24 +146,6 @@ Tech-Roadmap is designed to meet the needs of three key groups, each with distin
 
 
 
-## User Stories
-🚨**Required**
-
-User stories evolve over a project's lifetime. Start with a wish list, do a feasibility analysis then move the ones you
-will work on into gitHub, so you can track their progress.
-
-## Initial Stories
-🚨**Required**
-
-To start the agile process this section kicks off with a bullet list/brainstorming dump about features you'd like to
-have. EVERYTHING write them out in bullet form:
-
-- As a 'user type' I 'to perform an action' so that I can 'achieve a goal'
-
-**Examples**
-
-- [radiology booking](https://github.com/DeannaCarina/ELHTRadiology#user-stories)
-- [places/events searching site](https://github.com/maliahavlicek/what2do2day#user-stories)
 
 ## Feasibility vs Importance
 🚀 **merit & beyhond**
@@ -339,51 +319,62 @@ I used [draw.io](https://app.diagrams.net/) and hooked it up to my google drive 
 ## GitHub User Stories
 🚨**Required**
 
-Now you are ready to start using Git Hub Issues to write your user stories. To get to merit levels you need to show you
-have refined stories from Epics to Generic User stories.
+As Version Control System Github doesn't only provide the ability to track chnages to the project files, but also it provides the possibility to create and track the implementation to the user stories which represent the goals and feature to be implemented in the website.
 
 ### User Story Templates
 🚨**Required**
 
-[Here's the lesson](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+AG101+2021_T1/courseware/a4e548ca70)
-on how to create a User Story Templates.
+### User Stories Overview
 
-If you want a chance at **DISTINCTION**, I'd suggest the following:
+In Agile development, **user stories** are a critical way to define features from the perspective of the end-user. They help the team focus on delivering value incrementally while staying connected to user needs. These user stories are grouped into **normal stories**—specific 
+and actionable tasks—and **Epic stories**, which represent larger goals or overarching functionality that may span several development sprints.
 
-- Create an Epic Story template, this would have a title, the story and children stories
-- Create a User Story template, this would initially have the title, the story, and a link to the Epic. Then you'd come
-  back when you are prioritizing it to include the acceptance criteria, and story points, then again when you are
-  working on it and fill in the tasks and adjust the story points if needed.
-- Name your stories in a way that it's easy to tie the children to the EPICS by name.
+For a detailed breakdown and tracking, I have created a comprehensive list of user stories, available through the following [Tech-Roadmap](https://github.com/users/AlAliMazen/projects/6/views/1).
 
-Example:
-EPIC: Navigation As a user, I want to have easy to see navigation on the page, so I can intuitively interact with the
-site without getting frustrated.
+---
 
-USER STORY: Navigation: Create Template As a developer, I don't want to have copy and paste my navigation on every page.
-I want to use a template to house this information, so my code is easier to maintain.
+### Epic Stories
 
-USER STORY: Navigation: Desktop As a user I want clear navigation that is up to industry standards for my desktop
-experience, so I can easily find what I need on a website.
+1. **User Management**: As a user, I can create, manage my account, including my contributions such as articles, comments, and enrollments, to fully control my presence on the platform.
+   
+2. **Course Interaction**: As a user, I can browse, filter, and enroll in courses, as well as leave reviews and ratings, to enhance my learning journey on the platform.
 
-USER STORY: Navigation: Mobile As a user I want clear navigation that is up to industry standards for my mobile
-experience, so I can easily find what I need on a website without the
+3. **Article Engagement**: As a user, I can explore, write, comment, and interact with articles, facilitating knowledge sharing and discussions within the community.
 
-[Here is a quick link](https://github.com/maliahavlicek/go-hrvatska/tree/master/.github/ISSUE_TEMPLATE) to some templates I set up for these
-[Here is the UX for those templates where you choose a new type of issue](https://github.com/maliahavlicek/go-hrvatska/issues/new/choose)
+---
 
-screenshot of EPIC new issue using template
-![image](https://user-images.githubusercontent.com/23039742/165651624-7ff6c839-1824-48df-81a3-fda444f2d7f5.png)
+### Normal User Stories
+
+- **User Profile**
+  1. As a visitor, I can retrieve all available user profiles.
+  2. As a user, I can view a specific user profile to see how many articles they have written and likes as well as follower and contributions.
+  
+
+- **Account Management**
+  1. As a visitor, I can create an account to participate in writing articles and commenting.
+  2. As a user, I can log in and out to manage my access and security.
+  
+- **Articles**
+  1. As a visitor, I can retrieve all articles to read useful content on IT and technology.
+  2. As a logged-in user, I can write an article to share my knowledge with the community.
+  3. As a logged-in user, I can comment on articles to engage in discussions.
+  4. As a visitor, I can view article details, including who wrote them and when.
+  
+- **Courses**
+  1. As a visitor, I can view all available courses.
+  2. As a logged-in user, I can enroll in a course to read more about the course features.
+  3. As a user, I can filter courses to find relevant content.
+  4. As a logged-in user, I can leave a review and rating for a course I am enrolled in.
+
+- **Likes and Followers**
+  1. As a logged-in user, I can like articles to show my appreciation.
+  2. As a logged-in user, I can follow other users to stay updated on their contributions.
 
 
-screenshot of USER_STORY new issue using template
-![image](https://user-images.githubusercontent.com/23039742/165651758-beac7bc6-f62f-42e5-b8a0-feeefafcd5b4.png)
+- **Admin Features**
+  1. As an admin, I can create new courses to provide learning materials for users from **ADMIN PANEL**.
 
-
-Note: You can play around with the labels to add an EPIC one and a USER_STORY one or even ones for each MAJOR epic you have or page
-https://github.com/maliahavlicek/go-hrvatska/issues/labels 
-![image](https://user-images.githubusercontent.com/23039742/165651335-46ab8ff3-4014-4e55-a29d-35e1d998fb42.png)
-
+For the templates which has been followed for creating both Epic and Normal User Storeis your can check [Tech-Roadmap-Project](https://github.com/AlAliMazen/tech-roadmap/issues/new/choose)
 
 **What to keep in this section**
 
@@ -419,26 +410,66 @@ Add links to Progress boards
 # Features
 🚨**Required**
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so and how they tie into  your user stories.
+Here’s a more detailed explanation of the website's features based on the user stories:
 
-## Implemented Features
+### 1. **Navigation Bar**
+- **Feature**: The navigation bar is present across all pages of the website and acts as the main hub for accessing key features. 
+- **Explanation**: Logged-in users will see options to add categories and write articles, whereas visitors will see limited options, ensuring that the functionality is tailored based on user roles. This enhances user experience by providing quick access to relevant actions.
 
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
+### 2. **Sign-Up and Logout**
+- **Feature**: Users can sign up for an account or log out once they’re logged in.
+- **Explanation**: Signing up allows users to participate in more advanced actions, such as writing articles, commenting, and enrolling in courses. The logout functionality ensures users can securely exit their accounts when finished.
 
-It's easiest to break this section down into the header, footer, and each page/layer of your website. Call out any differences for mobile vs desktop presentations, **include a screenshot of the implemented feature** and **at least 2 bullet points of their importance**.
+### 3. **Home Page**
+- **Feature**: The home page serves as the main content area, featuring a list of articles that include the author’s name and publication date.
+- **Explanation**: Visitors can explore various topics, and by clicking on the article title, they can read the full content. This design provides transparency about who wrote each article and when it was published, adding trust and context for the reader.
 
-**Required for passing**
-- Authentication Process
-- Custom 404 
-- Facebook Business page
-- Newsletter signup Form
+### 4. **Article Comments**
+- **Feature**: Logged-in users can leave comments on articles.
+- **Explanation**: This feature allows users to engage in discussions, ask questions, or provide feedback directly under an article, promoting community interaction and dynamic discussions around specific topics.
+
+### 5. **Course Enrollment**
+- **Feature**: Users can enroll in courses created by admins.
+- **Explanation**: The enrollment feature enables users to access educational content directly through the platform. Users can easily enroll in various courses, enhancing the site's value as an educational resource.
+
+### 6. **Course Reviews and Ratings**
+- **Feature**: Each course displays reviews, ratings, and the number of enrollments.
+- **Explanation**: Users can view feedback from other learners before deciding whether to enroll. This feature helps users make informed decisions based on the quality and popularity of the courses, similar to platforms like Udemy.
+
+### 7. **Most Followed Profiles**
+- **Feature**: A section on the website highlights the most followed profiles.
+- **Explanation**: Showcasing popular users promotes influential members within the community, giving users an idea of whom to follow and helping them discover content creators with valuable insights.
+
+### 8. **Profile Pages**
+- **Feature**: Each user has a separate profile page displaying their personal details, articles, and other contributions.
+- **Explanation**: This feature allows visitors and users to learn more about individual members, such as their content, interests, and community engagement. It encourages networking and content discovery.
+
+### 9. **No Result Page**
+- **Feature**: A “No Result” page is displayed when users navigate to an invalid or non-existent URL.
+- **Explanation**: This feature enhances user experience by providing clear feedback that the page doesn’t exist, redirecting users to the correct paths rather than leaving them in confusion or frustration.
+
+### 10. **Filtering**
+- **Feature**: Users can filter both articles and courses to find specific content.
+- **Explanation**: Filters provide an efficient way to navigate large amounts of content. Whether a user is searching for a particular course in a specific field or articles on a certain topic, the filtering feature saves time and offers personalized browsing.
+
+### 11. **Write Reviews**
+- **Feature**: Logged-in users can write reviews for the courses they are enrolled in.
+- **Explanation**: This allows users to give detailed feedback on the course material, the instructor’s teaching style, or any other elements they found useful or lacking. Reviews enrich the course catalog by offering insight from past learners.
+
+
 
 ## Future Features
 🚀 **merit & beyhond**
 
-Use this section to discuss plans for additional features to be implemented in the future:
+### Future Features
 
-If you end up not developing some features you hoped to implement, you can include those in this section.
+1. **User Profile Deletion**: In future updates, users will have the ability to delete their own profiles. This action will also remove all associated content, including articles, comments, enrollments, and any other form of participation. Ensuring that all user-generated data is appropriately deleted will maintain database integrity and privacy.
+
+2. **"My Courses" Section**: A dedicated "My Courses" page will be introduced to provide users with a personalized view of the courses they are enrolled in. This feature will offer easy access to ongoing or completed courses, enhancing the learning experience and improving course management for users.
+
+3. **Course Creation for Admins**: Currently, only website administrators can create courses through the admin panel. A future enhancement will involve adding a dedicated course creation page for administrators, streamlining the process and making it easier to manage and publish new courses for visitors and enrolled users.
+
+These future features will expand the platform’s functionality, improve user experience, and provide greater control and customization for both users and administrators.
 
 # Testing
 🚨**Required**
@@ -591,7 +622,6 @@ is what my custom tempalte looks like in the UX
 
 
 
-
 ## Defects of Note
 🚀 **merit & beyhond**
 
@@ -603,94 +633,6 @@ ended up resolving them. Just create a link to the issues/defect of note.
 It's ok to not resolve all the defects you found. If you know of something that isn't quite right, list it out and
 explain why you chose not to resolve it. Again, do this in gitHub and provide a link to the defects you are not closing
 and ensure they have a comment in them.
-
-# E-commerce Business Model
-🚨**Required**
-
-In this section discuss your business model, how you use  SEO to get users to your site and how you hope to generate more traffic and get sponsors to back link to your site. 
-
-## Facebook Business Page
-🚨**Required**
-
-- copy a screenshot of the FB page
-- add a couple of bulletpoints about the goals of what this fills for building out followers & special content
-
-## Newsletter Signup
-🚨**Required**
-
-- copy a screenshot of the signup 
-- add a couple of bullet oints outlining the goals of what this functionality provides for building out followers
-
-## Links
-- sponsored links are flagged with rel="sponsored"
-- social links and other links that go outside domain have `rel="nofollower"` to signal to search engines that those links are not associated with our specific domain
-
-## SEO Strategy
-🚨**Required**
-
-In this section write out the process you used to come up with short tailed and long tailed results to help refine the keywords you came up with. You should call out attention to the following:
-
-### Keywords
-Describe the process you went through identifiying keywords that you want Google and other search engines to relate to your site.
-
-### Description
-Note that you have a the meat description tag and if any of the content changes based on the page.
-
-### Title
-Call out that you have this set in your base.html so it can be changed per page
-
-### Relevant Content
-Call out how you purposefully incorporated keywords into your content, H1, meta data etc. 
-
-### Sitemap
-🚨**Required**
-
-- [sitemap.xml file]() call out files that exist so browsers can easily crawl site
-
-### Robots.txt
-🚨**Required**
-
-- [robots.txt file]() to restrict pages that are should be searched by google, authentication and others are blocked to only allow relevant pages to be searched by google
-
-# Deployment
-🚨**Required** 
-
-## Prerequisits
-🚀 **merit & beyond**
-
-If the user is required to have certain keys and credentials you should include this section with directions on how to get the necessary information. ex)
-
-1. **Gmail Account:** In order to have verification and forgot password emails sent to registered users you need a
-   google account. 
-  - [create a gmail accoount](https://accounts.google.com/signup) 
-  - [downgrade to less secure](https://myaccount.google.com/lesssecureapps?pli=1) after you are signed into the gmail account, downgrade to less secure
-2. **Couldinary URL**
-  - [create an account](https://cloudinary.com/)
-  - go to the dashboard and copy your API environmental variable
-   
-    <img width="1230" alt="image" src="https://user-images.githubusercontent.com/23039742/213839829-b4f349b3-419d-4ea2-bbca-90cf3c663bba.png">     
- 
-## Fork and Clone the Repository
-🚀 **merit & beyond**
-To keep the main reposotory for this project clean, please fork the repostiory into your own account. GitHub has [forking directions](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) but here's what you might do:
-1. login to your own gitHub account
-2. navigate to [my repository](URL OF YOUR LIVE REPOSITORY)
-3. In the top right corner of the page, click fork 
-
-![image](https://user-images.githubusercontent.com/23039742/213840378-e785eaa0-712b-468c-bcda-64fde56eae44.png)
-
-4. set yourself as the owner
-5. change the name of the repo if you want
-6. add a description if you want
-7. choose what to copy, typicall the main branch only
-8. click the snazy green button
-
-![image](https://user-images.githubusercontent.com/23039742/213840549-5bef12ae-198e-412b-84b6-0cc718b6fa1d.png)
-
-9. To get files to your local environment, you need to clone it: click the code button
-10. Copy the url as needed (here's gitHub instructions)[https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository}
-
-
 
 ## Development Deployment 
 🚨**Required** 
