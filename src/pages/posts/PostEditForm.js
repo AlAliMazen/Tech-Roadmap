@@ -40,7 +40,7 @@ function PostEditForm() {
 
         is_owner ? setPostData({ title, category, content, image }) : history.push("/");
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
 
@@ -54,7 +54,7 @@ function PostEditForm() {
     });
   };
   const handleCategoryChange = (category) => {
-    console.log("Category is : ",category)
+    //console.log("Category is : ",category)
     setPostData({
       ...postData,
       category: category,
@@ -89,7 +89,7 @@ function PostEditForm() {
       await axiosReq.put(`/articles/${id}/`, formData);
       history.push(`/articles/${id}`);
     } catch (err) {
-       console.log(err);
+       //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

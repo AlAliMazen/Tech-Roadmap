@@ -22,7 +22,7 @@ function ReviewEditForm(props) {
     event.preventDefault();
 
     try {
-      console.log("Course id is: ", course_id)
+      //console.log("Course id is: ", course_id)
       await axiosRes.put(`/reviews/${id}/`, {
         content: formContent.trim(),
         course: course_id,        
@@ -50,7 +50,7 @@ function ReviewEditForm(props) {
       setShowEditForm(false); // Close the edit form after successful submission
 
     } catch (err) {
-      console.log("Error in Review Edit Form:", err);
+      //console.log("Error in Review Edit Form:", err);
       setErrorMessage(err.response?.data?.detail || 'An error occurred while updating.');
     }
   };

@@ -56,7 +56,7 @@ const Course = (props) => {
         const { data: enrollmentData } = await axiosRes.get(`/enrollments/?course=${id}`);
         setEnrollments(enrollmentData.results);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
         setErrorMessage(err.response?.data?.detail);
       }
     };
@@ -100,7 +100,7 @@ const Course = (props) => {
     if (enrollments.length > 0) {
       const enrolled = isUserEnrolled(id)
       setIsEnrolled(enrolled)
-      console.log("is current user enrolled : ", enrolled);
+      //console.log("is current user enrolled : ", enrolled);
     }
   }, [id, ratings, enrollments]);
 
@@ -133,7 +133,7 @@ const Course = (props) => {
       setErrorMessage('');
       setSuccessMessage("Enrolled successfully!");
       setTimeout(() => setSuccessMessage(''), 3000);
-      window.location.reload();
+      //window.location.reload();
     } catch (err) {
       setErrorMessage(err.response?.data?.detail);
       setTimeout(() => setErrorMessage(''), 3000);
@@ -156,7 +156,7 @@ const Course = (props) => {
       setIsEnrolled(false)
       setSuccessMessage("Unenrolled successfully!");
       setTimeout(() => setSuccessMessage(''), 3000);
-      window.location.reload();
+      //window.location.reload();
     } catch (err) {
       setErrorMessage(err.response?.data?.detail);
       setTimeout(() => setErrorMessage(''), 3000);
@@ -230,7 +230,7 @@ const Course = (props) => {
               placement="top"
               overlay={<Tooltip>Rating of the course</Tooltip>}
             >
-              <i className="fas fa-star" />
+              <i className="fas fa-star" onClick={() => history.push(`/courses/${id}`)} />
             </OverlayTrigger>
             <span>{averageRating}/10 ({ratings_count} ratings)</span>
           </div>
@@ -246,7 +246,7 @@ const Course = (props) => {
           </div>
         </div>
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-        {successMessage && <Alert variant="sucess">{successMessage}</Alert>}
+        {successMessage && <Alert variant="success">{successMessage}</Alert>}
       </Card.Body>
     </Card>
   );

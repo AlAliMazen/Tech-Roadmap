@@ -39,8 +39,8 @@ export const ProfileDataProvider = ({ children }) => {
         },
       }));
     } catch (err) {
-      console.log("Handling Follow -> ProfileDataContext.js")
-      console.log(err);
+      //console.log("Handling Follow -> ProfileDataContext.js")
+      //console.log(err);
     }
   };
 
@@ -63,8 +63,8 @@ export const ProfileDataProvider = ({ children }) => {
         },
       }));
     } catch (err) {
-      console.log("Handling Unfollow -> ProfileDataContext.js")
-      console.log(err);
+      //console.log("Handling Unfollow -> ProfileDataContext.js")
+      //console.log(err);
     }
   };
 
@@ -79,8 +79,8 @@ export const ProfileDataProvider = ({ children }) => {
           popularProfiles: data,
         }));
       } catch (err) {
-        console.log("ProfileDataContext.js")
-        console.log(err);
+        //console.log("ProfileDataContext.js")
+        //console.log(err);
       }
     };
 

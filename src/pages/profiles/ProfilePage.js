@@ -61,7 +61,7 @@ function ProfilePage() {
         setEnrolledCourseCount(userEnrollments.length);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     fetchData();

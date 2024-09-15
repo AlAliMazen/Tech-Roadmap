@@ -26,7 +26,7 @@ const CategoryCreateEditForm = () => {
                         description: data.description,
                     });
                 } catch (err) {
-                    console.log(err);
+                    //console.log(err);
                     setErrors({ general: "Failed to fetch category" });
                 }
             };
@@ -49,7 +49,7 @@ const CategoryCreateEditForm = () => {
 
             history.push("/category"); // Redirect after creating/editing
         } catch (err) {
-            console.log(err);
+            //console.log(err);
             setErrors(err.response?.data);
         }
     };

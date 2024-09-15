@@ -38,7 +38,7 @@ function CoursesPage({ message, filter = "" }) {
         setCourses(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
         setErrorMessage(err.response?.data?.detail || 'Something went wrong');
       }
     };

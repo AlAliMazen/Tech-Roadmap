@@ -27,11 +27,10 @@ function ReviewCreateForm({ course, setCourse, setReviews, profileImage, profile
         );
         setIsEnrolled(isEnrolled);
       } catch (err) {
-        console.log("Error fetching enrollment status:", err);
+        //console.log("Error fetching enrollment status:", err);
         setErrorMessage(err.response?.data?.detail || 'Something went wrong');
       }
     };
-    console.log("Course ID: ", course)
     if (currentUser) {
       fetchEnrollmentStatus();
     }
@@ -59,8 +58,6 @@ function ReviewCreateForm({ course, setCourse, setReviews, profileImage, profile
         rating: rating,
         course,
       });
-      console.log("From Review Create Form : ", rating)
-      console.log("From Review Create Form : ", course)
       setReviews((prevReviews) => ({
         ...prevReviews,
         results: [reviewData, ...prevReviews.results],
@@ -81,7 +78,7 @@ function ReviewCreateForm({ course, setCourse, setReviews, profileImage, profile
       setRating(0); // Reset rating field
 
     } catch (err) {
-      console.log("Error submitting review and rating:", err);
+      //console.log("Error submitting review and rating:", err);
       setErrorMessage(err.response?.data?.detail);
     }
   };

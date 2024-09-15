@@ -34,8 +34,8 @@ function CommentEditForm(props) {
       }));
       setShowEditForm(false);
     } catch (err) {
-      console.log("Comment Edit Form")
-      console.log(err);
+      //console.log("Comment Edit Form")
+      //console.log(err);
     }
   };
 
