@@ -17,7 +17,7 @@ import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
-import  signIn  from "../../assets/sign_in.jpg"
+import  signIn  from "../../assets/sign_in.jpg";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();

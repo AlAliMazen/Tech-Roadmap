@@ -29,16 +29,12 @@ The following screen shot is done by [am-I-responsive](https://ui.dev/amirespons
 ## Author
 
 MAZEN AL ALI
-
-# Table of Contents
-
 - [Tech-Roadmap](#tech-roadmap)
   * [Live Website](#live-website)
   * [Tech-Roadmap Repository](#tech-roadmap-repository)
   * [Live Backend API](#live-backend-api)
   * [Backend API Repository](#backend-api-repository)
   * [Author](#author)
-  * [Project Overview](#project-overview)
 - [Table of Contents](#table-of-contents)
 - [UX](#ux)
   * [Target Audience](#target-audience)
@@ -89,7 +85,12 @@ MAZEN AL ALI
   * [Why Choosing the pre-defined Browsers](#why-choosing-the-pre-defined-browsers)
   * [Accessibility Testing](#accessibility-testing)
   * [Validation Testing](#validation-testing)
-  * [Automated Testing](#automated-testing)
+    + [HTML Validation:](#html-validation-)
+    + [CSS Validation:](#css-validation-)
+    + [JS Code Validation](#js-code-validation)
+    + [Python Code Validation](#python-code-validation)
+    + [JSON Code Validation](#json-code-validation)
+  * [Manual Test](#manual-test)
   * [Defects](#defects)
   * [Defects of Note](#defects-of-note)
     + [Outstanding Defects](#outstanding-defects)
@@ -195,9 +196,7 @@ Now that you have let the assessors know about the target audience and users, yo
 ### Typography
 🚀 **merit & beyhond**
 
-- discuss font size, font types for headers vs buttons vs general text and how it ties into users' emotions or target
-  audience.
-- include screenshots of fonts used and links to the appropriate website ex) https://fonts.google.com/specimen/Raleway
+I have chosen a Google Font from [Bellefair-Font](https://fonts.google.com/specimen/Bellefair) and applied it consistently throughout my website. This font was selected for its clean, sharp design, featuring clear-cut corners that provide excellent readability, even at smaller sizes or when not bolded. Its balanced proportions make it visually appealing and accessible across various screen sizes and devices, ensuring that both text-heavy and minimalistic sections of the website maintain a professional and modern aesthetic. This font enhances user experience by offering legibility without sacrificing style.
 
 ### Images
 🚀 **merit & beyhond**
@@ -226,6 +225,8 @@ The design of Tech-Roadmap combines responsiveness, intuitive navigation, and vi
 5. **Accordion Elements**: An accordion component, provided by React Bootstrap, allows users to click on article or course titles to expand and display the full content. This collapsible design conserves space while offering dynamic content viewing options.
 
 These elements together ensure a seamless and engaging user experience, making navigation, interaction, and content consumption intuitive and visually appealing.
+
+6. **Search & Filter** In both articles page and courses page, there is a searching bar where user can type anything to check if there is any titles under the given input. **Important to note here** is that this feature should be applied in the backend and then call it in the Front-end website.
 
 ### Animations and Transitions
 🚀 **merit & beyhond**
@@ -670,58 +671,244 @@ Because the test results are exactly the same and are all passed without having 
 **CSS Validation has been conducted to the following files
 
 **1. Asset.module.css**
+
 **2. Avatar.module.css**
+
 **3. Button.module.css**
+
 **4. CategoryDropdown.module.css**
+
 **5. Comment.module.css**
+
 **6. CommentCreateEditForm.module.css**
+
 **7. Course.module.css**
+
 **8. CoursePage.module.css**
+
 **9. MoreDropdown.module.css**
+
 **10. NavBar.module.css**
+
 **11. NotFound.module.css**
+
 **12. Post.module.css**
+
 **13. PostCreateEditForm.module.css**
+
 **14. PostsPage.module.css**
+
 **15. ProfilePage.module.css**
+
 **16. Review.module.css**
+
 **17. ReviewCreateEditForm.module.css**
+
 **18. SignUpForm.module.css**
 
 
 
+### JS Code Validation
+
+For the valiadation of all my files in the Tech-Roadmap project, I have used the **[JS validation](https://jshint.com)** tool to make sure that the implemented code is valid and clear of any errors. Though, it has **WARNINGS** because of the **ES6 Version**. In order to get clear the warnings I have used`/*jshint esversion: 6 */ `  and sometimes `/*jshint esversion: 8 */ ` and ...9 0r even 11 at the top of the checked file/s.
+For each folder I will provide the corresposing validation results
+
+1.**API**
+
+- **axiosDefaults.js**
+
+![axiosDefaults](./README_ASSETS/JSX_VAL_1_axiosDefaults.png)
+
+
+2.**COMPONENTS**
+
+- **Asset.js**
+
+![aaset](./README_ASSETS/JSX_VAL_2_Asset.png)
+
+
+- **Avatar.js**
+
+![avatar](./README_ASSETS/JSX_VAL_3_Avatar.png)
+
+- **MoreDropdown.js**
+
+
+![MoreDropDown](./README_ASSETS/JSX_VAL_4_Dropdown_menu.png)
+
+- **NavBar.js**
+
+![navBar](./README_ASSETS/JSX_VAL_5_NavBar.png)
+
+
+- **NotFound.js**
+
+![NotFound](./README_ASSETS/JSX_VAL_6_NotFound.png)
+
+
+3.**CONTEXT**
+
+- **CurrentUerContext.js**
+
+![currentUser](./README_ASSETS/JSX_VAL_7_CurrentUserContext.png)
+
+- **ProfileDataContext.js**
+
+![ProfileDataContext](./README_ASSETS/JSX_VAL_8_ProfileDataContext.png)
+
+4.**HOOKS**
+
+- **useClickOutsideToggle.js**
+
+![useClickOutsideToggle](./README_ASSETS/JSX_VAL_9_useClickOutsideToggle.png)
+
+- **useRedirect.js**
+
+![useRedireck](./README_ASSETS/JSX_VAL_10_useRedirect.png)
+
+
+5.**MOCKS**
+
+- **handlers**
+
+![handlers](./README_ASSETS/JSX_VAL_11_handlers.png)
+
+6.**PAGES**
+
+- **AUTH / SignInForm.js**
+
+![SignInForm](./README_ASSETS/JSX_VAL_12_signIn.png)
+
+- **AUTH / SignUpForm.js**
+
+![SignUpForm](./README_ASSETS/JSX_VAL_13_sign_up.png)
+
+- **categories / CategoryCreateEditForm.js**
+
+![CategroyCreateEditForm](./README_ASSETS/JSX_VAL_14_CategoryCreatedEditForm.png)
+
+- **categories / CategoryDropdown.js**
+
+![CategoryDropDown](./README_ASSETS/JSX_VAL_15_CategoryDropdown.png)
+
+- **comments / Comment.js**
+
+![Comment](./README_ASSETS/JSX_VAL_16_comment.png)
+
+- **comments / CommentCreateForm.js**
+
+![CommentCreateForm](./README_ASSETS/JSX_VAL_17_CommentCreateForm.png)
+
+- **comments / CommentEditForm.js**
+
+![CommentEditForm](./README_ASSETS/JSX_VAL_18_CommentEditForm.png)
+
+- **courses / Course.js**
+
+![Course](./README_ASSETS/JSX_VAL_19_Course.png)
+
+- **courses / CoursesPage.js**
+
+![CoursePage](./README_ASSETS/JSX_VAL_20_CoursPage.png)
+
+- **courses / CoursePage.js**
+
+![CoursePages](./README_ASSETS/JSX_VAL_21_CoursesPage.png)
+
+- **posts / Post.js**
+
+![Post](./README_ASSETS/JSX_VAL_22_Post.png)
+
+- **posts / PostCreateForm.js**
+
+![PostCreateForm](./README_ASSETS/JSX_VAL_23_PostCreateForm.png)
+
+- **posts / PostEditForm.js**
+
+![PostEditForm](./README_ASSETS/JSX_VAL_24_PostEditForm.png)
+
+- **posts / PostPage.js**
+
+![PostPagePage](./README_ASSETS/JSX_VAL_25_PostPage.png)
+
+- **posts / PostsPage.js**
+
+![PostsPage](./README_ASSETS/JSX_VAL_26_PostsPage.png)
+
+
+7.**Profiles**
+
+- **Profile / PopularProfiles**
+
+![popularProfiles](./README_ASSETS/JSX_VAL_27_PopuarProfiles.png)
+
+- **Profile / Profiles**
+
+![Profiles](./README_ASSETS/JSX_VAL_28_Profile.png)
+
+- **Profile / ProfileEditForm**
+
+![ProfileEditForm](./README_ASSETS/JSX_VAL_29_Profile_EditForm.png)
+
+- **Profile / ProfilePage**
+
+![ProfilePage](./README_ASSETS/JSX_VAL_30_ProfilePage.png)
+
+- **Profile / UsernameForm**
+
+![UsernameForm](./README_ASSETS/JSX_VAL_31_UsernameForm.png)
+
+- **Profile / UserPasswordForm**
+
+![userPassword](./README_ASSETS/JSX_VAL_32_Userpassword.png)
+
+7.**Reviews**
+
+- **Review / Review**
+
+![review](./README_ASSETS/JSX_VAL_33_Review.png)
+
+- **Review / ReviewCreateForm**
+
+![ReviewCreateForm](./README_ASSETS/JSX_VAL_34_ReviewCreateForm.png)
+
+- **Review / ReviewEditForm**
+
+![ReviewEditForm](./README_ASSETS/JSX_VAL_35_ReviewEditForm.png)
+
+7.**UTILS**
+
+![utilsFetchMoreData](./README_ASSETS/JSX_VAL_36_fetchMoreData_utils.png)
+
+10.**App**
+
+![App](./README_ASSETS/JSX_VAL_38_App.png)
+
+11.**Index**
+
+![Index](./README_ASSETS/JSX_VAL_37_index.png)
 
 
 
 
+### Python Code Validation
 
-- **[JS validation](https://jshint.com)**
+Since my front-end website doesn't include any Python code, I will provide the Python code validation for the back-end, which is located in the [**Tech-Roadmap-DRF**](https://github.com/AlAliMazen/Tech-Roadmap-DRF?tab=readme-ov-file#python-validation) repository on GitHub. This validation ensures that the back-end code meets the necessary standards, has been thoroughly tested, and functions correctly within the project’s architecture.
 
-> for each .js file, copy the code and paste it into this site, and have a test case for it linked to from here. You can have warnings, but no errors.
-> if using ES6, add this before pasting in your file: `/*jshint esversion: 6 */ `, similarily you can update it to 7 if you see warnings about ES7 syntax `/*jshint esversion: 7 */ `
 
-- **[CI's pep8 tool](https://pep8ci.herokuapp.com/)** 
+### JSON Code Validation
 
-> for each .py file you created, copy the source code and paste it into this site, and have a test case for it linked to from here.
-> include a screenshot of results in the test case showing NO ERRORS. (you should do this for all .py files in your repo)
-> 
-> **run.py**
-> 
-> ![image](https://user-images.githubusercontent.com/23039742/212106175-36b2f18a-7c75-458d-94dd-9886e81c71f3.png)
+When refering to JSON files, I mean the to generated file which will be in the root directory of any React-App when first created in the first place I have used **[JSON validation](https://jsonlint.com/)** to check both files: 
 
-> Ideally you would have no errors remaining outside of line too long which you can fix by 
-> 
-> adding
-> ```$python 
-> # noqa
-> ```
-> There is a space before the # and after it to skip the quality assurance for that line.
-> 
-> Note any errors or warnings you are ignoring and why.
+1.**package-lock.json**:
 
-- **[JSON validation](https://jsonlint.com/)**
+![json-package-lock](./README_ASSETS/JSON_VAL_package_lock.png)
 
-> for each .json file, you should copy the code and paste it into this site, and have a test case for it linked to from here.
+
+2.**package.json**:
+
+![json-package](./README_ASSETS/JSON_VAL_package.png)
+
 
 ## Manual Test
 🚀 **merit & beyhond**

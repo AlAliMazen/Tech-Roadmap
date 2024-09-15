@@ -15,7 +15,7 @@ import Alert from "react-bootstrap/Alert";
 
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
-import signUp from "../../assets/sign_up.jpg"
+import signUp from "../../assets/sign_up.jpg";
 
 const SignUpForm = () => {
   useRedirect("loggedIn");

@@ -1,6 +1,8 @@
-import axios from "axios"
+/*jshint esversion: 6 */
 
-axios.defaults.baseURL = "https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/"
+import axios from "axios";
+
+axios.defaults.baseURL = "https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/";
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
 
