@@ -642,15 +642,12 @@ The following site were used to aid in validation testing:
 
 > for each .json file, you should copy the code and paste it into this site, and have a test case for it linked to from here.
 
-## Automated Testing
+## Manual Test
 🚀 **merit & beyhond**
 
-**NOTE: If you want MERIT or Higher, you MUST have some automated testing**
-If you managed to write jasmine tests or some django tests, note those files out here and how to run them.
+For clarity and ease of reference, I have documented the manual test cases in a separate file, which is available on GitHub under the follwoing directory to read [tech-Roadmap-Tests](./TESTS.md) . This dedicated file enhances the readability and organization of the testing process, providing a detailed overview of the functionality and ensuring that all aspects of the application have been thoroughly verified. This approach allows for better tracking and management of the test results, making it easier to review and update as necessary.
 
-https://github.com/maliahavlicek/ms4_challenger/blob/master/documentation/TESTING.md is my write up about my automated testing and how I ran them, but a simple test I'd recommend is a views test that tests authentication and any views you limit to superusers or logged in users.
 
-https://github.com/maliahavlicek/ms4_challenger/blob/master/challenges/tests/test_views.py
 
 ## Defects
 🚨**Required**
