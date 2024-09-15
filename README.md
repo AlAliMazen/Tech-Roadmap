@@ -10,35 +10,44 @@ By combining social interaction with education, the platform aims to empower use
 
 This Front End website makes use of the backend Django-Rest-Framework project which has the following repository [Tech-Roadmap-DRF](https://github.com/AlAliMazen/Tech-Roadmap-DRF) as a source code and the [Tech-Roadmap-DRF](https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/) as deployed version. 
 
-## Author
-
-MAZEN AL ALI
-
-
-## Project Overview
-🚨**Required**
-
 The following screen shot is done by [am-I-responsive](https://ui.dev/amiresponsive)
 
 ![tech-roadmap-am-i-responsive](./README_ASSETS/tech-roadmap-website.png)
 
+## Live Website 
+[Tech-Roadmap](https://tech-roadmap-73a10d63ed32.herokuapp.com)
+
+## Tech-Roadmap Repository
+[Tech-Roadmap-Repo](https://github.com/AlAliMazen/tech-roadmap)
+
+## Live Backend API 
+[Tech-Roadmap-Live-API](https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/)
+
+## Backend API Repository
+[Tech-Roadmap-DRF-Repo](https://github.com/AlAliMazen/Tech-Roadmap-DRF)
+
+## Author
+
+MAZEN AL ALI
 
 # Table of Contents
+
 - [Tech-Roadmap](#tech-roadmap)
-- [Table of Contents](#table-of-contents)
+  * [Live Website](#live-website)
+  * [Tech-Roadmap Repository](#tech-roadmap-repository)
+  * [Live Backend API](#live-backend-api)
+  * [Backend API Repository](#backend-api-repository)
   * [Author](#author)
   * [Project Overview](#project-overview)
+- [Table of Contents](#table-of-contents)
 - [UX](#ux)
   * [Target Audience](#target-audience)
     + [Junior Programmers:](#junior-programmers-)
     + [Visitors Interested in IT and Technology](#visitors-interested-in-it-and-technology)
     + [Management and Entrepreneurs](#management-and-entrepreneurs)
   * [Goals](#goals)
-    + [Targeted Audience](#targeted-audience)
-  * [User Stories](#user-stories)
-  * [Initial Stories](#initial-stories)
-  * [Feasibility vs Importance](#feasibility-vs-importance)
-  * [Scope](#scope)
+  * [Feasibility vs Importance (to do)](#feasibility-vs-importance--to-do-)
+  * [Scope (DONE)](#scope--done-)
   * [Design Choices](#design-choices)
     + [Colors](#colors)
     + [Typography](#typography)
@@ -49,43 +58,41 @@ The following screen shot is done by [am-I-responsive](https://ui.dev/amirespons
     + [Custom Styles](#custom-styles)
     + [Custom Javascript](#custom-javascript)
   * [Wireframes](#wireframes)
+    + [Wireframes Overview](#wireframes-overview)
 - [Information Architecture](#information-architecture)
   * [Entity Relationship Diagram](#entity-relationship-diagram)
   * [Database Choice](#database-choice)
+    + [Why PostgreSQL (Advantages)](#why-postgresql--advantages-)
   * [Data Models](#data-models)
-    + [Activities Model](#activities-model)
-    + [CRUD Diagrams](#crud-diagrams)
 - [Agile Process](#agile-process)
   * [GitHub User Stories](#github-user-stories)
     + [User Story Templates](#user-story-templates)
-    + [Product Backlog](#product-backlog)
-  * [Iterations](#iterations)
-  * [Progress Boards](#progress-boards)
+    + [User Stories Overview](#user-stories-overview)
+    + [Epic Stories](#epic-stories)
+    + [Normal User Stories](#normal-user-stories)
 - [Features](#features)
-  * [Implemented Features](#implemented-features)
+    + [1. **Navigation Bar**](#1---navigation-bar--)
+    + [2. **Sign-Up and Logout**](#2---sign-up-and-logout--)
+    + [3. **Home Page**](#3---home-page--)
+    + [4. **Article Comments**](#4---article-comments--)
+    + [5. **Course Enrollment**](#5---course-enrollment--)
+    + [6. **Course Reviews and Ratings**](#6---course-reviews-and-ratings--)
+    + [7. **Most Followed Profiles**](#7---most-followed-profiles--)
+    + [8. **Profile Pages**](#8---profile-pages--)
+    + [9. **No Result Page**](#9---no-result-page--)
+    + [10. **Filtering**](#10---filtering--)
+    + [11. **Write Reviews**](#11---write-reviews--)
   * [Future Features](#future-features)
-- [Testing](#testing)
+    + [Future Features](#future-features-1)
+- [Testing (Still to do)](#testing--still-to-do-)
   * [Cross Browser and Cross Device Testing](#cross-browser-and-cross-device-testing)
+  * [Why Choosing the pre-defined Browsers](#why-choosing-the-pre-defined-browsers)
   * [Accessibility Testing](#accessibility-testing)
   * [Validation Testing](#validation-testing)
   * [Automated Testing](#automated-testing)
   * [Defects](#defects)
   * [Defects of Note](#defects-of-note)
     + [Outstanding Defects](#outstanding-defects)
-- [E-commerce Business Model](#e-commerce-business-model)
-  * [Facebook Business Page](#facebook-business-page)
-  * [Newsletter Signup](#newsletter-signup)
-  * [Links](#links)
-  * [SEO Strategy](#seo-strategy)
-    + [Keywords](#keywords)
-    + [Description](#description)
-    + [Title](#title)
-    + [Relevant Content](#relevant-content)
-    + [Sitemap](#sitemap)
-    + [Robots.txt](#robotstxt)
-- [Deployment](#deployment)
-  * [Prerequisits](#prerequisits)
-  * [Fork and Clone the Repository](#fork-and-clone-the-repository)
   * [Development Deployment](#development-deployment)
   * [Production Deployment](#production-deployment)
 - [Credits](#credits)
@@ -94,9 +101,6 @@ The following screen shot is done by [am-I-responsive](https://ui.dev/amirespons
   * [Acknowledgments](#acknowledgments)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
-
-====================================== The Sections you Fill in are below ==============================
 
 
 # UX
@@ -147,7 +151,7 @@ Tech-Roadmap is designed to meet the needs of three key groups, each with distin
 
 
 
-## Feasibility vs Importance
+## Feasibility vs Importance (to do)
 🚀 **merit & beyhond**
 
 To scope the project for a MVP (minimally viable product) a feasibility analysis was done.
@@ -164,7 +168,7 @@ will also be implemented such as nav-bar, footer, obvious website purpose etc.
 
 > You should discuss the outcome of what you will be dropping based on the outcome. Making a scatter plot of the scores and coloring the dot
 
-## Scope
+## Scope (DONE)
 🚀 **merit & beyhond**
 
 The design implemented in Tech-Roadmap, as reflected in the user stories, serve a dual purpose: they cater to both junior programmers looking to understand front-end development and general visitors engaging with the platform.
