@@ -38,20 +38,27 @@ function ProfilePage() {
 
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
+  const [enrolledCourseCount, setEnrolledCourseCount] = useState(0);
+  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profilePosts }] =
+        const [{ data: pageProfile }, { data: profilePosts }, { data: allEnrollments }] =
           await Promise.all([
             axiosReq.get(`/profiles/${id}/`),
             axiosReq.get(`/articles/?owner__profile=${id}`),
+            axiosReq.get(`/enrollments/`)
           ]);
+         // Make sure allEnrollments is an object with a 'results' key, then filter it
+         const userEnrollments = allEnrollments.results.filter(enrollment => enrollment.profile_id === parseInt(id));
+
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
         setProfilePosts(profilePosts);
+        setEnrolledCourseCount(userEnrollments.length);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -87,8 +94,8 @@ function ProfilePage() {
               <div>following</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile?.courses_count}</div>
-              <div>Courses</div>
+              <div>{enrolledCourseCount}</div>
+              <div>Enrolment</div>
             </Col>
           </Row>
         </Col>
