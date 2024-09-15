@@ -5,8 +5,7 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 import Alert from "react-bootstrap/Alert";
 
 function ReviewEditForm(props) {
-  const { id, content, rating, setShowEditForm, setReviews } = props;
-
+  const { id, content, rating, setShowEditForm, setReviews, course_id } = props;
   const [formContent, setFormContent] = useState(content);
   const [formRating, setFormRating] = useState(rating); // New state for rating
   const [errorMessage, setErrorMessage] = useState('');
@@ -23,12 +22,15 @@ function ReviewEditForm(props) {
     event.preventDefault();
 
     try {
+      console.log("Course id is: ", course_id)
       await axiosRes.put(`/reviews/${id}/`, {
         content: formContent.trim(),
+        course: course_id,        
       });
 
       await axiosRes.put(`/ratings/${id}/`, {
         rating: formRating,
+        course: course_id,
       });
 
       setReviews((prevReviews) => ({
@@ -38,23 +40,20 @@ function ReviewEditForm(props) {
             ? {
               ...review,
               content: formContent.trim(),  // Update the review content
-              rating: formRating,            // Update the rating locally
-              updated_at: "now",             // Update the timestamp
+              rating: formRating,           // Update the rating locally
+              updated_at: "now",            // Update the timestamp
             }
             : review;
         }),
       }));
 
-      // Close the edit form after successful submission
-      setShowEditForm(false);
+      setShowEditForm(false); // Close the edit form after successful submission
 
     } catch (err) {
       console.log("Error in Review Edit Form:", err);
-      setErrorMessage(err.response?.data?.detail);
+      setErrorMessage(err.response?.data?.detail || 'An error occurred while updating.');
     }
   };
-
-
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -85,14 +84,14 @@ function ReviewEditForm(props) {
           onClick={() => setShowEditForm(false)}
           type="button"
         >
-          cancel
+          Cancel
         </button>
         <button
           className={styles.Button}
           disabled={!formContent.trim()}
           type="submit"
         >
-          save
+          Save
         </button>
       </div>
     </Form>

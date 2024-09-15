@@ -31,7 +31,7 @@ function ReviewCreateForm({ course, setCourse, setReviews, profileImage, profile
         setErrorMessage(err.response?.data?.detail || 'Something went wrong');
       }
     };
-
+    console.log("Course ID: ", course)
     if (currentUser) {
       fetchEnrollmentStatus();
     }
@@ -59,7 +59,8 @@ function ReviewCreateForm({ course, setCourse, setReviews, profileImage, profile
         rating: rating,
         course,
       });
-
+      console.log("From Review Create Form : ", rating)
+      console.log("From Review Create Form : ", course)
       setReviews((prevReviews) => ({
         ...prevReviews,
         results: [reviewData, ...prevReviews.results],

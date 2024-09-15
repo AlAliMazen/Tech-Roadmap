@@ -19,6 +19,7 @@ const Review = (props) => {
     content,
     rating,
     id,
+    course_id,
     setCourse,
     setReviews,
     setRatings
@@ -50,7 +51,8 @@ const Review = (props) => {
         ...prevRatings,
         results: prevRatings.results.filter((rating) => rating.id !== id),
       }));
-
+      console.log("Course ID : ", course_id)
+      console.log("rating : ", rating)
     } catch (err) {
       console.error("Failed to delete the review and rating:", err);
       setErrorMessage(err.response?.data?.detail || 'Something went wrong');
@@ -78,6 +80,8 @@ const Review = (props) => {
               profile_id={profile_id}
               content={content}
               setRatings={setRatings}
+              course_id={course_id}
+              rating={rating}
               profileImage={profile_image}
               setReviews={setReviews}
               setShowEditForm={setShowEditForm}
@@ -87,6 +91,7 @@ const Review = (props) => {
               <p>{content}</p>
             </>
           )}
+          {console.log("Course ID:",course_id )}
         </Media.Body>
         {is_owner && !showEditForm && (
           <MoreDropdown

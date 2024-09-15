@@ -82,6 +82,7 @@ function CoursePage() {
                   {...review}
                   setCourse={setCourse}
                   setReviews={setReviews}
+                  course_id={id}
                 />
               ))}
               dataLength={reviews.results.length}
