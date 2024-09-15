@@ -599,20 +599,101 @@ One more point that can effect the Lighthouse results is the source where it run
 ## Validation Testing
 🚨**Required**
 
-You should try to ensure you code is valid and follows proper indentation. In this section you should write up any
-websites you used to validate your code so there is credit given to those sites. Then add links to the test cases you
-put into GitHub for the validation. You can copy your validation success to those tests.
+Code validation is a crucial process that ensures the implemented code adheres to established standards and functions as intended. In web development, validation confirms that HTML, CSS, and JavaScript (including React code) are syntactically correct and meet specific guidelines. By validating code, developers can identify and resolve errors or inconsistencies, ensuring that the code performs efficiently across different browsers and platforms. This process not only improves functionality but also enhances accessibility, compatibility, and overall user experience. In essence, validation serves as proof that the code has been thoroughly tested and is reliable.
 
-The following site were used to aid in validation testing:
+### HTML Validation:
 
-- **[CSS Validator](https://jigsaw.w3.org/css-validator/)**
+I have used the recommended by Code Insitute the online HTML Code checker to check the syntax of the runable HTML Code. In other words, when the code runs, the HTML Code will be exposd to this tool. **Note** In order to show the result of the validation, I just hide the information messages to show the end result of the check
 
-> If you only have one CSS file, you can just run the validator through one deployed page URL, if you have custom CSS for diffent pages, make sure you hit those different URLS
+1. **HOME**
 
-- **[HTML Validator](https://validator.w3.org/)**
+![html-home](./README_ASSETS/HTML_VAL_1_Home.png)
 
-> For each view you wrote, you should validate the HTML and have a test case for it linked to from here
-> NOTE: You may need to right-click to view the source of each page and paste that into the validator if you need to go through authentication to get to the page.
+2. **ADD ARTICLE**
+
+![add-article](./README_ASSETS/HTML_VAL_3_add_article.png)
+
+3. **COURSE**
+
+![courses-page](./README_ASSETS/HTML_VAL_2_Course.png)
+
+4. **ARTICLE PAGE**
+
+![article-page](./README_ASSETS/HTML_VAL_4_article_page.png)
+
+5. **CoursePage**
+
+![course-specific-page](./README_ASSETS/HTML_VAL_2_Course.png)
+
+6. **ADD CATGEGORY**
+
+![add-category](./README_ASSETS/HTML_VAL_9_Add_Category.png)
+
+7. **SIGN IN**
+
+![sign-in](./README_ASSETS/)
+
+8. **SIGN UP**
+
+![sign-up](./README_ASSETS/HTML_VAL_8_sign_up.png)
+
+9. **Feed**
+
+![feed-page](./README_ASSETS/HTML_VAL_5_course_page.png)
+
+10. **Like**
+
+![like-page](./README_ASSETS/HTML_VAL_10_like.png)
+
+
+### CSS Validation:
+
+As for the CSS files which have been used in the front end development, I have also used the [CSS-Validator](https://jigsaw.w3.org/css-validator/) online tool to insert the code from all the .module.css files. The Results from all the following style files are passed and empty of any error. The rsult of the tes is there for similar and I will provide only 3 example of how it looks like 
+
+1. **App.module.css**
+
+![App.css-code](./README_ASSETS/CSS_VAL_11.png)
+
+2. **NavBar.module.css**
+
+![App.css-code](./README_ASSETS//CSS_VAL_2.png)
+
+
+3. **CoursePage.module.css**
+
+![App.css-code](./README_ASSETS/CSS_VAL_13.png)
+
+
+**IMPORTANT**
+Because the test results are exactly the same and are all passed without having any kind of errors I will provide the test result as screen shots under [CSS_VALIDATION_TESTS](./README_ASSETS). 
+
+**CSS Validation has been conducted to the following files
+
+**1. Asset.module.css**
+**2. Avatar.module.css**
+**3. Button.module.css**
+**4. CategoryDropdown.module.css**
+**5. Comment.module.css**
+**6. CommentCreateEditForm.module.css**
+**7. Course.module.css**
+**8. CoursePage.module.css**
+**9. MoreDropdown.module.css**
+**10. NavBar.module.css**
+**11. NotFound.module.css**
+**12. Post.module.css**
+**13. PostCreateEditForm.module.css**
+**14. PostsPage.module.css**
+**15. ProfilePage.module.css**
+**16. Review.module.css**
+**17. ReviewCreateEditForm.module.css**
+**18. SignUpForm.module.css**
+
+
+
+
+
+
+
 
 - **[JS validation](https://jshint.com)**
 
