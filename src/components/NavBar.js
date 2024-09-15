@@ -26,7 +26,7 @@ const NavBar = () => {
       setCurrentUser(null);
       removeTokenTimestamp();
     } catch (err) {
-       //console.log(err);
+      //console.log(err);
     }
   };
 
@@ -36,22 +36,19 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/articles/create"
     >
-      <i className="far fa-plus-square"></i>Add post
-    </NavLink>
-  );
-
-  const addCategory = (
-    <NavLink
-      className={styles.NavLink}
-      activeClassName={styles.Active}
-      to="/categories/create"
-    >
-      <i className="far fa-plus-square"></i>Add Category
+      <i className="far fa-plus-square"></i>Add Article
     </NavLink>
   );
 
   const loggedInIcons = (
     <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/categories/create"
+      >
+        <i className="fas fa-list"></i>Add Category
+      </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
@@ -104,14 +101,13 @@ const NavBar = () => {
       fixed="top"
     >
       <Container>
-      
+
         <NavLink to="/">
           <Navbar.Brand>
             <img src={logo} alt="logo" height="45" />
           </Navbar.Brand>
         </NavLink>
         {currentUser && addPostIcon}
-        {currentUser && addCategory}
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
@@ -138,7 +134,7 @@ const NavBar = () => {
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
-          
+
         </Navbar.Collapse>
       </Container>
     </Navbar>
