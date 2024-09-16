@@ -1,3 +1,5 @@
+![Tech-Roadmap-Logo](./README_ASSETS/Tech_roadmap_BB.png)
+
 # Tech-Roadmap
 
 Tech-Roadmap is a cutting-edge web platform built to bridge the gap between social interaction and educational growth in the technology sector. Developed with React on the front end and backed by Tech-Roadmap-DRF, the Django REST Framework-based API, this project delivers a seamless user experience that caters to both tech enthusiasts and learners alike.
@@ -29,25 +31,24 @@ The following screen shot is done by [am-I-responsive](https://ui.dev/amirespons
 ## Author
 
 MAZEN AL ALI
+
 - [Tech-Roadmap](#tech-roadmap)
   * [Live Website](#live-website)
   * [Tech-Roadmap Repository](#tech-roadmap-repository)
   * [Live Backend API](#live-backend-api)
   * [Backend API Repository](#backend-api-repository)
   * [Author](#author)
-- [Table of Contents](#table-of-contents)
+- [How it works](#how-it-works)
 - [UX](#ux)
   * [Target Audience](#target-audience)
     + [Junior Programmers:](#junior-programmers-)
     + [Visitors Interested in IT and Technology](#visitors-interested-in-it-and-technology)
     + [Management and Entrepreneurs](#management-and-entrepreneurs)
   * [Goals](#goals)
-  * [Feasibility vs Importance (to do)](#feasibility-vs-importance--to-do-)
   * [Scope (DONE)](#scope--done-)
   * [Design Choices](#design-choices)
     + [Colors](#colors)
     + [Typography](#typography)
-    + [Images](#images)
     + [Design Elements](#design-elements)
     + [Animations and Transitions](#animations-and-transitions)
     + [Frameworks](#frameworks)
@@ -96,20 +97,26 @@ MAZEN AL ALI
     + [Outstanding Defects](#outstanding-defects)
   * [Development Deployment](#development-deployment)
   * [Production Deployment](#production-deployment)
+    + [Pre-Requisties](#pre-requisties)
+    + [How to Connect your IDE to the API?](#how-to-connect-your-ide-to-the-api-)
+    + [When it is READY](#when-it-is-ready)
 - [Credits](#credits)
-  * [Content](#content)
+  * [Code and Content](#code-and-content)
   * [Media](#media)
   * [Acknowledgments](#acknowledgments)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 
+# How it works
+For adding an article, you need to simply to sign up for a free account and sign in using your creddentials. When your are logged in, you can head to the **Add Article** in the Naviagation bar. Fill out the required information and click on save. Now you have your first article published to the public to interact with. **In case you didn't find the suitable Category for it, you can go to the [Add Categroy] also in the navigation bar and add your own category which is going to be also available for the public**
+
 # UX
 
 Your site is most likely geared to a certain audience and goals for the business owner and users of the site, and your design choices should tie into them. Let the assessors know your thought process.
 
 ## Target Audience
-🚀 **merit & beyhond**
+
 
 Targeted Audience
 Tech-Roadmap is designed to cater to three main groups, each with unique goals and interests. By providing both technical and social features, the platform serves as a versatile space for learning, sharing, and growing in the tech world.
@@ -125,7 +132,7 @@ The final group includes management teams or entrepreneurs who are focused on bu
 
 
 ## Goals
-🚀 **merit & beyhond**
+
 
 Tech-Roadmap is designed to meet the needs of three key groups, each with distinct goals and interests. The platform offers a blend of technical education, social engagement, and scalability, as well as reusability making it a valuable resource for junior programmers, tech enthusiasts, and management teams.
 
@@ -150,27 +157,8 @@ Tech-Roadmap is designed to meet the needs of three key groups, each with distin
    - Understand how to build a flexible platform that can grow over time, adding new features and expanding the user base step by step.
 
 
-
-
-## Feasibility vs Importance (to do)
-🚀 **merit & beyhond**
-
-To scope the project for a MVP (minimally viable product) a feasibility analysis was done.
-
-The features in the table below have been taken from the user stories above. Generic features found in most websites
-will also be implemented such as nav-bar, footer, obvious website purpose etc.
-
-| Opportunity/Feature | Feasibility/Viability (score out of 5) | PurposeLevel of Importance (score out of 5) | In Or Out |
-|---------------------|----------------------------------------|---------------------------------------------|-----------|
-|                     |                                        |                                             |           |
-|                     |                                        |                                             |           |
-|                     |                                        |                                             |           |
-|                     |                                        |                                             |           |
-
-> You should discuss the outcome of what you will be dropping based on the outcome. Making a scatter plot of the scores and coloring the dot
-
 ## Scope (DONE)
-🚀 **merit & beyhond**
+
 
 The design implemented in Tech-Roadmap, as reflected in the user stories, serve a dual purpose: they cater to both junior programmers looking to understand front-end development and general visitors engaging with the platform.
 
@@ -182,29 +170,29 @@ The design implemented in Tech-Roadmap, as reflected in the user stories, serve 
 
 By targeting both junior programmers and regular visitors, the scope of the design elements aligns closely with the user stories, ensuring the platform is not only functional but also educational and engaging.
 
-## Design Choices
-🚀 **merit & beyhond**
 
-Now that you have let the assessors know about the target audience and users, you can go into the design choices
+## Design Choices
 
 ### Colors
-🚀 **merit & beyhond**
 
-- Discuss your color pallet choices and how it ties into users' emotions or target audience.
-- include a screenshot of your pallet using a tool like coolors.co
+For desinging the Logo I have used a combination of two colors that perform a high contrasst. You can have a link to my logo done on [Canva.com](https://www.canva.com/design/DAGO4IYW6q4/MC5zaQHnuS3IVMcOWSXKxA/edit?utm_content=DAGO4IYW6q4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+
+- Dark Black : RGB(0, 0, 0)
+
+- Dark Green : RGB(174, 254, 116)
+
+
+
+
 
 ### Typography
-🚀 **merit & beyhond**
 
 I have chosen a Google Font from [Bellefair-Font](https://fonts.google.com/specimen/Bellefair) and applied it consistently throughout my website. This font was selected for its clean, sharp design, featuring clear-cut corners that provide excellent readability, even at smaller sizes or when not bolded. Its balanced proportions make it visually appealing and accessible across various screen sizes and devices, ensuring that both text-heavy and minimalistic sections of the website maintain a professional and modern aesthetic. This font enhances user experience by offering legibility without sacrificing style.
 
-### Images
-🚀 **merit & beyhond**
-
-Explain why you used certain icons and images on your site
 
 ### Design Elements
-🚀 **merit & beyhond**
+
 
 The design of Tech-Roadmap combines responsiveness, intuitive navigation, and visual elements that enhance user experience across both mobile and desktop platforms. Below are the key design elements used:
 
@@ -229,7 +217,7 @@ These elements together ensure a seamless and engaging user experience, making n
 6. **Search & Filter** In both articles page and courses page, there is a searching bar where user can type anything to check if there is any titles under the given input. **Important to note here** is that this feature should be applied in the backend and then call it in the Front-end website.
 
 ### Animations and Transitions
-🚀 **merit & beyhond**
+
 
 Trnasiont and animation was extended from and applied when interacting with:
   - Clicking on action buttons like sign up / sign in / logout 
@@ -243,7 +231,6 @@ Trnasiont and animation was extended from and applied when interacting with:
 
 
 ### Frameworks
-🚨**Required**
 
 - Here is a table that explains the frameworks and functions used in developing tech-Roadmap front-end website:
 
@@ -257,19 +244,19 @@ Trnasiont and animation was extended from and applied when interacting with:
 These frameworks and functions work together to create a responsive, interactive, and performant front-end for the Tech-Roadmap website.
 
 ### Custom Styles
-🚨**Required**
+
 
 - call out any overrides you did for bootstrap styles or the framework you used, even if they are fonts and colors,
   perhaps lead assessors to the file of interest in your repo
 
 ### Custom Javascript
-🚨**Required**
+
 
 - call attention to any custom javascript you created to help your User Experience you can organize this by functions or
   files
 
 ## Wireframes
-🚨**Required**
+
 
 ### Wireframes Overview
 
@@ -309,12 +296,12 @@ The wireframes were designed with simplicity in mind, prioritizing user interact
 As part of the requirements for this project you need to have at **least 3 custom data models**.  It's still under discussion what that means, but I'd make 1 original and then update the products to be custom to what you are selling and create another new one. It's this section that discusses your data and how each piece relates to another and draws out the CRUD functionality you built. You must have CREATE, READ, UPDATE & DELETE for at least one model.
 
 ## Entity Relationship Diagram
-🚨**Required**
+
 
 Wade Williams wrote a great blog about how to add a django extension to auto create an ERD. https://wadewilliams.com/technology-software/generating-erd-for-django-applications/ You can always draw one out by hand or google sheets. You can also draw this up by hand if you want or use a spreadsheet to show your data model.
 
+
 ## Database Choice
-🚀 **merit & beyhond**
 
 I have used PostgreSQL indicated and recommended by Code Institute. First I have set up a database connection using the CI recommendations and link it int he Project env.py as DATABASE_URL. 
 
@@ -340,7 +327,7 @@ Here are some key advantages of PostgreSQL, especially in **contrast to NoSQL Da
 PostgreSQL excels in handling structured data, complex relationships, and ensuring consistency, making it a better choice when data integrity and relational operations are key requirements.
 
 ## Data Models
-🚨**Required**
+
 
 Based on the technologies and requiremetns used for this project the Database with all its implemented features are stored under [Tech-Roadmap](https://github.com/AlAliMazen/Tech-Roadmap-DRF?tab=readme-ov-file#data-models). In additon to the Datamodels shown in the walkthrough of the Moments project by Code Institute, I have added the following models to enhance my API and the Front-End website. The new models includes: Courses, enrollments, rating and rviews. In total there are 9 models implemented in the backend and represents the API which is published puplically under [Tech-Roadmap-DRF](https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/).
 
@@ -353,12 +340,12 @@ Following is a screen shot about the ERD done by using [dbdiagram.io software](h
 # Agile Process
 
 ## GitHub User Stories
-🚨**Required**
+
 
 As Version Control System Github doesn't only provide the ability to track chnages to the project files, but also it provides the possibility to create and track the implementation to the user stories which represent the goals and feature to be implemented in the website.
 
 ### User Story Templates
-🚨**Required**
+
 
 ### User Stories Overview
 
@@ -367,7 +354,7 @@ and actionable tasks—and **Epic stories**, which represent larger goals or ove
 
 For a detailed breakdown and tracking, I have created a comprehensive list of user stories, available through the following [Tech-Roadmap](https://github.com/users/AlAliMazen/projects/6/views/1).
 
----
+
 
 ### Epic Stories
 
@@ -377,7 +364,6 @@ For a detailed breakdown and tracking, I have created a comprehensive list of us
 
 3. **Article Engagement**: As a user, I can explore, write, comment, and interact with articles, facilitating knowledge sharing and discussions within the community.
 
----
 
 ### Normal User Stories
 
@@ -414,7 +400,7 @@ For the templates which has been followed for creating both Epic and Normal User
 
 
 # Features
-🚨**Required**
+
 
 Here’s a more detailed explanation of the website's features based on the user stories:
 
@@ -464,7 +450,7 @@ Here’s a more detailed explanation of the website's features based on the user
 
 
 ## Future Features
-🚀 **merit & beyhond**
+
 
 ### Future Features
 
@@ -479,7 +465,7 @@ These future features will expand the platform’s functionality, improve user e
 
 
 # Testing (Still to do)
-🚨**Required**
+
 
 In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that
 the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and
@@ -499,8 +485,6 @@ You should make sure your test cases cover the following:
 
 
 ## Cross Browser and Cross Device Testing
-🚨**Required**
-
 
 I prioritize using frameworks that handle much of the complexity of creating responsive websites. For this project, I utilized **React-Bootstrap 4.6** (as recommended by Code Institute), which provides a robust system for ensuring optimal responsiveness across various devices. This framework allowed me to efficiently manage layouts and elements, adapting the site seamlessly to different screen sizes. I have tested the website across multiple devices and platforms to ensure consistency and smooth performance for all users.
 
@@ -535,6 +519,7 @@ Following are emulators provided by Chrome (V. 126.0.6478.127) Browser on MacOS
 | Nest Hub                | 1024 x 600         |
 | Nest Hub Max            | 1280 x 800         |
 
+
 ## Why Choosing the pre-defined Browsers
 
 1. Bases on the information available on [most-popular-websites](https://gs.statcounter.com/browser-market-share) I can confirm that the best browser is chrome world-wide and this makes it more efficient to start coding the website based on the tools provided including Networking Tools to check the responsiveness of the website and offering tools like Lighthouse to check for the accessibility.
@@ -545,8 +530,6 @@ Following are emulators provided by Chrome (V. 126.0.6478.127) Browser on MacOS
 
 
 ## Accessibility Testing
-🚨**Required**
-
 
 **Lighthouse**
 It is very important to keep in mind that the Accessibility test doesn't always look as good as the code is. It depends on many factors including the good and clean code. I used Google Chrome Tools to perform the accessibility tests. 
@@ -598,7 +581,7 @@ One more point that can effect the Lighthouse results is the source where it run
 
 
 ## Validation Testing
-🚨**Required**
+
 
 Code validation is a crucial process that ensures the implemented code adheres to established standards and functions as intended. In web development, validation confirms that HTML, CSS, and JavaScript (including React code) are syntactically correct and meet specific guidelines. By validating code, developers can identify and resolve errors or inconsistencies, ensuring that the code performs efficiently across different browsers and platforms. This process not only improves functionality but also enhances accessibility, compatibility, and overall user experience. In essence, validation serves as proof that the code has been thoroughly tested and is reliable.
 
@@ -911,13 +894,13 @@ When refering to JSON files, I mean the to generated file which will be in the r
 
 
 ## Manual Test
-🚀 **merit & beyhond**
+
 
 For clarity and ease of reference, I have documented the manual test cases in a separate file, which is available on GitHub under the follwoing directory to read [tech-Roadmap-Tests](./TESTS.md) . This dedicated file enhances the readability and organization of the testing process, providing a detailed overview of the functionality and ensuring that all aspects of the application have been thoroughly verified. This approach allows for better tracking and management of the test results, making it easier to review and update as necessary.
 
 
 ## Defects
-🚨**Required**
+
 
 For tracking the bugs in the Tech-Roadmap I have used the GitHub Issues to keep and eye on every single solution being tried. This process helped me to exclude the things which I tried and which I still to try till I finally solve the issues. 
 
@@ -940,7 +923,6 @@ A complete overview to the GitHub page where I tracked both impleneting solution
 
 
 ## Defects of Note
-🚀 **merit & beyhond**
 
 Some defects are more pesky than others. Highlight 3-5 of the bugs that drove you the most nuts and how you finally
 ended up resolving them. Just create a link to the issues/defect of note.
@@ -952,7 +934,7 @@ explain why you chose not to resolve it. Again, do this in gitHub and provide a 
 and ensure they have a comment in them.
 
 ## Development Deployment 
-🚨**Required** 
+ 
 
 This project is a React-Project which is built on the top of the Walkthrough projct provided by Code Institute moments project. Try to follow the following steps to have your version of this version of the APP.
 
@@ -991,7 +973,7 @@ It is very helpfull to use the React-Component extension in Chrome Browser when 
 
 
 ## Production Deployment
-🚨**Required** 
+ 
 
 To have your React-App and version of this project bein sucessfully up and running and accessible for the public you need to follow some steps. I have used [HEROKU](https://www.heroku.com/) as recommended by Code Institute to host my React Website.
 
@@ -1062,24 +1044,71 @@ When you think you are donw with all the magic implemented to your project and y
 
 
 # Credits
-🚨**Required**
 
-To avoid plagiarism amd copyright infringement, you should mention any other projects, stackoverflow, videos, blogs, etc that you used to gather imagery or ideas for your code even if you used it as a starting point and modified things. Giving credit to other people's efforts and ideas that saved you time acknowledges the hard work others did.
 
--[Code Institute Template](https://github.com/Code-Institute-Org/python-essentials-template)
-    - The Template for the GUI for this project was provided by Code Institute. This allows for the Command line to be shown and used within the browser.
+During the development journey of the Tech-Roadmap React project I have used the following sources partially and sometimes totally, I would like to list it here and give them all a word of gratitude
 
-## Content
 
-Use bullet points to list out sites you copied text from and cross-reference where those show up on your site
+
+## Code and Content
+
+- [Code Institute Template](https://github.com/mr-fibonacci/moments/tree/83234283da32adb4a6bf5d5053a6c80068f6391c)
+    - The Template for the GUI of the walkthorugh project **moments**
+
+
+- [Filtering Arrays in React](https://upmostly.com/tutorials/react-filter-filtering-arrays-in-react-with-examples)
+
+
+- [Find function from MDN web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+
+- [Some function from MDN web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+
+- [Reduce function from MDN web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+
+- [Map function from MDN web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+
+- [Slice function from MDN web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
+
+- [React-bootstrap](https://react-bootstrap-v4.netlify.app/getting-started/introduction/)
+
+- [Tribehub_drf](https://github.com/andy-guttridge/tribehub_drf/tree/main?tab=readme-ov-file#manual-testing) for README example
+
+- [Quill-library-for-rich-text-format](https://quilljs.com/docs/quickstart)
+
+- [README-Table-Content-Generator](http://ecotrust-canada.github.io/markdown-toc/)
+
+- [12 Essential ESLint rules for React](https://blog.logrocket.com/12-essential-eslint-rules-react/)
 
 ## Media
 
-Make a list of sites you used images from. If you used several sites try to match up each image to the correct site. This includes attribution for icons if they came from font awesome or other sites, give them credit.
+- [Canva-For-Logo-Design](https://www.canva.com/design/DAGO4IYW6q4/MC5zaQHnuS3IVMcOWSXKxA/edit?utm_content=DAGO4IYW6q4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+
+- [Google-Fonts-for-Bellefair-font-family](https://fonts.google.com/specimen/Bellefair)
+
+- [Pixabay-Cloud-Computing-photo](https://pixabay.com/de/illustrations/ai-generiert-cloud-computing-bergbau-8533603/)
+
+- [Pixabay-Security-aliert-photo](https://pixabay.com/de/photos/sicherheit-alarm-monitor-cyber-5043368/)
+
+- [Unsplash-woman wearing red and black checkered blouse using flat screen computer](https://unsplash.com/photos/woman-wearing-red-and-black-checkered-blouse-using-flat-screen-computer-RMweULmCYxM)
+
+- [pixabay-white-board-man-photo](https://pixabay.com/de/photos/whiteboard-mann-präsentation-849812/)
+
+
+- [unsplash-photo-for-sign-in](https://unsplash.com/photos/person-using-macbook-pro-67l-QujB14w)
+
+- [unsplash-photo-for-singup](https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU)
+
 
 ## Acknowledgments
 
-This is the section where you refer to code examples, mentors, blogs, stack overflow answers and videos that helped you accomplish your end project. Even if it's an idea that you updated you should note the site and why it was important to your completed project.
+I would like to express my heartfelt gratitude to everyone who has supported me throughout the development of this project. To my mentors, colleagues, and friends who offered guidance, shared their expertise, and provided invaluable feedback—thank you. Your encouragement, advice, and collaboration have made this journey both rewarding and insightful. I am deeply appreciative of the time, effort, and support you have generously given, and I couldn't have accomplished this without you.
 
-If you used a CodeInstitute Instructional project as a starting point. Make note of that here too.
+- My Mentor Mr. Jubril Akolade
+
+- Slack Community
+
+- Code Institue - Student Care
+
+- Code Institute - Tutoring 
 
