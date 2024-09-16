@@ -916,7 +916,6 @@ When refering to JSON files, I mean the to generated file which will be in the r
 For clarity and ease of reference, I have documented the manual test cases in a separate file, which is available on GitHub under the follwoing directory to read [tech-Roadmap-Tests](./TESTS.md) . This dedicated file enhances the readability and organization of the testing process, providing a detailed overview of the functionality and ensuring that all aspects of the application have been thoroughly verified. This approach allows for better tracking and management of the test results, making it easier to review and update as necessary.
 
 
-
 ## Defects
 🚨**Required**
 
@@ -929,9 +928,6 @@ For tracking the bugs in the Tech-Roadmap I have used the GitHub Issues to keep 
 - **implemented Soltution** I tried to use the filter function and get all course in the first place and then look for any similar titles, but this will explode the code and make it unreadable. Thus I end up using the same mechanism being applied to the article model (post) shown in the walkthrough and call it in the Front end. This saved me some time. 
 
 ![Fillternig-course-issue](./README_ASSETS/ISSUE_2_Filtering_Courses.png)
-
-
-
 
 2. **Identifying the issue** When trying to update the submitted review, both the review and rating forms didn't work as expected. The problem resides in the ReviewEditForm as both the Review and the Rating models need the course ID to attach the review to it. 
 
@@ -958,52 +954,111 @@ and ensure they have a comment in them.
 ## Development Deployment 
 🚨**Required** 
 
-This section should describe the process someone would have to go through to get the local working in GitPod, or your preferred IDE. Start from installing the chrome extension then clicking the green gitpod button in THEIR FORKED repository, the enumerate the steps to walk them through the process as if they were brand new to this proccess. **Include screenshots** where applicable.
+This project is a React-Project which is built on the top of the Walkthrough projct provided by Code Institute moments project. Try to follow the following steps to have your version of this version of the APP.
 
-**Key points to cover** 
-- Install required python packages: `pip3 install -r requirements.txt`
-- Create env.py
-- What to put in the env.py, don’t disclose real values
->  - EMAIL_HOST_PASSWORD=<YOUR_VALUE>
->  - DEFAULT_FROM_EMAIL=<YOUR_VALUE>
->  - EMAIL_USERNAME=<YOUR_VALUE>
->  - SECRET_KEY=<YOUR_VALUE>
->  - CLOUDINARY_URL=<YOUR_VALUE>
->  - DEV=True
-- Apply Database Migrations so the database starts up `python3 manage.py migrate`
-- Create a super user so you can add and inspect things via django admin  `python3 manage.py createsuperuser`
-- Preload data: Sometimes you might want to include steps to create data in the admin or preload a data dump [coderwall blog](https://coderwall.com/p/mvsoyg/django-dumpdata-and-loaddata) has examples on how to dump data and load it which saves a bunch of time when deploying the application from a local database to a hosted database but you don’t  have to do this step
-- Start the server `python3 manage.py runserver`
+1. In Chrome Browser, go to the [extentions manager store](https://chromewebstore.google.com/?utm_source=ext_app_menu) and loook for GitPod
+
+
+2. Install [GitPod fromt he the Extensinos Store ](https://chromewebstore.google.com/detail/gitpod/dodmmooeoklaejobgleioelladacbeki?
+utm_source=ext_app_menu)in Chrome Browser GitPod has a free-limited time, it offeres only 50 hourse of working. As for me, students are offered a license with-no-time limit from Code institue. Open GitPod 
+
+![GitPodExtension](./README_ASSETS/GitPod_Extension.png)
+
+3. Setup a new working empty workingspace on **GitHub**
+
+4.  Setup new working space from GitPod **from within GitHub**: The new work space is going to be the IDE (which is online version of the VS Code but online). I have used it as my IDE through out the whole project because it is recommeded by [Code Institute GitPod IDE ](https://codeinstitute-ide.net/new). 
+![GitPod DashBoard](./README_ASSETS/GITPOD_DashBoard.png)
+
+4. In the Welcome screen, In the dashboard, you will need to find your newly created Repsoitoy, connect to it. 
+
+5. If you cloned my Tech-Roadmap() to the newly created workingspace, GitPod will need that you run the command `npm install` to install all the dependencies which I use (recommended if you want to build on the top of my project).
+
+6. Wait till GitPod finishes setting and installing required packages.
+
+
+**What you need in your Project other than mine**
+
+If you have followed my [instructions when deploying the tech-roadmap-DRF](https://github.com/AlAliMazen/Tech-Roadmap-DRF?tab=readme-ov-file#deployment), you need to have the base URL of your API since it is unique and only known to you. You get it when you deploy your project to HEROKU (or any Cloud Platform). The baseURL needs to be pasted in the **axiosDefaults** under the `src/api/axiosDefaults.js` file
+
+7. When everything is installed, you should be able to run the follwoing command in the terminal `npm start`to have this version of the project up and ready for working on. 
+
+
+**important** 
+
+It is very helpfull to use the React-Component extension in Chrome Browser when developing a react App. It helps identifying the components on screen with all its children and props. [React-Developer_tools-Extenion](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?utm_source=ext_app_menu)
+
+![React-developer-tool](./README_ASSETS/React_Dev_tool.png)
 
 
 ## Production Deployment
 🚨**Required** 
 
-This section should describe the process you went through to deploy the project to a server where anyone can access the url without your machine running. This is typically Heroku. **Include screenshots** if you think they would make the process easier. Start with getting an heroku account and then setting up databases and other packages.
+To have your React-App and version of this project bein sucessfully up and running and accessible for the public you need to follow some steps. I have used [HEROKU](https://www.heroku.com/) as recommended by Code Institute to host my React Website.
 
-If you have project settings required for Heroku, provide a table of the keys and values. Do not share your personal
-keys but either cut them out of the screenshot or say <YOUR_VALUE> and include links on how the user would obtain such
-values.
+### Pre-Requisties
 
-**Key points to cover** 
-- cerating new app
-- setting app name
-- setting region
-- entering dreaded billing info
-- subscribing to a plan
-- setting up db
-- adding environmental values- have a list or table so user has less chance of typos
->  - EMAIL_HOST_PASSWORD
->  - DEFAULT_FROM_EMAIL
->  - EMAIL_USERNAME
->  - SECRET_KEY
->  - CLOUDINARY_URL
->  - COLLECT_STATIC
-- adding build packages
-- deploy
-- gitHub connection
-- auto vs manul deploy
-- monotior logs
+1. Create a **Procfile** in the root directoy of your project
+
+2. Paste the following command inside it `web: serve -s build` a this is required by HEROKU.
+
+**Steps to Follow on HEROKU**
+
+1. Save all your files when you are done with development process. 
+
+2. On HEROKU dash board, choose to **creeate new App**
+
+![her-new-app](./README_ASSETS/HER_1_create_new_app.png)
+
+3. Give a valid name and region for your app. The app name must be green and valid based on HEROKu policies.
+
+4. Go to Deploy menu tab and 
+
+![deploy-menu-bar](./README_ASSETS/HER_2_deploy_menu.png)
+
+5. Under **Deployment method** choose GitHub where your Repository lives.
+
+6. On the same Deploy page under **App connected to GitHub** look for your repository or copy and paste its url in the searchBar, 
+
+7. Connect to your GitHub Repositoy by clicking on **Connect** when you find it. 
+
+8. Optional: You can set the **Automatic deploys** on from the **Branch** you want. As for me I have only the main branch. 
+
+9. Under **Manual deploy** click on **Deploy Branch**
+
+![heroku-automatic-build](./README_ASSETS/HER_3_manual_deploy.png)
+
+
+You can see how HEROKU build your version of the website by looks on `building logs`in the activity menu item.
+
+
+When Builduing ends up successfull the App is published and you can 
+click on the **Open app** button to have your public link for sharing the deployed verions (production version) of the app. **Copy the public link because you need it later on**
+
+![heroku-open-app](./README_ASSETS/HER_4_open_app.png)
+
+
+### How to Connect your IDE to the API?
+During the development you will need to see how the app looks like and whether it is connected to the API in the background. In order to achieve this connection, please make sure to set up the Config Vars correctly in the Backend settings as following:
+
+
+1. In the Backend API deployed version (For me it is HEROKU), you need to set a variable called **CLIENT_ORIGIN_DEV** 
+
+2. Set its value to the link shown from GitPod with a `/`at the end. When you are done setting the config vars as recommended, you should have something like the screen shot:
+
+![heroku-connect-ide](./README_ASSETS/HER_5_config_vars.png)
+
+
+
+### When it is READY
+
+When you think you are donw with all the magic implemented to your project and you are ready to share the project with public, you have to set**replace** the variable on the backend on HEROKU.
+
+1. Go to **HEROKU SETTING of YOUR BACKEND DRF APP** and 
+
+2. Rplace the **CLIENT_ORIGIN_DEV** to **CLIENT_ORIGIN** 
+
+3. Paste the pubic URL of **YOUR FRONT END APP** you got this from HEROKU as well when you have build it.
+
 
 
 # Credits
