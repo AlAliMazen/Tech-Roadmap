@@ -884,11 +884,13 @@ For tracking the bugs in the Tech-Roadmap I have used the GitHub Issues to keep 
 A complete overview to the GitHub page where I tracked both impleneting solutions and their results are on [Tech-Roadma-issues](https://github.com/AlAliMazen/tech-roadmap/issues?q=is%3Aissue+is%3Aclosed)
 
 
-## Defects of Note
+## Knwon Issues
 
 The following console notification are shown when the project runs, but they are considered normal as they are also present in the Walkthroug project and have been also addressed by the tutor.
 
 ![outstanding-defects](./README_ASSETS/Defect_Tech_roadmap.png)
+
+
 
 ## Development Deployment 
  
@@ -982,9 +984,14 @@ During the development you will need to see how the app looks like and whether i
 
 1. In the Backend API deployed version (For me it is HEROKU), you need to set a variable called **CLIENT_ORIGIN_DEV** 
 
-2. Set its value to the link shown from GitPod with a `/`at the end. When you are done setting the config vars as recommended, you should have something like the screen shot:
+2. Set its value to the link shown from GitPod with **NO trailing `/`at the end**. When you are done setting the config vars as recommended, you should have something like the screen shot:
 
-![heroku-connect-ide](./README_ASSETS/HER_5_config_vars.png)
+![heroku-connect-ide](./README_ASSETS/HER_CONFIG_VARS.png)
+
+In total you need to have 5 CONFIG VARS set up **Both CLIENT_ORIGIN and CLIENT_ORIGIN_DEV** can be present on the DRF . 
+
+
+**Please don't forget to check the settings.py file on the Tech-Roadmap-DRF to see how the configuration for both CLIENT_ORIGIN and CLIENT_ORIGIN_DEV are check up**
 
 
 
