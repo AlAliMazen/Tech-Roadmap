@@ -920,15 +920,27 @@ For clarity and ease of reference, I have documented the manual test cases in a 
 ## Defects
 🚨**Required**
 
-At this point you really should be using GITHUB's Issues to track these as it helps you with the AGILE process
-requirement as it's really easy to copy/paste screenshots in and then write up how you closed them.
+For tracking the bugs in the Tech-Roadmap I have used the GitHub Issues to keep and eye on every single solution being tried. This process helped me to exclude the things which I tried and which I still to try till I finally solve the issues. 
 
-[Here's a brief overview](https://docs.google.com/document/d/1nDS5tZeMO77Dfq85IZGMSV6C41XaPm9FwcpR3k-UTVc/edit#heading=h.542xzc8ufx4x)
-I put together on how to do this.
+1. First issue was related to the Filtering mechanism on the courses page. I note that when user wants to look for specific course, the searching and filtering bar didn't work at all. 
 
-is what my custom tempalte looks like in the UX
-![image](https://user-images.githubusercontent.com/23039742/165650359-a352d64e-b128-473d-ab60-7df0568a44df.png)
+- **Identifying the issue** The Problem was in fact related to the Backend where the filters from Django Backend has to be implemented and be called from the front-end. 
 
+- **implemented Soltution** I tried to use the filter function and get all course in the first place and then look for any similar titles, but this will explode the code and make it unreadable. Thus I end up using the same mechanism being applied to the article model (post) shown in the walkthrough and call it in the Front end. This saved me some time. 
+
+![Fillternig-course-issue](./README_ASSETS/ISSUE_2_Filtering_Courses.png)
+
+
+
+
+2. **Identifying the issue** When trying to update the submitted review, both the review and rating forms didn't work as expected. The problem resides in the ReviewEditForm as both the Review and the Rating models need the course ID to attach the review to it. 
+
+- **Implemented souliton** Onyl by using the Chrome Debug tools, I was able to solve this problem by submitting the course ID from the Review.js to the ReviewEditForm.js .
+
+![Updating the Review Form](./README_ASSETS/ISSUE_1_Review_Form.png)
+
+
+A complete overview to the GitHub page where I tracked both impleneting solutions and their results are on [Tech-Roadma-issues](https://github.com/AlAliMazen/tech-roadmap/issues?q=is%3Aissue+is%3Aclosed)
 
 
 ## Defects of Note
