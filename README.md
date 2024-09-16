@@ -121,7 +121,7 @@ Your site is most likely geared to a certain audience and goals for the business
 Targeted Audience
 Tech-Roadmap is designed to cater to three main groups, each with unique goals and interests. By providing both technical and social features, the platform serves as a versatile space for learning, sharing, and growing in the tech world.
 
-### Junior Programmers:
+### Junior Programmers
 The first group is junior developers who are eager to learn and explore the connection between front-end and back-end development. For these users, Tech-Roadmap serves as a practical example of how to integrate modern front-end frameworks like React with a back-end powered by Django REST Framework (DRF). This audience can dig into the codebase, analyze how different components are styled and implemented, and gain valuable hands-on experience in full-stack development. It’s an excellent opportunity for aspiring programmers to see how real-world applications are structured and maintained.
 
 ### Visitors Interested in IT and Technology
@@ -157,12 +157,12 @@ Tech-Roadmap is designed to meet the needs of three key groups, each with distin
    - Understand how to build a flexible platform that can grow over time, adding new features and expanding the user base step by step.
 
 
-## Scope (DONE)
+## Scope
 
 
 The design implemented in Tech-Roadmap, as reflected in the user stories, serve a dual purpose: they cater to both junior programmers looking to understand front-end development and general visitors engaging with the platform.
 
-1. **For Junior Programmers**:  
+1. **For Junior Programmers**: 
    The scope of the design elements extends to demonstrating the integration between front-end React components and back-end API functionalities. Key features such as responsive navigation, card layouts, and icons provide junior developers with practical insights into creating user-friendly interfaces. Additionally, the use of React Bootstrap’s Accordion component and the responsive design principles exemplify how to balance aesthetics with functionality in real-world web applications. These elements help junior programmers understand how to structure and style dynamic content while maintaining seamless user experiences.
 
 2. **For Visitors**:  
@@ -181,9 +181,6 @@ For desinging the Logo I have used a combination of two colors that perform a hi
 - Dark Black : RGB(0, 0, 0)
 
 - Dark Green : RGB(174, 254, 116)
-
-
-
 
 
 ### Typography
@@ -218,7 +215,6 @@ These elements together ensure a seamless and engaging user experience, making n
 
 ### Animations and Transitions
 
-
 Trnasiont and animation was extended from and applied when interacting with:
   - Clicking on action buttons like sign up / sign in / logout 
   - Hover effect applied all over the website including navbar item links and the active item in the menu bar
@@ -245,18 +241,15 @@ These frameworks and functions work together to create a responsive, interactive
 
 ### Custom Styles
 
-
 - call out any overrides you did for bootstrap styles or the framework you used, even if they are fonts and colors,
   perhaps lead assessors to the file of interest in your repo
 
 ### Custom Javascript
 
-
 - call attention to any custom javascript you created to help your User Experience you can organize this by functions or
   files
 
 ## Wireframes
-
 
 ### Wireframes Overview
 
@@ -328,7 +321,6 @@ PostgreSQL excels in handling structured data, complex relationships, and ensuri
 
 ## Data Models
 
-
 Based on the technologies and requiremetns used for this project the Database with all its implemented features are stored under [Tech-Roadmap](https://github.com/AlAliMazen/Tech-Roadmap-DRF?tab=readme-ov-file#data-models). In additon to the Datamodels shown in the walkthrough of the Moments project by Code Institute, I have added the following models to enhance my API and the Front-End website. The new models includes: Courses, enrollments, rating and rviews. In total there are 9 models implemented in the backend and represents the API which is published puplically under [Tech-Roadmap-DRF](https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/).
 
 Following is a screen shot about the ERD done by using [dbdiagram.io software](https://dbdiagram.io/d):
@@ -336,16 +328,13 @@ Following is a screen shot about the ERD done by using [dbdiagram.io software](h
 ![Tech-roadmap-DRF](./README_ASSETS/ERD_Original.png)
 
 
-
 # Agile Process
 
 ## GitHub User Stories
 
-
 As Version Control System Github doesn't only provide the ability to track chnages to the project files, but also it provides the possibility to create and track the implementation to the user stories which represent the goals and feature to be implemented in the website.
 
 ### User Story Templates
-
 
 ### User Stories Overview
 
@@ -353,7 +342,6 @@ In Agile development, **user stories** are a critical way to define features fro
 and actionable tasks—and **Epic stories**, which represent larger goals or overarching functionality that may span several development sprints.
 
 For a detailed breakdown and tracking, I have created a comprehensive list of user stories, available through the following [Tech-Roadmap](https://github.com/users/AlAliMazen/projects/6/views/1).
-
 
 
 ### Epic Stories
@@ -400,7 +388,6 @@ For the templates which has been followed for creating both Epic and Normal User
 
 
 # Features
-
 
 Here’s a more detailed explanation of the website's features based on the user stories:
 
@@ -451,9 +438,6 @@ Here’s a more detailed explanation of the website's features based on the user
 
 ## Future Features
 
-
-### Future Features
-
 1. **User Profile Deletion**: In future updates, users will have the ability to delete their own profiles. This action will also remove all associated content, including articles, comments, enrollments, and any other form of participation. Ensuring that all user-generated data is appropriately deleted will maintain database integrity and privacy.
 
 2. **"My Courses" Section**: A dedicated "My Courses" page will be introduced to provide users with a personalized view of the courses they are enrolled in. This feature will offer easy access to ongoing or completed courses, enhancing the learning experience and improving course management for users.
@@ -463,26 +447,7 @@ Here’s a more detailed explanation of the website's features based on the user
 These future features will expand the platform’s functionality, improve user experience, and provide greater control and customization for both users and administrators.
 
 
-
-# Testing (Still to do)
-
-
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that
-the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and
-ensure that they all work as intended, with the project providing an easy and straightforward way for the users to
-achieve their goals.
-
-
-**At this point, you should use gitHub Issues Templates and Test Case** to track test cases and defects. Here's
-a [document](https://docs.google.com/document/d/1nDS5tZeMO77Dfq85IZGMSV6C41XaPm9FwcpR3k-UTVc/edit#heading=h.3kdbr3tqbzi)
-I put together for this process.
-
-You should make sure your test cases cover the following: 
-
-
--------------------------
-
-
+# Testing 
 
 ## Cross Browser and Cross Device Testing
 
@@ -575,9 +540,6 @@ One more point that can effect the Lighthouse results is the source where it run
 10. Add comment to an article
 
 ![add-course-review](./README_ASSETS/tech_ACC_8_course_article_review.png)
-
-
-
 
 
 ## Validation Testing
@@ -893,8 +855,8 @@ When refering to JSON files, I mean the to generated file which will be in the r
 ![json-package](./README_ASSETS/JSON_VAL_package.png)
 
 
-## Manual Test
 
+## Manual Test
 
 For clarity and ease of reference, I have documented the manual test cases in a separate file, which is available on GitHub under the follwoing directory to read [tech-Roadmap-Tests](./TESTS.md) . This dedicated file enhances the readability and organization of the testing process, providing a detailed overview of the functionality and ensuring that all aspects of the application have been thoroughly verified. This approach allows for better tracking and management of the test results, making it easier to review and update as necessary.
 
@@ -924,14 +886,9 @@ A complete overview to the GitHub page where I tracked both impleneting solution
 
 ## Defects of Note
 
-Some defects are more pesky than others. Highlight 3-5 of the bugs that drove you the most nuts and how you finally
-ended up resolving them. Just create a link to the issues/defect of note.
+The following console notification are shown when the project runs, but they are considered normal as they are also present in the Walkthroug project and have been also addressed by the tutor.
 
-### Outstanding Defects
-
-It's ok to not resolve all the defects you found. If you know of something that isn't quite right, list it out and
-explain why you chose not to resolve it. Again, do this in gitHub and provide a link to the defects you are not closing
-and ensure they have a comment in them.
+![outstanding-defects](./README_ASSETS/Defect_Tech_roadmap.png)
 
 ## Development Deployment 
  
