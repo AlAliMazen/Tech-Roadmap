@@ -133,7 +133,7 @@ const Course = (props) => {
       setErrorMessage('');
       setSuccessMessage("Enrolled successfully!");
       setTimeout(() => setSuccessMessage(''), 3000);
-      //window.location.reload();
+      
     } catch (err) {
       setErrorMessage(err.response?.data?.detail);
       setTimeout(() => setErrorMessage(''), 3000);
@@ -141,7 +141,6 @@ const Course = (props) => {
   };
 
   const handleUnenroll = async () => {
-    console.log("From the handle Unenrolment : ", enrollment_id)
     try {
       await axiosRes.delete(`/enrollments/${enrollment_id}/`);
       setCourse((prevCourses) => ({
@@ -156,7 +155,7 @@ const Course = (props) => {
       setIsEnrolled(false)
       setSuccessMessage("Unenrolled successfully!");
       setTimeout(() => setSuccessMessage(''), 3000);
-      //window.location.reload();
+      
     } catch (err) {
       setErrorMessage(err.response?.data?.detail);
       setTimeout(() => setErrorMessage(''), 3000);
